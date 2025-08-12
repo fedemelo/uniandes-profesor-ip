@@ -1,0 +1,61 @@
+\documentclass{isis-lab}
+
+\coursecode{ISIS-1221}
+\coursename{INTRODUCCIÓN A LA PROGRAMACIÓN}
+\labtype{Nivel 1}
+\labnumber{Laboratorio 2}
+\labtitle{Descubriendo el mundo de la programación}
+
+\pagestyle{fancy}
+
+\fancyhf{}
+\fancyhead{}
+\fancyhead[C]{
+  \hspace*{-75pt}
+  \begin{minipage}[b][136pt]{\paperwidth}
+    \includegraphics[width=\paperwidth]{header.png}
+  \end{minipage}%
+}
+\renewcommand{\headrulewidth}{0pt}
+\vspace*{130pt}
+
+\begin{document}
+
+\maketitle
+
+\begin{sectionbox}{Objetivo general}
+El objetivo general de este laboratorio es familiarizarse con las primeras nociones de programación.
+\end{sectionbox}
+
+\begin{sectionbox}{Objetivos específicos}
+\begin{itemize}
+    \item Trabajar con diferentes tipos de datos y conversión entre ellos.
+    \item Practicar el uso de variables y la instrucción de asignación.
+    \item Utilizar operaciones aritméticas en Python.
+    \item Familiarizarse con las funciones aritméticas y de entrada y salida de Python.
+\end{itemize}
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 1: IVA y propina}
+Escriba un programa que reciba por parte del usuario el costo de la orden realizada en un restaurante, y calcule el IVA y propina correspondientes a la orden. Utilice una tasa del 8\% sobre el valor de la orden para calcular el IVA, y asuma que la propina corresponde al 10\% del valor de la factura (antes de impuestos). Su programa debe mostrar como resultado un mensaje que incluya el valor correspondiente al IVA, el valor de la propina y el valor total de la compra (costo de la orden más impuestos y propina). El mensaje podría verse así: ``Para la compra realizada, el valor que corresponde al IVA es de \$X pesos y la propina es de \$Y pesos, para un gran total de \$Z pesos''. Todos los valores deben mostrarse sólo con dos decimales.
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 2: Capacidad calorífica}
+La cantidad de energía necesaria para incrementar la temperatura de un gramo de un material, en un grado centígrado o Celsius, es la capacidad calorífica específica del material, C. La cantidad total de energía requerida para aumentar la temperatura de \textit{m} gramos de un material en $\Delta T$ grados Celsius se puede calcular con la fórmula:
+
+\begin{gather*}
+    q = mC\Delta T
+\end{gather*}
+
+Escriba un programa que reciba del usuario una masa de agua y el cambio de temperatura deseado, y calcule y muestre por pantalla el total de energía que debe agregarse o removerse para lograr el cambio de temperatura deseado. Tenga en cuenta que la capacidad calorífica específica del agua es de $4.186 \frac{J}{g°C}$.
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 3: Costo de energía}
+Extienda el programa del punto anterior para que calcule también el costo de calentar el agua. La electricidad se cobra normalmente usando unidades de kilowatt hora (kWh), en vez de Joules. En este ejercicio, asuma que la electricidad vale 8.9 centavos por kilowatt-hora. Utilice su programa para calcular el costo de hervir agua para una taza de café. Tenga en cuenta que 1 kWh equivale a 3600000 Joules.
+\end{sectionbox}
+
+\begin{sectionbox}{Entrega}
+Cree un archivo comprimido .zip con los dos archivos correspondientes a los programas que escribió anteriormente. Entregue el archivo comprimido a través de Brightspace en el laboratorio del Nivel1 designado como ``L2: Descubriendo el mundo de la programación''.
+\end{sectionbox}
+
+\end{document}
