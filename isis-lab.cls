@@ -103,7 +103,7 @@
     \end{tcolorbox}
 }
 
-\newenvironment{sectionbox}[1][Objetivo general]{%
+\newenvironment{sectionbox}[1]{%
     \vspace{-20pt}
     \section{\LARGE\bfseries #1}
     \vspace{-20pt}
