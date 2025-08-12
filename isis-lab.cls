@@ -46,17 +46,28 @@
 \renewcommand{\familydefault}{\sfdefault}
 
 \newcommand{\makeheader}{
-    \pagestyle{fancy}
-
-    \fancyhf{}
-    \fancyhead{}
-    \fancyhead[C]{
-    \hspace*{-75pt}
-    \begin{minipage}[b][136pt]{\paperwidth}
-        \includegraphics[width=\paperwidth]{header.png}
-    \end{minipage}%
+    % Define fancy page style for first page with header
+    \fancypagestyle{firstpage}{
+        \fancyhf{}
+        \fancyhead{}
+        \fancyhead[C]{
+        \hspace*{-75pt}
+        \begin{minipage}[b][136pt]{\paperwidth}
+            \includegraphics[width=\paperwidth]{header.png}
+        \end{minipage}%
+        }
+        \renewcommand{\headrulewidth}{0pt}
     }
-    \renewcommand{\headrulewidth}{0pt}
+    
+    % Define plain page style for subsequent pages (no header)
+    \fancypagestyle{plain}{
+        \fancyhf{}
+        \renewcommand{\headrulewidth}{0pt}
+    }
+    
+    % Set the page styles
+    \thispagestyle{firstpage}  % Use firstpage style for current page
+    \pagestyle{plain}          % Use plain style for subsequent pages
     \vspace*{130pt}
 }
 

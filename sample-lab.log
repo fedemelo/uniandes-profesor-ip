@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.11)  12 AUG 2025 11:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.11)  12 AUG 2025 11:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -818,23 +818,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
 al/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc} <./header.png>]
-File: header.png Graphic file (type png)
-<use header.png>
-Package pdftex.def Info: header.png  used on input line 50.
-(pdftex.def)             Requested size: 614.295pt x 171.53781pt.
-
-Overfull \hbox (71.86137pt too wide) has occurred while \output is active
- []|  []| 
- []
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 140.08003pt, for example:
-(fancyhdr)                \setlength{\headheight}{140.08003pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-128.08003pt}.
-
 [2] (./sample-lab.aux
 LaTeX Info: Redefining \. on input line 8.
 LaTeX Info: Redefining \% on input line 8.
@@ -845,10 +828,10 @@ L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 18975 strings out of 474116
- 380909 string characters out of 5743682
+ 18978 strings out of 474116
+ 380977 string characters out of 5743682
  1942187 words of memory out of 5000000
- 41007 multiletter control sequences out of 15000+600000
+ 41010 multiletter control sequences out of 15000+600000
  577540 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,16n,101p,835b,586s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -858,7 +841,7 @@ Here is how much of TeX's memory you used:
 sr/local/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/loca
 l/texlive/2024/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texli
 ve/2024/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on sample-lab.pdf (2 pages, 1277808 bytes).
+Output written on sample-lab.pdf (2 pages, 1277769 bytes).
 PDF statistics:
  48 PDF objects out of 1000 (max. 8388607)
  29 compressed objects within 1 object stream
