@@ -45,6 +45,21 @@
 
 \renewcommand{\familydefault}{\sfdefault}
 
+\newcommand{\makeheader}{
+    \pagestyle{fancy}
+
+    \fancyhf{}
+    \fancyhead{}
+    \fancyhead[C]{
+    \hspace*{-75pt}
+    \begin{minipage}[b][136pt]{\paperwidth}
+        \includegraphics[width=\paperwidth]{header.png}
+    \end{minipage}%
+    }
+    \renewcommand{\headrulewidth}{0pt}
+    \vspace*{130pt}
+}
+
 \renewcommand{\maketitle}{
     \begin{center}
         {\LARGE\bfseries \@labtype\ -- \@labnumber}\\[3pt]
