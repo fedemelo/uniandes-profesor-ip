@@ -68,7 +68,7 @@
 
     % Vertical space so content is not on top of the header
     % Obtained empirically
-    \vspace*{100pt}  
+    \vspace*{90pt}
 }
 
 \renewcommand{\maketitle}{
@@ -77,7 +77,7 @@
         {\LARGE\bfseries\@labtitle}
     \end{center}
     
-    \vspace{-8pt}
+    \vspace{-20pt}
 }
 
 \titleformat{\section}
@@ -121,7 +121,7 @@
 \newenvironment{sectionbox}[1]{%
     \vspace{-20pt}
     \section{\LARGE\bfseries #1}
-    \vspace{-20pt}
+    \vspace{-30pt}
 }
 
 \endinput

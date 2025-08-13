@@ -20,23 +20,23 @@ Entender cómo definir funciones que resuelven problemas y cuándo utilizarlas.
     \item Practicar el uso de variables y la instrucción de asignación.
     \item Utilizar operaciones y funciones aritméticas en Python.
     \item Definir funciones que resuelven problemas.
-    \item Utilizar funciones que resuelven problemas.
+    \item Utilizar funciones para resolver problemas.
 \end{enumerate}
 \end{sectionbox}
 
 \begin{sectionbox}{Actividad 1: Velocidad del sonido}
 Defina una función llamada \texttt{calcular\_velocidad\_sonido} que calcule la velocidad del sonido en el aire basándose en la temperatura. Use la fórmula
 \begin{gather*}
-    v = 331.3 + 0.606 \times T
+    v = 331.3 + 0.606 \cdot T
 \end{gather*}
 donde $v$ es la velocidad en m s$^{-1}$ y $T$ es la temperatura en grados Celsius.
 \end{sectionbox}
 
 \begin{sectionbox}{Actividad 2: Tiempo de propagación del eco}
 Escriba una función llamada \texttt{calcular\_tiempo\_sonido} que calcule cuánto tiempo tarda un eco en regresar. La función debe basarse en la temperatura ambiente y la distancia hasta el obstáculo que produce el eco (en metros). Recuerde que el sonido debe viajar ida y vuelta, por lo que la distancia total es el doble. 
-\pagebreak
 
 Invoque la función \texttt{calcular\_tiempo\_sonido} para una temperatura de 20°C y una distancia de 100 metros. Muestre en pantalla el resultado en segundos.
+\pagebreak
 
 Consejos:
 \begin{itemize}
@@ -49,7 +49,7 @@ Consejos:
 \begin{sectionbox}{Actividad 3: Sonido en Marte}
 Modifique la función \texttt{calcular\_velocidad\_sonido} para que calcule la velocidad del sonido en la atmósfera de Marte. En Marte, la fórmula es diferente debido a la composición atmosférica:
 \begin{gather*}
-    v = 240 + 0.4 \times T
+    v = 240 + 0.4 \cdot T
 \end{gather*}
 Redefina su función y ejecute nuevamente el programa de la Actividad 2 con los mismos valores de temperatura y distancia. Compare los resultados: ¿en qué planeta es más rápido el sonido?
 \end{sectionbox}
