@@ -1,7 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{isis-lab}[2024/01/01 ISIS Laboratory Template]
+\ProvidesClass{ip-lab}[2024/01/01 ISIS Laboratory Template]
 
-% Base class
 \LoadClass[11pt,letterpaper]{article}
 
 \RequirePackage[utf8]{inputenc}
@@ -28,47 +27,48 @@
 \definecolor{isisgray}{RGB}{236, 240, 241}
 \definecolor{isisdarkgray}{RGB}{149, 165, 166}
 
-\newcommand{\coursecode}[1]{\def\@coursecode{#1}}
-\newcommand{\coursename}[1]{\def\@coursename{#1}}
 \newcommand{\labtype}[1]{\def\@labtype{#1}}
 \newcommand{\labnumber}[1]{\def\@labnumber{#1}}
 \newcommand{\labtitle}[1]{\def\@labtitle{#1}}
-\newcommand{\headerimage}[1]{\def\@headerimage{#1}}
 
-% Default values
-\coursecode{ISIS-1221}
-\coursename{INTRODUCCIÓN A LA PROGRAMACIÓN}
 \labtype{Nivel 1}
 \labnumber{Laboratorio}
 \labtitle{}
-\headerimage{}
 
 \renewcommand{\familydefault}{\sfdefault}
 
 \newcommand{\makeheader}{
-    % Define fancy page style for first page with header
+    % Fancy page style for header in first page
     \fancypagestyle{firstpage}{
         \fancyhf{}
         \fancyhead{}
         \fancyhead[C]{
-        \hspace*{-75pt}
-        \begin{minipage}[b][136pt]{\paperwidth}
-            \includegraphics[width=\paperwidth]{header.png}
-        \end{minipage}%
+            % Move header to the pages left horizontal side disregarding the margin
+            % Obtained empirically
+            \hspace*{-75pt}  
+            % Create a box that is as wide as the page and as tall as the header
+            % The header is 136pt tall (empirically obtained)
+            \begin{minipage}[b][136pt]{\paperwidth}
+                \includegraphics[width=\paperwidth]{header.png}
+            \end{minipage}%
         }
         \renewcommand{\headrulewidth}{0pt}
-    }
-    
-    % Define plain page style for subsequent pages (no header)
-    \fancypagestyle{plain}{
-        \fancyhf{}
-        \renewcommand{\headrulewidth}{0pt}
+        \fancyfoot{}
     }
     
     % Set the page styles
-    \thispagestyle{firstpage}  % Use firstpage style for current page
-    \pagestyle{plain}          % Use plain style for subsequent pages
-    \vspace*{130pt}
+    \thispagestyle{firstpage}
+    \pagestyle{fancy}
+    
+    % Configure fancy style for subsequent pages (no header)
+    \fancyhf{}
+    \fancyhead{}
+    \fancyfoot{}
+    \renewcommand{\headrulewidth}{0pt}
+
+    % Vertical space so content is not on top of the header
+    % Obtained empirically
+    \vspace*{100pt}  
 }
 
 \renewcommand{\maketitle}{
@@ -103,12 +103,6 @@
     \end{tcolorbox}
 }
 
-\newenvironment{sectionbox}[1]{%
-    \vspace{-20pt}
-    \section{\LARGE\bfseries #1}
-    \vspace{-20pt}
-}{}
-
 \setlist[enumerate]{
     leftmargin=20pt,
     itemsep=3pt,
@@ -118,5 +112,16 @@
 
 \setlength{\textfloatsep}{10pt}
 \setlength{\intextsep}{10pt}
+\setlength{\parindent}{0pt}
+
+\setlength{\topskip}{10pt}
+\raggedbottom
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+\newenvironment{sectionbox}[1]{%
+    \vspace{-20pt}
+    \section{\LARGE\bfseries #1}
+    \vspace{-20pt}
+}
 
 \endinput
