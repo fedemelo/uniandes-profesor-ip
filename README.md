@@ -1,10 +1,6 @@
-# IP Laboratory LaTeX Template
+# IP
 
-LaTeX template that closely resembles the original IP laboratory format.
-
-See `sample-lab.tex` for a complete example that recreates an original lab layout and content.
-
-## Compilation
+Laboratories and exams written in LaTeX for the ISIS-1221: Introducción a la Programación course at Universidad de los Andes.
 
 Compile with pdfLaTeX:
 ```bash
