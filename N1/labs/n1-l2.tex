@@ -1,0 +1,64 @@
+\documentclass{ip-lab}
+
+\labtype{Nivel 1}
+\labnumber{Laboratorio 2}
+\labtitle{Funciones}
+
+\makeheader
+
+\begin{document}
+
+\maketitle
+
+\begin{sectionbox}{Objetivo general}
+Entender cómo definir funciones que resuelven problemas y cuándo utilizarlas.
+\end{sectionbox}
+
+\begin{sectionbox}{Objetivos específicos}
+\begin{enumerate}
+    \item Trabajar con diferentes tipos de datos y conversión entre ellos.
+    \item Practicar el uso de variables y la instrucción de asignación.
+    \item Utilizar operaciones y funciones aritméticas en Python.
+    \item Definir funciones que resuelven problemas.
+    \item Utilizar funciones para resolver problemas.
+\end{enumerate}
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 1: Velocidad del sonido}
+Defina una función llamada \texttt{calcular\_velocidad\_sonido} que calcule la velocidad del sonido en el aire basándose en la temperatura. Use la fórmula
+\begin{gather*}
+    v = 331.3 + 0.606 \cdot T
+\end{gather*}
+donde $v$ es la velocidad en m s$^{-1}$ y $T$ es la temperatura en grados Celsius.
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 2: Tiempo de propagación del eco}
+Escriba una función llamada \texttt{calcular\_tiempo\_sonido} que calcule cuánto tiempo tarda un eco en regresar. La función debe basarse en la temperatura ambiente y la distancia hasta el obstáculo que produce el eco (en metros). Recuerde que el sonido debe viajar ida y vuelta, por lo que la distancia total es el doble. 
+
+Invoque la función \texttt{calcular\_tiempo\_sonido} para una temperatura de 20°C y una distancia de 100 metros. Muestre en pantalla el resultado en segundos.
+
+% TODO: I'm using manual pagebreaks for now, due to time constraints, 
+% because the docclass incorrectly cuts content at the end of the page.
+\pagebreak
+
+Consejos:
+\begin{itemize}
+    \item Reutilice la función \texttt{calcular\_velocidad\_sonido} del punto anterior.
+    \item Utilice la fórmula: $\text{tiempo} = \dfrac{\text{distancia total}}{\text{velocidad}}$.
+    \item Muestre el resultado en segundos usando \texttt{print}.
+\end{itemize}
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 3: Sonido en otro planeta}
+Modifique la función \texttt{calcular\_velocidad\_sonido} para que calcule la velocidad del sonido en un planeta con composición atmosférica diferente. Utilice la fórmula
+\begin{gather*}
+    v = 240 + 0.7 \cdot T.
+\end{gather*}
+Redefina su función y ejecute nuevamente el programa de la Actividad 2 con los mismos valores de temperatura y distancia. Compare los resultados: ¿en qué planeta es más rápido el sonido? Luego pruebe con otros valores de temperatura y distancia. 
+\end{sectionbox}
+
+\begin{sectionbox}{Entrega}
+Cree un archivo comprimido .zip con el archivo \texttt{n2-l2.py}. Entregue el archivo comprimido a través de Brightspace en el laboratorio del Nivel 1 designado como ``L2: Funciones''.
+\end{sectionbox}
+
+\end{document}
