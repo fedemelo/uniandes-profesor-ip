@@ -1,0 +1,63 @@
+\documentclass{ip-lab}
+
+\labtype{Nivel 1}
+\labnumber{Laboratorio 4}
+\labtitle{Pre parcial}
+
+\makeheader
+
+\begin{document}
+
+\maketitle
+
+\begin{sectionbox}{Objetivo general}
+Escribir un programa de juguete que resuelve un problema.
+\end{sectionbox}
+
+\begin{sectionbox}{Objetivos específicos}
+\begin{enumerate}
+    \item Escribir funciones de la capa de lógica, cuya responsabilidad es resolver un problema.
+    \item Escribir funciones de la capa de presentación, cuya responsabilidad es solicitar la información necesaria al usuario y mostrar el resultado.
+    \item Escribir un programa que invoque funciones de la capa de lógica y de la capa de presentación.
+\end{enumerate}
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 1: Capa de lógica}
+Escriba un módulo de Python con dos funciones:
+\begin{enumerate}
+    \item Una que calcule el cateto de un triángulo rectángulo, con base en el otro cateto y la hipotenusa. Puede usar el teorema de Pitágoras.
+    \item Una función que reciba un número de horas transcurridas desde el 1 de enero a las 00:00 y determine en qué fecha se estaría (mes y día), suponiendo que cada mes tiene 30 días.
+\end{enumerate}
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 2: Capa de presentación}
+Escriba un módulo con al menos dos funciones:
+\begin{enumerate}
+    \item Una función que solicite al usuario el valor de un cateto de un triángulo rectángulo y el valor de la hipotenusa, y que con eso muestre el valor del otro cateto con un mensaje bonito.
+    \item Una función que solicite al usuario un número de horas y muestre un mensaje indicando la fecha correspondiente (mes y día) calculada desde el 1 de enero.
+\end{enumerate}
+Puede escribir también un menú y una función de iniciar aplicación, \textbf{si lo desea}. 
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Actividad 3: Pruebas}
+Pruebe que el programa funciona desde la capa de presentación, es decir, desde la consola. Para eso:
+\begin{itemize}
+    \item Si escribió una función de iniciar aplicación, invóquela.
+    \item Si no, invoque cada función de la capa de presentación directamente, una a la vez. Es decir: invoque primero una función, pruébela, luego puede comentar esa línea e invocar la siguiente función.
+\end{itemize}
+
+Puede usar los siguientes valores de prueba:
+\begin{itemize}
+  \item Para el triángulo rectángulo, $b = 3$ y $c = 5$. El valor del cateto faltante debería dar $4$.
+  \item Para la conversión de horas a meses y días, $h = 1000$. La fecha debería representar el 11 de febrero (a las 16:00 horas, pero eso no lo pide el enunciado).
+\end{itemize}
+
+\end{sectionbox}
+
+\begin{sectionbox}{Entrega}
+  Cree un archivo comprimido .zip que contenga exactamente dos archivos .py: el módulo de la capa de lógica y el de la capa de presentación. Entregue el archivo comprimido a través de Brightspace en el laboratorio del Nivel 1 designado como ``L4: Pre parcial''.
+\end{sectionbox}
+
+\end{document}
