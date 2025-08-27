@@ -10,10 +10,13 @@ LABS_DIR=$(N1_DIR)/labs
 EXAM_DIR=$(N1_DIR)/exam
 
 # Rules
-.PHONY: n1-l2 clean clean-all all  # Mark targets as always executed
+.PHONY: lab clean clean-all all  # Mark targets as always executed
 
-n1-l2:
-	$(TEX) -output-directory=$(LABS_DIR) $(LABS_DIR)/n1-l2.tex
+lab:
+	$(TEX) -output-directory=$(LABS_DIR) $(LABS_DIR)/L4/n1-l4.tex
+
+exam:
+	$(TEX) -output-directory=$(EXAM_DIR) $(EXAM_DIR)/n1-exam.tex
 
 clean:  # Remove all temporary files
 	find . \( -name "*.aux" -o -name "*.log" -o -name "*.out" -o -name "*.toc" -o -name "*.pyg" \) -exec rm {} +
@@ -26,4 +29,4 @@ clean:  # Remove all temporary files
 clean-all: clean  # Remove all temporary files and the generated pdf
 	find . -name "*.pdf" -exec rm {} +
 
-all: n1-l2
+all: lab exam
