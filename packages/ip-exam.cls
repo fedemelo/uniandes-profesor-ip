@@ -68,11 +68,14 @@
   \justifying
 
   Por favor, lea cuidadosamente las siguientes instrucciones:
+  
   \begin{itemize}
-      \item El examen tiene una duración máxima de 80 minutos.  
-      \item Es individual. Está prohibida cualquier interacción con sus compañeros durante el examen.
+      \item Para presentar el examen, debe entregar su carné estudiantil a cambio de este documento.
+      \item El examen tiene una duración máxima de 80 minutos. Pasado ese tiempo, deberá entregar su examen y recibirá su carné estudiantil.
+      \item Para abandonar el aula, debe entregar el examen, que se da por terminado, y recibir su carné estudiantil.
+      \item El examen es individual. Está prohibida cualquier interacción con sus compañeros en tiempo de examen.
       \item No se permite el uso de dispositivos electrónicos (e.g., celulares, relojes inteligentes, agendas electrónicas, computadores, etc.) ni de materiales adicionales como libros, impresos u hojas distintas al examen. 
-      \item En cada una de las preguntas abiertas, dejar la respuesta en blanco equivale automáticamente al 20\% del valor del punto. Al responder, renuncia a ese beneficio pero puede obtener todo el valor del punto o puntos parciales ante una respuesta correcta o parcialmente correcta. Las respuestas incoherentes o esotéricas pueden generar penalizaciones negativas de hasta el valor total del punto.
+      \item En cada una de las preguntas abiertas, dejar la respuesta en blanco equivale automáticamente al 20\% del valor del punto. Al responder, renuncia a ese beneficio, mas puede obtener todo el valor del punto o puntos parciales ante una respuesta correcta o parcialmente correcta. Las respuestas incoherentes o esotéricas pueden generar penalizaciones negativas de hasta el valor total del punto.
       \item En preguntas que incluyen cuadrícula, use esta únicamente para escribir código de manera que quede claro en qué cuadro inicia cada instrucción. No escriba texto libre en la cuadrícula. Las respuestas ilegibles o inadecuadamente indentadas pueden ser calificadas como incorrectas. 
       \item Puede completar el examen con lápiz, pero únicamente se aceptarán reclamos sobre respuestas escritas en tinta indeleble.
       \item Si tiene dudas, levante su mano para solicitar la atención del profesor.
