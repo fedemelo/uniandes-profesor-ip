@@ -5,15 +5,14 @@ export TEXINPUTS
 # Variables
 TEX=pdflatex -shell-escape
 N1_DIR=N1
-OUTPUT_DIR=$(N1_DIR)
-LABS_DIR=$(N1_DIR)/labs
+LAB_DIR=$(N1_DIR)/labs/L4
 EXAM_DIR=$(N1_DIR)/exam
 
 # Rules
 .PHONY: lab clean clean-all all  # Mark targets as always executed
 
 lab:
-	$(TEX) -output-directory=$(LABS_DIR) $(LABS_DIR)/L4/n1-l4.tex
+	$(TEX) -output-directory=$(LAB_DIR) $(LAB_DIR)/n1-l4.tex
 
 exam:
 	$(TEX) -output-directory=$(EXAM_DIR) $(EXAM_DIR)/n1-exam.tex
