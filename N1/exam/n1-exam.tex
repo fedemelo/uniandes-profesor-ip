@@ -20,20 +20,24 @@
 }
 \vspace{3cm}
 
-\gridquestion{10}{Escriba una función en Python que calcule la estatura de una persona. La función debe recibir como parámetros el índice de masa corporal (IMC) y el peso en kilogramos. Debe retornar la estatura en metros. No utilice funciones de entrada o salida.
+\gridquestion{10}{Escriba una función en Python que calcule la estatura de una persona, en metros. La función debe recibir como parámetros el índice de masa corporal (IMC) y el peso en kilogramos. Debe retornar la estatura en metros. No utilice funciones de entrada o salida.
 
-Recuerde que el índice de masa corporal se calcula como: $\text{IMC} = \dfrac{\text{peso}_\text{kg}}{(\text{estatura}_\text{m})^2}$
+El índice de masa corporal se calcula como: $\text{IMC} = \dfrac{\text{peso}_\text{kg}}{(\text{estatura}_\text{m})^2}$
 
 \textit{Consejo: No demore más de 10 minutos en este punto.}}
 
-\gridquestion[10cm]{20}{Escriba una función que recibe como parámetro una cantidad de segundos. La función debe retornar la fecha y hora que resulta de sumar esos segundos a las 00:00:00 del 1 de enero de 1970, en el formato \texttt{año-mes-día hora:minuto:segundo}. E.g.,
+\gridquestion[10cm]{20}{Escriba una función que recibe como parámetro una cantidad de milisegundos. La función debe convertir esa cantidad de milisegundos en horas, minutos, segundos y milisegundos. Luego, debe retornar una cadena de caracteres en el formato
+
+\texttt{hora:minuto:segundo.milisegundo}
+
+E.g.,
 \begin{itemize}
-  \item Para un argumento de \texttt{0} segundos, la función debe retornar \texttt{"1970-1-1 0:0:0"}.
-  \item Para un argumento de \texttt{65} segundos, la función debe retornar \texttt{"1970-1-1 0:1:5"}.
-  \item Para un argumento de \texttt{1000000000} segundos, la función debe retornar \texttt{"2002-2-24 1:46:40"}.
+  \item Para un argumento de \texttt{0} milisegundos, la función debe retornar \texttt{"0:0:0.0"}.
+  \item Para un argumento de \texttt{65\_000} milisegundos, la función debe retornar \texttt{"0:1:5.0"}.
+  \item Para un argumento de \texttt{3\_675\_315} milisegundos, la función debe retornar \texttt{"1:1:15.315"}.
 \end{itemize}
-Si quiere, suponga que todos los meses tienen 30 días.
-Si no, sepa que el año 1972 fue bisiesto.
+
+Sepa que hay mil milisegundos en un segundo.
 
 \textit{Consejo: No demore más de 30 minutos en este punto.}}
 
