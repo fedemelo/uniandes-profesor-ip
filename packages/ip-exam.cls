@@ -34,7 +34,7 @@
         \centering
         \textbf{Departamento de Ingeniería\\
         de Sistemas y Computación}\\[0.5em]
-        \textcolor{examgray}{ISIS1221 -- Introducción a la\\
+        \textcolor{examgray}{ISIS-1221 -- Introducción a la\\
         Programación (IP)}
     \end{minipage}%
     \hfill
