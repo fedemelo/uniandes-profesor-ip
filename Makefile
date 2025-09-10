@@ -4,18 +4,18 @@ export TEXINPUTS
 
 # Variables
 TEX=pdflatex -shell-escape
-N1_DIR=N1
-LAB_DIR=$(N1_DIR)/labs/L4
-EXAM_DIR=$(N1_DIR)/exam
+LEVEL_DIR=N2
+LAB_DIR=$(LEVEL_DIR)/labs/L2
+EXAM_DIR=$(LEVEL_DIR)/exam
 
 # Rules
 .PHONY: lab clean clean-all all  # Mark targets as always executed
 
 lab:
-	$(TEX) -output-directory=$(LAB_DIR) $(LAB_DIR)/n1-l4.tex
+	$(TEX) -output-directory=$(LAB_DIR) $(LAB_DIR)/n2-l2.tex
 
 exam:
-	$(TEX) -output-directory=$(EXAM_DIR) $(EXAM_DIR)/n1-exam.tex
+	$(TEX) -output-directory=$(EXAM_DIR) $(EXAM_DIR)/n2-exam.tex
 
 clean:  # Remove all temporary files
 	find . \( -name "*.aux" -o -name "*.log" -o -name "*.out" -o -name "*.toc" -o -name "*.pyg" \) -exec rm {} +
