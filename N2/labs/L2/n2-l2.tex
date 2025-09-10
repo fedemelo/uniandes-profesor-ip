@@ -1,0 +1,54 @@
+\documentclass{ip-lab}
+
+\labtype{Nivel 2}
+\labnumber{Laboratorio 2}
+\labtitle{Condicionales}
+
+\makeheader
+
+\begin{document}
+
+\maketitle
+
+\begin{sectionbox}{Objetivos}
+\begin{enumerate}
+    \item Entender la utilidad de los condicionales y cómo aplicarlos a diferentes problemas.
+    \item Practicar el uso de condicionales para la solución de problemas por casos.
+\end{enumerate}
+\end{sectionbox}
+
+
+\begin{sectionbox}{Preparación del ambiente de trabajo}
+  Cree un nuevo módulo de funciones llamado \texttt{condicionales.py} en el que escribirá las funciones correspondientes a los puntos 1 a 2 de este laboratorio.
+\end{sectionbox}
+
+
+\begin{sectionbox}{Actividad 1: Año bisiesto}
+  Escriba una función que reciba como argumento un año y determine si el año es bisiesto o no.
+
+  Un año es bisiesto si es divisible por 4, excepto si también es divisible por 100. En este último caso, solo será bisiesto si además es divisible por 400.
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 2: Validador de contraseñas}
+Escriba una función que reciba como parámetro una contraseña y determine si cumple con los siguientes criterios de seguridad:
+
+\begin{enumerate}
+    \item La contraseña debe tener al menos 8 caracteres de longitud.
+    \item Debe contener al menos una letra mayúscula.
+    \item Debe contener al menos una letra minúscula.
+    \item Debe contener al menos un dígito (0-9).
+
+\pagebreak
+
+    \item No debe contener espacios en blanco.
+    \item No debe ser igual a las contraseñas comunes: \texttt{password}, \texttt{123456}, \texttt{admin}.
+\end{enumerate}
+
+La función debe retornar \texttt{True} si la contraseña cumple con todos los criterios, o \texttt{False} en caso contrario.
+\end{sectionbox}
+
+\begin{sectionbox}{Entrega}
+Entregue el archivo \texttt{n2-l2.py} a través de Brightspace en el laboratorio del Nivel 2 designado como ``N2-L2: Condicionales''.
+\end{sectionbox}
+
+\end{document}
