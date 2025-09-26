@@ -153,7 +153,7 @@
         \def\gridheight{#1}
         \def\cellsize{0.5cm}
         
-        \draw[step=\cellsize, gray!40, very thin] 
+        \draw[step=\cellsize, gray!40, thin] 
             (0,0) grid (\gridwidth, \gridheight);
     \end{tikzpicture}
 }
