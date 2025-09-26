@@ -1,0 +1,66 @@
+\documentclass{ip-lab}
+
+\labtype{Nivel 2}
+\labnumber{Laboratorio 4}
+\labtitle{Diccionarios y Cadenas de Caracteres}
+
+\makeheader
+
+\begin{document}
+
+\maketitle
+
+\begin{sectionbox}{Objetivos}
+\begin{enumerate}
+    \item Practicar el uso de diccionarios para almacenar y procesar información estructurada.
+    \item Aplicar métodos de cadenas de caracteres para análisis y validación de texto.
+    \item Combinar condicionales con operaciones sobre diccionarios y strings.
+\end{enumerate}
+\end{sectionbox}
+
+\begin{sectionbox}{Preparación del ambiente de trabajo}
+  Cree un nuevo módulo de funciones llamado \texttt{n2\_l4.py} en el que escribirá las funciones correspondientes a las actividades 1 a 3 de este laboratorio.
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 1: Competencia de videojuegos}
+En un torneo de videojuegos, cuatro jugadores compiten por ser el campeón. Cada jugador tiene información almacenada en un diccionario con las siguientes llaves: \texttt{\textquotedbl nickname\textquotedbl} (nombre de usuario), \texttt{\textquotedbl puntaje\textquotedbl} (puntaje obtenido), \texttt{\textquotedbl experiencia\textquotedbl} (años de experiencia), \texttt{\textquotedbl plataforma\textquotedbl} (consola utilizada), y \texttt{\textquotedbl region\textquotedbl} (región geográfica).
+
+Implemente una función que reciba cuatro jugadores como parámetros y retorne el nickname del jugador con el puntaje más alto. En caso de empate en el puntaje, priorice al jugador que tenga más consonantes en su nickname y si persiste el empate, priorice al jugador que tenga menos experiencia. Se garantiza que no habrá empates completos.
+
+\textbf{Pista:} Para contar consonantes, recuerde que las vocales en español son: a, e, i, o, u (tanto mayúsculas como minúsculas).
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Actividad 2: Análisis de números palíndromos}
+Escriba una función que reciba cuatro números de exactamente 6 dígitos y determine cuáles son palíndromos. Un número es palíndromo si se lee igual de izquierda a derecha que de derecha a izquierda.
+
+La función debe retornar un diccionario donde cada número sea una llave y su valor sea un booleano indicando si es palíndromo.
+
+Para los números \texttt{123321},\texttt{988789} \texttt{938726} y \texttt{927729}, la función debería retornar:
+
+\texttt{\{\textquotedbl 123321\textquotedbl: True, \textquotedbl 988789\textquotedbl: False, \textquotedbl 938726\textquotedbl: False, \textquotedbl 927729\textquotedbl: True\}}
+
+\textbf{Pista:} Separe los dígitos con aritmética o use indexación simple de cadenas de caracteres y compare.
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 3: Sistema de códigos de productos}
+Una tienda en línea necesita validar códigos de productos que deben cumplir las siguientes reglas:
+\begin{itemize}
+  \item Deben tener exactamente 4 caracteres de longitud.
+  \item No deben tener letras mayúsculas.
+  \item No deben contener la secuencia \texttt{\textquotedbl 00\textquotedbl}.
+\end{itemize}
+
+Implemente una función que reciba cuatro códigos de productos como parámetros y retorne un diccionario donde cada código sea una llave y su valor sea un booleano indicando si el código es válido.
+
+\textbf{Ejemplo:} Para los códigos \texttt{\textquotedbl a123\textquotedbl}, \texttt{\textquotedbl x00y\textquotedbl}, \texttt{\textquotedbl B456\textquotedbl}, \texttt{\textquotedbl m789\textquotedbl}, la función debería retornar:
+
+\texttt{\{\textquotedbl a123\textquotedbl: True, \textquotedbl x00y\textquotedbl: False, \textquotedbl B456\textquotedbl: False, \textquotedbl m789\textquotedbl: True\}}
+\end{sectionbox}
+
+\begin{sectionbox}{Entrega}
+Entregue el archivo \texttt{n2\_l4.py} a través de Brightspace en el laboratorio del Nivel 2 designado como ``N2-L4: Diccionarios y Cadenas''.
+\end{sectionbox}
+
+\end{document}
