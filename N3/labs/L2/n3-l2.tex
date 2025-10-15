@@ -1,0 +1,78 @@
+\documentclass{ip-lab}
+
+\labtype{Nivel 3}
+\labnumber{Laboratorio 2}
+\labtitle{Ciclos sobre cadenas de caracteres}
+
+\makeheader
+
+\begin{document}
+
+\maketitle
+
+\begin{sectionbox}{Objetivos}
+\begin{enumerate}
+    \item Entender la utilidad de los ciclos \texttt{while} y cómo aplicarlos a diferentes problemas.
+    \item Practicar el uso de ciclos para el procesamiento de cadenas de caracteres.
+    \item Desarrollar habilidades para recorrer y manipular cadenas usando iteración.
+\end{enumerate}
+\end{sectionbox}
+
+
+\begin{sectionbox}{Preparación del ambiente de trabajo}
+  Para este laboratorio se le proporcionará un módulo de consola (\texttt{consola.py}) que contiene un menú interactivo para probar sus funciones.
+  
+  Usted debe crear un nuevo módulo de funciones llamado \texttt{modulo.py} en el que escribirá las funciones correspondientes a las actividades 1 a 3 de este laboratorio. La consola importará automáticamente sus funciones desde este módulo.
+\end{sectionbox}
+
+
+\begin{sectionbox}{Actividad 1: Invertir una cadena de caracteres}
+  Escriba una función que reciba como parámetro una cadena de caracteres y retorne la cadena invertida.
+
+  \textbf{Importante:} Debe implementar esta función usando un ciclo \texttt{while}. No puede usar la sintaxis de indexación negativa de Python (\texttt{cadena[::-1]}) ni métodos como \texttt{reversed()}. El objetivo es practicar el uso de ciclos para recorrer y construir cadenas carácter por carácter.
+
+  \textbf{Ejemplo:} Si la cadena de entrada es \texttt{\textquotedbl Hola Mundo\textquotedbl}, la función debe retornar \texttt{\textquotedbl odnuM aloH\textquotedbl}.
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 2: Histograma de caracteres}
+Escriba una función que reciba como parámetro una cadena de caracteres y retorne un diccionario que represente un histograma de los caracteres presentes en la cadena, es decir, cuántas veces aparece cada carácter en la cadena.
+
+El diccionario debe tener como llaves cada carácter único que aparece en la cadena (incluyendo espacios, dígitos y símbolos), y como valores la cantidad de veces que ese carácter aparece.
+
+\pagebreak
+
+Debe implementar esta función usando un ciclo \texttt{while} para recorrer la cadena carácter por carácter.
+
+\textbf{Ejemplo:} Si la cadena de entrada es \texttt{\textquotedbl hola hola\textquotedbl}, la función debe retornar:
+
+\texttt{\{\textquotesingle h\textquotesingle: 2, \textquotesingle o\textquotesingle: 2, \textquotesingle l\textquotesingle: 2, \textquotesingle a\textquotesingle: 2, \textquotesingle\ \textquotesingle: 1\}}
+\end{sectionbox}
+
+
+\begin{sectionbox}{Actividad 3: Verificador de simetría de vocales}
+Escriba una función que reciba como parámetro una cadena de caracteres y determine si las vocales en la cadena forman un patrón simétrico (es decir, si las vocales se leen igual de izquierda a derecha que de derecha a izquierda). Presuma que no hay tildes en la cadena.
+
+La función debe:
+\begin{itemize}
+    \item Ignorar las consonantes, espacios y otros caracteres.
+    \item Considerar solo las vocales (a, e, i, o, u), sin distinguir entre mayúsculas y minúsculas.
+    \item Retornar \texttt{True} si las vocales forman un patrón simétrico, o \texttt{False} en caso contrario.
+\end{itemize}
+
+Debe implementar esta función usando ciclos \texttt{while} para extraer y comparar las vocales.
+
+\textbf{Ejemplos:}
+\begin{itemize}
+    \item \texttt{\textquotedbl Anita lava la tina\textquotedbl} → \texttt{True} (vocales: a, i, a, a, a, a, i, a)
+    \item \texttt{\textquotedbl Hola mundo\textquotedbl} → \texttt{False} (vocales: o, a, u, o)
+    \item \texttt{\textquotedbl Oso\textquotedbl} → \texttt{True} (vocales: o, o)
+\end{itemize}
+\end{sectionbox}
+
+\begin{sectionbox}{Entrega}
+Entregue el archivo \texttt{modulo.py} a través de Brightspace en el laboratorio del Nivel 3 designado como ``N3-L2: Ciclos sobre cadenas de caracteres''.
+
+Puede usar el módulo \texttt{consola.py} proporcionado para probar sus funciones antes de la entrega. Su archivo debe funcionar correctamente desde la consola.
+\end{sectionbox}
+
+\end{document}
