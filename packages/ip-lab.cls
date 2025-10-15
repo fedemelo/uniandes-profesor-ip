@@ -48,8 +48,8 @@
             \hspace*{-75pt}  
             % Create a box that is as wide as the page and as tall as the header
             % The header is 136pt tall (empirically obtained)
-            \begin{minipage}[b][136pt]{\paperwidth}
-                \includegraphics[width=\paperwidth]{ip-header-n2.png}
+            \begin{minipage}[b][134pt]{\paperwidth}
+                \includegraphics[width=\paperwidth]{ip-header-n3.png}
             \end{minipage}%
         }
         \renewcommand{\headrulewidth}{0pt}
