@@ -1,0 +1,72 @@
+\documentclass{ip-exam}
+
+\title{Supletorio N2-EXAM -- 2025-20}
+\examdate{7 de octubre de 2025}
+
+\begin{document}
+
+\makeexamheader
+
+\question{3}{Compare el método \texttt{replace} con el método \texttt{find} de las cadenas de caracteres: ¿en qué se parecen y en qué difieren? Dé un ejemplo de cuándo usaría cada uno.
+
+\textit{Consejo: Sea conciso. No demore más de 5 minutos en este punto.}
+}
+\vspace{8cm}
+
+\question{3}{¿Para qué sirve el método \texttt{get} de los diccionarios? ¿Cuándo es útil usarlo en lugar de la sintaxis convencional para leer el valor de una llave? Explique con un ejemplo.
+
+\textit{Consejo: Sea conciso. No demore más de 5 minutos en este punto.}
+}
+\vspace{3cm}
+
+\newpage
+
+\gridquestion[13cm]{13}{En una competencia de robots, tres máquinas compiten por ser la más eficiente.
+
+La información de cada robot se proporciona mediante un diccionario con cuatro llaves: \texttt{\textquotedbl modelo\textquotedbl}, \texttt{\textquotedbl tipo\_energia\textquotedbl}, \texttt{\textquotedbl identificador\textquotedbl} y \texttt{\textquotedbl velocidad\_maxima\textquotedbl}.
+
+E.g.:
+
+\texttt{\{\\
+\phantom{xxxx}\textquotedbl modelo\textquotedbl: \textquotedbl T-800\textquotedbl,\\
+\phantom{xxxx}\textquotedbl tipo\_energia\textquotedbl: \textquotedbl nuclear\textquotedbl,\\
+\phantom{xxxx}\textquotedbl identificador\textquotedbl: \textquotedbl ARNOLD\textquotedbl,\\
+\phantom{xxxx}\textquotedbl velocidad\_maxima\textquotedbl: 45\\
+\}}
+
+Implemente una función que recibe tres robots como parámetros y retorna el modelo del robot con la menor velocidad máxima. En caso de empate en la velocidad, dé prelación al robot que tenga el identificador más corto. En caso de empate total, prefiera el primer diccionario en el orden de entrada.
+
+\textit{Consejo: No demore más de 20 minutos en este punto.}}
+
+\newpage
+
+\gridquestion[13cm]{13}{En una biblioteca digital, cada uno de los códigos de los libros debe satisfacer las siguientes reglas:
+\begin{itemize}
+  \item No deben contener el caracter \texttt{F}.
+  \item Deben tener al menos una vez el caracter \texttt{-}.
+  \item Deben tener más de 5 caracteres.
+\end{itemize}
+
+Implemente una función que reciba tres códigos como parámetros y retorne un diccionario con los códigos como llaves, cada uno con un booleano como valor que indique si el código es válido o no.
+
+\textit{Consejo: No demore más de 17 minutos en este punto.}}
+
+\newpage
+
+\gridquestion[11cm]{13}{Escriba una función que reciba tres números, cada uno de tres dígitos, y retorne un diccionario en donde cada uno de los tres números sea una llave y su valor sea:
+\begin{itemize}
+  \item El producto de sus dígitos, si el producto de los dígitos es par.
+  \item La suma de sus dígitos, si el producto de los dígitos es impar.
+\end{itemize}
+
+\textit{Consejo: No demore más de 17 minutos en este punto.}
+}
+
+\question{5}{Explique brevemente un concepto del nivel 2 del curso que no se evalúa en este examen.
+
+\textit{Consejo: No demore más de 5 minutos en este punto.}
+}
+
+\vspace{3cm}
+
+\end{document}
