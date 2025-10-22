@@ -1,15 +1,6 @@
 import modulo as mod
 
 
-def convertir_entrada_a_lista(entrada: str) -> list:
-    """Función auxiliar que convierte una entrada de números separados por comas en una lista de enteros."""
-    lista = []
-    numeros = entrada.replace(' ', '').split(',')
-    for num in numeros:
-        lista.append(int(num.strip()))
-    return lista
-
-
 def ejecutar_sumar_posiciones_iguales() -> None:
     """Función que recibe los datos y ejecuta la función de sumar posiciones de elementos iguales."""
     print("Sumador de posiciones de elementos iguales consecutivos")
@@ -60,6 +51,15 @@ def ejecutar_contar_apariciones() -> None:
     
     cantidad = mod.contar_apariciones(lista_principal, sublista)
     print(f"La sublista aparece {cantidad} veces en la lista principal")
+
+
+def convertir_entrada_a_lista(entrada: str) -> list:
+    """Función auxiliar que convierte una entrada de números separados por comas en una lista de enteros."""
+    lista = []
+    numeros = entrada.replace(' ', '').split(',')
+    for num in numeros:
+        lista.append(int(num.strip()))
+    return lista
 
 
 def mostrar_menu() -> None:
