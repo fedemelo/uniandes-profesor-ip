@@ -1,0 +1,146 @@
+\documentclass{ip-lab}
+
+\usepackage{url}
+\usepackage{float}
+\usepackage{graphicx}
+
+\labtype{Nivel 3}
+\labnumber{Laboratorio 4}
+\labtitle{Lectura de archivos y recorrido de diccionarios}
+
+\makeheader
+
+\begin{document}
+
+\maketitle
+
+\begin{sectionbox}{Objetivos}
+\begin{enumerate}
+    \item Practicar la lectura de archivos con formato CSV.
+    \item Ejercitar la implementación de algoritmos de recorrido de diccionarios y de listas.
+    \item Familiarizarse con estructuras complejas de datos, como un diccionario de listas de diccionarios.
+\end{enumerate}
+\end{sectionbox}
+
+
+\begin{sectionbox}{Preparación del ambiente de trabajo}
+  Para este laboratorio se le proporcionará un módulo de consola (\texttt{consola.py}) que contiene un menú interactivo para probar sus funciones.
+  
+  Usted debe crear un nuevo módulo de funciones llamado \texttt{modulo.py} en el que escribirá las funciones correspondientes a las actividades 1 y 2 de este laboratorio. La consola importará automáticamente sus funciones desde este módulo.
+  
+  También se le proporcionará un archivo CSV llamado \texttt{cupicharts.csv} que contiene información sobre canciones y sus características. El archivo CSV contiene datos organizados en columnas, donde cada fila representa una canción diferente.
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Estructura del archivo CSV}
+  El archivo \texttt{cupicharts.csv} contiene información musical organizada en las siguientes columnas:
+  
+  \begin{table}[H]
+  \centering
+  \caption{Descripción de las columnas del archivo: cupicharts.csv}
+  \begin{tabular}{|c|l|p{4cm}|l|l|}
+  \hline
+  \textbf{Posición} & \textbf{Nombre de la columna} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Ejemplo} \\
+  \hline
+  0 & \texttt{title} & Título de la canción & \texttt{str} & ``Die With a Smile'' \\
+  \hline
+  1 & \texttt{chart\_week} & Fecha en que alcanzó el chart en formato: ``YYYY-MM-DD'' & \texttt{str} & ``2025-06-28'' \\
+  \hline
+  2 & \texttt{performer} & Artista o intérprete de la canción & \texttt{str} & ``Lady Gaga'' \\
+  \hline
+  3 & \texttt{peak\_pos} & Posición máxima alcanzada en el chart & \texttt{int} & 1 \\
+  \hline
+  4 & \texttt{wks\_on\_chart} & Número de semanas que la canción ha estado en el chart & \texttt{int} & 44 \\
+  \hline
+  5 & \texttt{album\_name} & Nombre del álbum al que pertenece la canción & \texttt{str} & ``Die With a Smile'' \\
+  \hline
+  6 & \texttt{release\_date} & Fecha de lanzamiento de la canción en formato: ``YYYY-MM-DD'' & \texttt{str} & ``2024-08-16'' \\
+  \hline
+  7 & \texttt{popularity} & Popularidad de la canción en una escala del 1 al 100 & \texttt{int} & 98 \\
+  \hline
+  8 & \texttt{explicit} & Indica si la canción tiene contenido explícito & \texttt{bool} & False \\
+  \hline
+  9 & \texttt{listeners} & Número de oyentes que han escuchado la canción & \texttt{int} & 1412509 \\
+  \hline
+  10 & \texttt{play\_count} & Número de reproducciones de la canción & \texttt{int} & 23765285 \\
+  \hline
+  11 & \texttt{duration\_s} & Duración de la canción en segundos & \texttt{float} & 251.667 \\
+  \hline
+  12 & \texttt{genre} & Género musical de la canción & \texttt{str} & ``art pop'' \\
+  \hline
+  \end{tabular}
+  \end{table}
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 1: Cargar datos desde archivo CSV}
+  Escriba una función \texttt{cargar\_cupicharts} que reciba como parámetro una cadena de caracteres con la ruta al archivo CSV y retorne un diccionario que organice la información de las canciones según su género musical.
+
+  Organice los datos en un diccionario, donde las llaves sean los nombres de los géneros musicales (strings en minúscula, sin espacios al inicio o al final). Los valores deben ser listas de diccionarios, donde cada elemento de la lista (cada diccionario) represente una canción de ese género, con sus atributos (a excepción del atributo género).
+  
+  La función debe:
+  \begin{itemize}
+      \item Leer el archivo CSV línea por línea.
+      \item Para cada línea (que representa una canción), extraer todos los campos y organizarlos en un diccionario.
+      \item Agrupar las canciones por género musical, donde el género será la llave del diccionario principal.
+      \item El género musical debe estar en minúscula y sin espacios al inicio o al final.
+      \item Cada canción se almacenará como un diccionario con todos sus campos, excepto el campo \texttt{genre} (ya que el género es la llave del diccionario principal). 
+  \end{itemize}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{estructura.png}
+    \caption{Ejemplo de la estructura deseada para el manejo de los datos.}
+  \end{figure}
+  
+  \textbf{Notas importantes:} Al usar \texttt{readline()}, agregue \texttt{strip()} de la siguiente forma, para garantizar que se eliminen los saltos de línea: \texttt{readline().strip()}. Al usar \texttt{open()}, agregue la codificación ``utf-8'' de la siguiente forma, para garantizar la lectura de caracteres especiales del archivo CSV: \texttt{open(archivo, ``r'', encoding=``utf-8'')}. Para más información, consulte la documentación de \texttt{str.strip()}: \url{https://docs.python.org/es/3/library/stdtypes.html\#str.strip} y la documentación de \texttt{readline()}: \url{https://docs.python.org/es/3/tutorial/inputoutput.html\#methods-of-file-objects}.
+  
+  \textbf{Estructura del retorno:}
+  El diccionario retornado debe tener la siguiente estructura:
+  \begin{verbatim}
+  {
+      "pop": [
+          {
+              "title": "Canción 1",
+              "performer": "Artista 1",
+              "peak_pos": 5,
+              ...
+          },
+          ...
+      ],
+      "rock": [
+          {
+              "title": "Canción 2",
+              "performer": "Artista 2",
+              "peak_pos": 3,
+              ...
+          },
+          ...
+      ],
+      ...
+  }
+  \end{verbatim}
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 2: Canción más popular por género}
+  Escriba una función \texttt{cancion\_mas\_popular\_por\_genero} que reciba como parámetros un diccionario de canciones (el mismo formato retornado por \texttt{cargar\_cupicharts}) y el nombre de un género musical, y retorne el título de la canción con mayor popularidad en ese género.
+  
+  La función debe:
+  \begin{itemize}
+      \item Buscar el género especificado en el diccionario.
+      \item Si el género no existe, debe retornar \texttt{None}.
+      \item Si el género existe, recorrer todas las canciones de ese género y encontrar la que tenga el mayor valor en el campo \texttt{popularity}.
+      \item Si hay empate en la popularidad máxima, debe retornar el título de la canción que aparezca primero en la lista.
+      \item Retornar el título (campo \texttt{title}) de la canción más popular.
+  \end{itemize}
+  
+  Si en el género ``pop'' hay canciones con popularidad 95, 98 y 95, la función debe retornar el título de la canción con popularidad 98. Si todas las canciones de ``pop'' tienen popularidad 95, debe retornar el título de la primera canción en la lista con esa popularidad.
+\end{sectionbox}
+
+\begin{sectionbox}{Entrega}
+Entregue el archivo \texttt{modulo.py} a través de Brightspace en el laboratorio del Nivel 3 designado como ``N3-L4: Lectura de archivos y recorrido de diccionarios''.
+
+Puede usar el módulo \texttt{consola.py} proporcionado para probar sus funciones antes de la entrega. Su archivo debe funcionar correctamente desde la consola. Asegúrese de tener el archivo \texttt{cupicharts.csv} en el mismo directorio para probar su implementación.
+\end{sectionbox}
+
+\end{document}
