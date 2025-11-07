@@ -1,0 +1,122 @@
+\documentclass{ip-exam}
+
+\usepackage{float}
+
+\title{N3-EXAM A -- 2025-20}
+\examdate{7 de noviembre de 2025}
+
+\begin{document}
+
+\makeexamheader
+
+\question{3}{Compare los ciclos \texttt{for} y \texttt{while}: ¿Todos los problemas que pueden resolverse con \texttt{while} pueden resolverse con \texttt{for}? Dicho de otra forma: ¿para cada ciclo \texttt{while}, existe un ciclo \texttt{for} equivalente? Aborde también la pregunta inversa: ¿Todos los problemas que pueden resolverse con \texttt{for} pueden resolverse con \texttt{while}? O sea, ¿para cada ciclo \texttt{for}, existe un ciclo \texttt{while} equivalente?
+
+\textit{Consejo: Sea conciso. No demore más de 5 minutos en este punto.}
+}
+\vspace{8cm}
+
+
+\question{3}{Clasifique los siguientes problemas en recorrido \textbf{total} o recorrido \textbf{parcial}:
+
+\begin{center}
+\begin{tabular}{|p{8cm}|p{4cm}|}
+\hline
+\textbf{Descripción del problema} & \textbf{Tipo de recorrido} \\
+\hline
+Buscar el elemento con el mayor valor de una propiedad en una secuencia & \\
+\hline
+Organizar los elementos de una secuencia según algún criterio & \\
+\hline
+Verificar si existe algún elemento que cumple una condición en una secuencia & \\
+\hline
+Contar cuántas veces aparece un elemento específico en una secuencia & \\
+\hline
+Calcular el promedio de los valores de un diccionario (suponga que son números) & \\
+\hline
+Filtrar los elementos de una secuencia que cumplen una condición & \\
+\hline
+Verificar si todos los elementos de una secuencia cumplen una condición & \\
+\hline
+Eliminar los elementos duplicados de una secuencia & \\
+\hline
+\end{tabular}
+\end{center}
+
+\textit{Consejo: Sea conciso. No demore más de 5 minutos en este punto.}
+}
+\vspace{3cm}
+
+\newpage
+
+\gridquestion[15cm]{13}{Escriba una función que reciba una cadena de caracteres como parámetro y retorne una nueva cadena que sea la cadena original invertida, pero donde cada vocal sea reemplazada por el carácter \texttt{\textquotedbl x\textquotedbl}.
+
+Puede suponer que la cadena es alfanumérica, no contiene tildes, pero sí puede tener mayúsculas y minúsculas.
+
+\textbf{E.g.:} Si la cadena de entrada es \texttt{\textquotedbl Hola Azul\textquotedbl}, la función debe retornar \texttt{\textquotedbl lxzx xlxH\textquotedbl}.
+
+\textit{Consejo: No demore más de 17 minutos en este punto.}
+}
+
+\newpage
+
+\gridquestion[22cm]{13}{El archivo \texttt{cupicharts.csv} contiene información musical organizada en las siguientes columnas:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|p{4cm}|l|l|}
+\hline
+\textbf{Posición} & \textbf{Nombre de la columna} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Ejemplo} \\
+\hline
+0 & \texttt{title} & Título de la canción & \texttt{str} & ``Die With a Smile'' \\
+\hline
+1 & \texttt{chart\_week} & Fecha en que alcanzó el chart en formato: ``YYYY-MM-DD'' & \texttt{str} & ``2025-06-28'' \\
+\hline
+2 & \texttt{performer} & Artista o intérprete de la canción & \texttt{str} & ``Lady Gaga'' \\
+\hline
+3 & \texttt{peak\_pos} & Posición máxima alcanzada en el chart & \texttt{int} & 1 \\
+\hline
+4 & \texttt{wks\_on\_chart} & Número de semanas que la canción ha estado en el chart & \texttt{int} & 44 \\
+\hline
+5 & \texttt{album\_name} & Nombre del álbum al que pertenece la canción & \texttt{str} & ``Die With a Smile'' \\
+\hline
+6 & \texttt{release\_date} & Fecha de lanzamiento de la canción en formato: ``YYYY-MM-DD'' & \texttt{str} & ``2024-08-16'' \\
+\hline
+7 & \texttt{popularity} & Popularidad de la canción en una escala del 1 al 100 & \texttt{int} & 98 \\
+\hline
+8 & \texttt{explicit} & Indica si la canción tiene contenido explícito & \texttt{bool} & False \\
+\hline
+9 & \texttt{listeners} & Número de oyentes que han escuchado la canción & \texttt{int} & 1412509 \\
+\hline
+10 & \texttt{play\_count} & Número de reproducciones de la canción & \texttt{int} & 23765285 \\
+\hline
+11 & \texttt{duration\_s} & Duración de la canción en segundos & \texttt{float} & 251.667 \\
+\hline
+12 & \texttt{genre} & Género musical de la canción & \texttt{str} & ``art pop'' \\
+\hline
+\end{tabular}
+\end{table}
+
+Escriba una función que reciba como parámetro una cadena de caracteres con la ruta al archivo CSV y retorne una lista de diccionarios, donde cada diccionario representa una canción con \textbf{todos} sus campos.
+
+\textbf{Nota:} Este archivo es el mismo que se usa en el laboratorio 4 y en el proyecto del curso, pero note que se le pide cargarlo en una estructura diferente.
+
+\textit{Consejo: No demore más de 20 minutos en este punto.}}
+
+\newpage
+
+\gridquestion[18cm]{13}{Escriba una función que reciba como parámetro la estructura creada en el punto anterior y retorne un diccionario que represente un histograma de géneros musicales. El diccionario retornado debe tener como llaves los nombres de los géneros musicales (en minúscula, sin espacios al inicio o al final) y como valores el número de canciones de cada género.
+
+\textbf{Ejemplo:} Si la lista contiene 5 canciones de ``pop'', 3 de ``rock'' y 2 de ``jazz'', el diccionario retornado debe ser: \texttt{\{\textquotedbl pop\textquotedbl: 5, \textquotedbl rock\textquotedbl: 3, \textquotedbl jazz\textquotedbl: 2\}}.
+
+\textit{Consejo: No demore más de 17 minutos en este punto.}}
+
+\newpage
+
+\question{5}{Explique brevemente un concepto del nivel 3 del curso que no se evalúa en este examen.
+
+\textit{Consejo: No demore más de 5 minutos en este punto.}
+}
+
+\vspace{3cm}
+
+\end{document}
