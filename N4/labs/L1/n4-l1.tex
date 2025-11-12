@@ -1,0 +1,341 @@
+\documentclass{ip-lab}
+
+\usepackage{url}
+\usepackage{float}
+\usepackage{graphicx}
+
+\labtype{Nivel 4}
+\labnumber{Laboratorio 1}
+\labtitle{Visor de imágenes con matrices}
+
+\makeheader
+
+\begin{document}
+
+\maketitle
+
+\begin{sectionbox}{Objetivos}
+\begin{enumerate}
+    \item Practicar el manejo de matrices representadas como listas de listas.
+    \item Implementar algoritmos de recorrido y transformación de matrices.
+    \item Familiarizarse con estructuras complejas de datos, como listas de listas de tuplas.
+    \item Aplicar operaciones matemáticas sobre matrices para transformar imágenes digitales.
+\end{enumerate}
+\end{sectionbox}
+
+
+\begin{sectionbox}{Preparación del ambiente de trabajo}
+  Para este laboratorio se le proporcionará un módulo de consola (\texttt{consola\_visor\_imagenes.py}) que contiene un menú interactivo para probar sus funciones.
+  
+  Usted debe completar el módulo de funciones llamado \texttt{visor\_imagenes.py} en el que escribirá las funciones correspondientes a las actividades de este laboratorio. La consola importará automáticamente sus funciones desde este módulo.
+  
+  También se le proporcionarán tres archivos de imagen en formato PNG (\texttt{imagen1.png}, \texttt{imagen2.png}, \texttt{imagen3.png}) que podrá utilizar para probar las transformaciones implementadas.
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Representación de imágenes}
+  En este laboratorio trabajaremos con imágenes digitales en formato PNG (Portable Network Graphics). Para poder realizar transformaciones sobre estas imágenes, la información de cada pixel se guarda en una matriz.
+  
+  La matriz que utilizaremos tiene el formato de lista de listas de tuplas, donde:
+  \begin{itemize}
+      \item La lista externa representa las filas de la imagen (altura).
+      \item Cada lista interna representa una fila de pixeles (ancho).
+      \item Cada tupla representa un pixel con sus tres componentes de color en formato RGB.
+  \end{itemize}
+  
+  El color de un pixel está representado en el sistema RGB (Red-Green-Blue), es decir, un componente rojo, uno verde y uno azul. Estos componentes son números de punto flotante que van de \(0.0\) a \(1.0\).
+  
+  \textbf{Ejemplo de representación:}
+  
+  Una imagen de $3 \times 3$ pixeles se representa de la siguiente manera:
+  \begin{verbatim}
+  [
+    [(0.0, 1.0, 0.0), (0.0, 0.0, 1.0), (1.0, 0.0, 0.0)],
+    [(1.0, 0.39, 0.0), (0.59, 0.0, 1.0), (0.0, 1.0, 0.78)],
+    [(0.0, 0.0, 0.0), (0.39, 0.39, 0.39), (1.0, 1.0, 1.0)]
+  ]
+  \end{verbatim}
+
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{ejemplo_imagen_3x3.png}
+    \caption{Ejemplo de una imagen de 3x3 pixeles.}
+  \end{figure}
+  
+  En este ejemplo:
+  \begin{itemize}
+    \item En la posición \texttt{[0][0]} hay un pixel verde con componentes (\(R\): \(0.0\), \(G\): \(1.0\), \(B\): \(0.0\))
+    \item En la posición \texttt{[0][1]} hay un pixel azul con componentes (\(R\): \(0.0\), \(G\): \(0.0\), \(B\): \(1.0\))
+    \item En la posición \texttt{[2][2]} hay un pixel blanco con componentes (\(R\): \(1.0\), \(G\): \(1.0\), \(B\): \(1.0\))
+  \end{itemize}
+  
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Funciones proporcionadas}
+  El módulo \texttt{visor\_imagenes.py} ya incluye dos funciones implementadas:
+  
+  \begin{itemize}
+      \item \textbf{\texttt{cargar\_imagen(ruta\_imagen: str) -> list}}: Carga una imagen PNG desde la ruta especificada y la retorna como una lista de listas de tuplas.
+      
+      \item \textbf{\texttt{visualizar\_imagen(imagen: list) -> None}}: Muestra la imagen en una ventana utilizando \texttt{matplotlib}.
+  \end{itemize}
+  
+  Estas funciones ya están completamente implementadas y \textbf{no deben ser modificadas}. Úselas para cargar y visualizar las imágenes mientras implementa las transformaciones.
+\end{sectionbox}
+
+\begin{sectionbox}{Especificaciones técnicas}  
+  Todas las funciones de transformación deben:
+  \begin{itemize}
+      \item Recibir una matriz de imagen como lista de listas de tuplas.
+      \item Retornar una nueva matriz de imagen (no modificar la original).
+  \end{itemize}
+  
+  Recuerde que las tuplas son inmutables. Para modificar un pixel, debe crear una nueva tupla. Los elementos de las tuplas deben ser de tipo \texttt{float}.
+
+  Para los ejemplos a continuación, se utilizará la siguiente imagen de la pintura Las señoritas de Avignon de Pablo Picasso.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{picasso.png}
+    \caption{Ejemplo de imagen original antes de aplicar transformaciones.}
+  \end{figure}
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Actividad 1: Binarizar imagen}
+  Complete la función \texttt{binarizar\_imagen} que recibe como parámetros una matriz de imagen (lista de listas de tuplas) y un umbral (\texttt{float} entre \(0.0\) y \(1.0\)), y retorna una nueva matriz con la imagen binarizada.
+  
+  La binarización consiste en convertir todos los colores de la imagen a solo dos colores: negro \((0.0, 0.0, 0.0)\) o blanco \((1.0, 1.0, 1.0)\).
+  
+  \textbf{Proceso:}
+  \begin{enumerate}
+      \item Para cada pixel, calcular el promedio de sus tres componentes RGB.
+      \item Si el promedio es mayor o igual al umbral, reemplazar el pixel por blanco \((1.0, 1.0, 1.0)\).
+      \item Si el promedio es menor al umbral, reemplazar el pixel por negro \((0.0, 0.0, 0.0)\).
+  \end{enumerate}
+  
+  \textbf{Fórmula del promedio:}
+  \[
+  \text{promedio} = \frac{R + G + B}{3}
+  \]
+  
+  \textbf{Ejemplo:}
+  
+  Con un umbral de \(0.5\):
+  \begin{itemize}
+      \item Un pixel \((0.8, 0.9, 0.7)\) tiene promedio \(0.8 \geq 0.5\), se convierte en \((1.0, 1.0, 1.0)\) (blanco).
+      \item Un pixel \((0.2, 0.3, 0.1)\) tiene promedio \(0.2 < 0.5\), se convierte en \((0.0, 0.0, 0.0)\) (negro).
+  \end{itemize}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{binarizar.png}
+    \caption{Ejemplo de binarización con umbral \(0.5\) aplicada a una imagen.}
+  \end{figure}
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Actividad 2: Convertir imagen a negativo}
+  Complete la función \texttt{convertir\_negativo} que recibe como parámetro una matriz de imagen (lista de listas de tuplas) y retorna una nueva matriz con la imagen en negativo.
+  
+  Para calcular el negativo de una imagen se debe calcular el color negativo de cada pixel. Para ello, se resta cada componente RGB de \(1.0\) (el valor máximo). Con los nuevos valores de los componentes se forma cada nuevo color.
+  
+  \textbf{Fórmula:}
+  
+  Para cada componente RGB del pixel:
+  \[
+  \text{nuevo\_componente} = 1.0 - \text{componente\_original}
+  \]
+  
+  \textbf{Ejemplo:}
+  
+  Si un pixel tiene el color \((0.2, 0.8, 0.5)\), su negativo sería \((0.8, 0.2, 0.5)\).
+  
+  \textbf{Nota importante:} Como las tuplas son inmutables, debe crear una nueva tupla para cada pixel y construir una nueva matriz completa con estos nuevos pixeles.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{negativo.png}
+    \caption{Ejemplo de transformación a negativo aplicada a una imagen.}
+  \end{figure}
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Actividad 3: Convertir a escala de grises}
+  Complete la función \texttt{convertir\_a\_grises} que recibe como parámetro una matriz de imagen (lista de listas de tuplas) y retorna una nueva matriz con la imagen en escala de grises.
+  
+  Para convertir la imagen a escala de grises, se promedian los tres componentes RGB de cada pixel y se crea un nuevo color donde cada componente tiene el valor de dicho promedio.
+  
+  \textbf{Proceso:}
+  \begin{enumerate}
+      \item Para cada pixel, calcular el promedio de sus tres componentes RGB.
+      \item Crear un nuevo pixel donde \(R = G = B = \text{promedio}\).
+  \end{enumerate}
+  
+  \textbf{Fórmula:}
+  \[
+  \text{gris} = \frac{R + G + B}{3}
+  \]
+  \[
+  \text{nuevo\_pixel} = (\text{gris}, \text{gris}, \text{gris})
+  \]
+  
+  \textbf{Ejemplo:}
+  
+  Un pixel con color \((0.8, 0.5, 0.2)\) tiene un promedio de \(0.5\), por lo que se convierte en \((0.5, 0.5, 0.5)\).
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{grises.png}
+    \caption{Ejemplo de conversión a escala de grises aplicada a una imagen.}
+  \end{figure}
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Actividad 4: Reflejar imagen verticalmente}
+  Complete la función \texttt{reflejar\_imagen} que recibe como parámetro una matriz de imagen (lista de listas de tuplas) y retorna una nueva matriz con la imagen reflejada verticalmente.
+  
+  Reflejar la imagen verticalmente consiste en crear una imagen espejo sobre una línea imaginaria vertical en el centro de la figura. Para hacer esta transformación, se intercambian las columnas de pixeles de la imagen: la primera columna con la última, la segunda con la penúltima, etc.
+  
+  \textbf{Proceso:}
+  \begin{itemize}
+      \item Para cada fila de la imagen, invertir el orden de los pixeles (tuplas).
+      \item La primera columna se convierte en la última, la segunda en la penúltima, y así sucesivamente.
+  \end{itemize}
+  
+  \textbf{Ejemplo:}
+  
+  Si una fila contiene los pixeles \texttt{[A, B, C, D]}, después de reflejar quedaría \texttt{[D, C, B, A]}.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{reflejar.png}
+    \caption{Ejemplo de reflexión vertical aplicada a una imagen.}
+  \end{figure}
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Actividad 5: Convolución de imagen}
+  Complete la función \texttt{convolucion\_imagen} que recibe como parámetro una matriz de imagen (lista de listas de tuplas) y retorna una nueva matriz con la convolución aplicada.
+  
+  La convolución es una operación que transforma cada pixel utilizando sus pixeles vecinos y una matriz de factores. Dependiendo de la matriz de convolución elegida, se pueden producir diferentes efectos visuales en la imagen.
+  
+  \textbf{Matrices de convolución y sus efectos:}
+  
+  \textbf{1. Afilado (Sharpen)} - Resalta detalles y bordes, hace la imagen más nítida:
+  \[
+  \begin{bmatrix}
+  0 & -1 & 0 \\
+  -1 & 5 & -1 \\
+  0 & -1 & 0
+  \end{bmatrix}
+  \]
+  
+  \textbf{2. Desenfoque (Blur)} - Suaviza la imagen, reduce detalles:
+  \[
+  \begin{bmatrix}
+  1 & 2 & 1 \\
+  2 & 4 & 2 \\
+  1 & 2 & 1
+  \end{bmatrix}
+  \]
+  
+  \textbf{3. Detección de bordes} - Resalta solo los contornos y transiciones:
+  \[
+  \begin{bmatrix}
+  -1 & -1 & -1 \\
+  -1 & 8 & -1 \\
+  -1 & -1 & -1
+  \end{bmatrix}
+  \]
+  
+  \textbf{4. Relieve (Emboss)} - Crea un efecto de relieve o grabado:
+  \[
+  \begin{bmatrix}
+  -2 & -1 & 0 \\
+  -1 & 1 & 1 \\
+  0 & 1 & 2
+  \end{bmatrix}
+  \]
+  
+  Para este laboratorio, implemente la función utilizando la matriz de \textbf{afilado (opción 1)} como matriz por defecto. Sin embargo, una vez implementada la función, puede experimentar cambiando la matriz en el código para observar los diferentes efectos que produce cada una.
+  
+  \textbf{Proceso para cada pixel:}
+  \begin{enumerate}
+      \item Alinear el centro de la matriz de convolución con el pixel a procesar.
+      \item Para cada componente de color (\(R\), \(G\), \(B\)) por separado:
+      \begin{itemize}
+          \item Multiplicar cada pixel vecino (incluyendo el central) por el factor correspondiente de la matriz.
+          \item Sumar todos estos productos.
+          \item Dividir la suma por la suma total de los factores que se utilizaron.
+      \end{itemize}
+      \item Crear un nuevo pixel con los valores resultantes para \(R\), \(G\) y \(B\).
+  \end{enumerate}
+  
+  \textbf{Manejo de bordes:}
+  
+  Para pixeles en los bordes de la imagen, solo se utilizan los vecinos que existen. Por ejemplo:
+  \begin{itemize}
+      \item Un pixel en la esquina superior izquierda solo tiene \(4\) vecinos (él mismo, derecha, abajo, diagonal abajo-derecha).
+      \item Un pixel en el borde superior tiene \(6\) vecinos.
+      \item Un pixel en el centro tiene los \(9\) vecinos completos.
+  \end{itemize}
+  
+  La suma de factores se ajusta según cuántos vecinos fueron efectivamente utilizados.
+  
+  \textbf{Ejemplo simplificado con la matriz de afilado:}
+  
+  Para un pixel central con vecinos completos y componente rojo:
+  \begin{itemize}
+      \item Se multiplica cada \(R\) vecino por su factor correspondiente (algunos negativos, algunos positivos).
+      \item Se suman los \(9\) productos (incluyendo los negativos).
+      \item Se divide por la suma de factores utilizados (para afilado: \(0+(-1)+0+(-1)+5+(-1)+0+(-1)+0 = 1\)).
+  \end{itemize}
+  
+  \textbf{Nota sobre factores negativos:} Algunas matrices (como afilado, detección de bordes y relieve) utilizan valores negativos que restan información de los vecinos. Esto permite crear efectos especiales como resaltar bordes o crear texturas. Para matrices de desenfoque, todos los valores son positivos, lo que promedia los pixeles vecinos.
+  
+  \textbf{Experimentación:} Una vez que implemente la función correctamente con la matriz de afilado, puede cambiar fácilmente la variable \texttt{convolucion} en el código para probar las otras matrices y observar cómo cambia el efecto. Por ejemplo:
+  \begin{verbatim}
+  # Para desenfoque:
+  convolucion = [[1, 2, 1], [2, 4, 2], [1, 2, 1]]
+  
+  # Para detección de bordes:
+  convolucion = [[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]]
+  \end{verbatim}
+  
+  \textbf{Nota importante:} La operación debe hacerse sobre la imagen original. No acumule transformaciones de pixeles ya procesados. Trabaje siempre con los valores originales de todos los vecinos.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{convolucion.png}
+    \caption{Ilustración del proceso de convolución y resultado aplicado a una imagen.}
+  \end{figure}
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Entrega}
+Entregue el archivo \texttt{visor\_imagenes.py} a través de Brightspace en el laboratorio del Nivel 4 designado como ``N4-L1: Visor de imágenes con matrices''.
+
+Puede usar el módulo \texttt{consola\_visor\_imagenes.py} proporcionado para probar sus funciones antes de la entrega. Su archivo debe funcionar correctamente desde la consola. Asegúrese de tener los archivos de imagen PNG en el mismo directorio para probar su implementación.
+
+\textbf{Pruebas sugeridas:}
+\begin{enumerate}
+    \item Cargue una imagen y visualízela (imagen original).
+    \item Aplique cada transformación individualmente y compare con la imagen original.
+    \item Aplique transformaciones en secuencia (por ejemplo, primero binarizar, luego negativo).
+    \item Pruebe la binarización con diferentes umbrales (\(0.3\), \(0.5\), \(0.7\)).
+    \item Experimente con las diferentes matrices de convolución cambiando el código: pruebe afilado, desenfoque, detección de bordes y relieve. Observe cómo cada una produce un efecto visual completamente diferente.
+    \item Para verificar que sus transformaciones funcionan correctamente, cargue nuevamente la imagen original después de cada prueba.
+\end{enumerate}
+\end{sectionbox}
+
+\end{document}
