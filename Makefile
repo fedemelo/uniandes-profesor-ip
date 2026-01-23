@@ -1,4 +1,6 @@
-# Add the `packages` directory to the `TEXINPUTS` environment variable so that pdftex can find custom packages
+# Add `packages` directory to `TEXINPUTS` env var so pdftex can find custom packages
+# Directory is relative, so it looks for a packages/ directory 
+# within the directory where the tex file being compiled is located.
 TEXINPUTS := ./packages/:$(TEXINPUTS)
 export TEXINPUTS
 
@@ -7,6 +9,7 @@ TEX=pdflatex -shell-escape
 LEVEL_DIR=N4
 LAB_DIR=$(LEVEL_DIR)/labs/L3
 EXAM_DIR=$(LEVEL_DIR)/exam
+NOTES_DIR=apuntes
 
 # Rules
 .PHONY: lab clean clean-all all  # Mark targets as always executed
@@ -16,6 +19,9 @@ lab:
 
 exam:
 	$(TEX) -output-directory=$(EXAM_DIR) $(EXAM_DIR)/n2-exam-make-up.tex
+
+notes:
+	cd $(NOTES_DIR) && $(TEX) ip.tex
 
 clean:  # Remove all temporary files
 	find . \( -name "*.aux" -o -name "*.log" -o -name "*.out" -o -name "*.toc" -o -name "*.pyg" \) -exec rm {} +
