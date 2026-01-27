@@ -18,13 +18,15 @@
 
 \definecolor{isisgray}{RGB}{236, 240, 241}
 
+\usepackage[gray]{xcolor}  % Forces no colors in minted
+
 \usepackage{minted}
 \setminted[python]{
   fontsize=\small,
   tabsize=4,
   breaklines=true,
   autogobble,
-  style=stata-light,
+  style=stata-light,  % Needed for no italics
 }
 
 \newcommand{\quizlevel}[1]{\def\@quizlevel{#1}}
@@ -58,24 +60,12 @@
 
 \renewcommand{\maketitle}{
     \begin{center}
-        {\LARGE\bfseries \@labtype\ -- \@labnumber}\\[3pt]
-        {\LARGE\bfseries\@labtitle}
+        {\LARGE\bfseries \MakeTextUppercase{\@quizlevel}\ -- Quiz \@quiznum}\\[3pt]
+        {\LARGE\bfseries\@quiztitle}
     \end{center}
     
     \vspace{-20pt}
 }
-
-\newcommand{\response}[1][10cm]{%
-    \vspace{10pt}
-    \noindent\textbf{Respuesta:}
-    \vspace{5pt}
-    \hrule
-    \vspace{#1}
-    \hrule
-}
-
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
 
 \titleformat{\section}
     {\large\bfseries}
@@ -122,4 +112,3 @@
 }
 
 \endinput
-
