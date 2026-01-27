@@ -58,10 +58,11 @@
 
 \renewcommand{\maketitle}{
     \begin{center}
-        {\LARGE\bfseries \MakeTextUppercase{\@quizlevel}\ -- Quiz \@quiznum}\\[3pt]
-        {\LARGE\bfseries\@quiztitle}
+        {\LARGE\bfseries \@labtype\ -- \@labnumber}\\[3pt]
+        {\LARGE\bfseries\@labtitle}
     \end{center}
     
+    \vspace{-20pt}
 }
 
 \newcommand{\response}[1][10cm]{%
