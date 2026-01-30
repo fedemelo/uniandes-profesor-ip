@@ -1,4 +1,4 @@
-def angulo_entre_agujas_reloj(hora: int, minutos: int)->float:
+def angulo_entre_agujas_reloj(hora: int, minutos: int) -> float:
     degrees_per_minute = 360 / 60
     minute_hand_degrees = minutos * degrees_per_minute
     
