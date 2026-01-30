@@ -1,0 +1,3 @@
+def area_triangulo(s1: float, s2: float, s3: float)->float:
+    s = (s1 + s2 + s3) / 2
+    return round((s * (s - s1) * (s - s2) * (s - s3)) ** 0.5, 1)
