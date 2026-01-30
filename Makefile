@@ -4,20 +4,18 @@
 TEXINPUTS := ./packages/:$(TEXINPUTS)
 export TEXINPUTS
 
-# Variables
 TEX=pdflatex -shell-escape
 LEVEL_DIR=n1
-LAB_DIR=$(LEVEL_DIR)/labs/l3
+LAB_DIR=$(LEVEL_DIR)/labs/l2
 EXAM_DIR=$(LEVEL_DIR)/exam
 QUIZ_DIR=$(LEVEL_DIR)/quizzes/q1
 RESOURCES_DIR=resources
 NOTES_DIR=apuntes
 
-# Rules
 .PHONY: lab quiz exam clean clean-all all  # Mark targets as always executed
 
 lab:
-	cd $(RESOURCES_DIR) && $(TEX) -output-directory=$(LAB_DIR) $(LAB_DIR)/n4-l3.tex
+	cd $(RESOURCES_DIR) && $(TEX) -output-directory=$(LAB_DIR) $(LAB_DIR)/n1-l2.tex
 
 quiz:
 	cd $(RESOURCES_DIR)/$(QUIZ_DIR) && TEXINPUTS=../../../packages/:$(TEXINPUTS) $(TEX) n1-q1.tex
