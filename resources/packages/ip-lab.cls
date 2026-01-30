@@ -21,17 +21,18 @@
 \RequirePackage{calc}
 \RequirePackage{helvet}
 \RequirePackage[T1]{fontenc}
+\RequirePackage{textcase}
 
 \definecolor{isisblue}{RGB}{52, 152, 219}
 \definecolor{isislightblue}{RGB}{174, 214, 241}
 \definecolor{isisgray}{RGB}{236, 240, 241}
 \definecolor{isisdarkgray}{RGB}{149, 165, 166}
 
-\newcommand{\labtype}[1]{\def\@labtype{#1}}
+\newcommand{\lablevel}[1]{\def\@lablevel{#1}}
 \newcommand{\labnumber}[1]{\def\@labnumber{#1}}
 \newcommand{\labtitle}[1]{\def\@labtitle{#1}}
 
-\labtype{Nivel 1}
+\lablevel{n1}
 \labnumber{Laboratorio}
 \labtitle{}
 
@@ -49,7 +50,7 @@
             % Create a box that is as wide as the page and as tall as the header
             % The header is 136pt tall (empirically obtained)
             \begin{minipage}[b][134pt]{\paperwidth}
-                \includegraphics[width=\paperwidth]{ip-header-n4.png}
+                \includegraphics[width=\paperwidth]{ip-header-\@lablevel.png}
             \end{minipage}%
         }
         \renewcommand{\headrulewidth}{0pt}
@@ -73,7 +74,7 @@
 
 \renewcommand{\maketitle}{
     \begin{center}
-        {\LARGE\bfseries \@labtype\ -- \@labnumber}\\[3pt]
+        {\LARGE\bfseries \MakeTextUppercase{\@lablevel}\ -- \@labnumber}\\[3pt]
         {\LARGE\bfseries\@labtitle}
     \end{center}
     
