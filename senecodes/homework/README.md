@@ -1,0 +1,1 @@
+The exercises I typically assign as homework.
