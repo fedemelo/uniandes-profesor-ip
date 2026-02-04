@@ -15,6 +15,8 @@
 \RequirePackage{titlesec}
 \RequirePackage{tcolorbox}
 \RequirePackage{enumitem}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta}
 
 \definecolor{isisgray}{RGB}{236, 240, 241}
 
