@@ -1,0 +1,43 @@
+\documentclass{ip-quiz}
+
+\quizlevel{n1}
+\quiznum{2}
+\quiztitle{Funciones - Opción 1}
+
+\begin{document}
+
+\makeheader
+\maketitle
+
+\begin{sectionbox}{Enunciado}
+Considere un cuadrado de lado $x$ inscrito en un círculo. Los vértices del cuadrado tocan la circunferencia.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    % Circle
+    \draw[thick] (2,2) circle (2);
+    
+    % Square inscribed (rotated 45 degrees, vertices on circle)
+    \draw[thick] (2,0) -- (4,2) -- (2,4) -- (0,2) -- cycle;
+    
+    % Side label
+    \draw[{Stealth}-{Stealth}] (2,0) -- (4,2) node[midway, above left] {$x$};
+\end{tikzpicture}
+\end{center}
+
+Defina una función llamada \texttt{calcular\_area\_circulo} que reciba como parámetro el lado $x$ del cuadrado y retorne el área del círculo. Aproxime $\pi$ como \texttt{3.14}.
+\end{sectionbox}
+
+\begin{sectionbox}{Solución}
+\begin{minted}{python}
+def calcular_area_circulo(x: float) -> float:
+    cateto_al_cuadrado = x ** 2
+    hipotenusa_al_cuadrado = cateto_al_cuadrado * 2
+    diagonal_del_cuadrado = hipotenusa_al_cuadrado ** 0.5
+    radio_circulo = diagonal_del_cuadrado / 2
+    area_circulo = 3.14 * radio_circulo ** 2
+    return area_circulo
+\end{minted}
+\end{sectionbox}
+    
+\end{document}
