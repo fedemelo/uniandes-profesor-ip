@@ -1,0 +1,46 @@
+\documentclass{ip-lab}
+
+\lablevel{n1}
+\labnumber{Laboratorio 3}
+\labtitle{Capas de lógica y presentación}
+
+\makeheader
+
+\begin{document}
+
+\maketitle
+
+\begin{sectionbox}{Actividad 1: Capa de lógica}
+Escriba un módulo de Python con dos funciones:
+\begin{enumerate}
+    \item Una función que reciba un número de horas transcurridas desde el 1 de enero a las 00:00 y determine en qué fecha se estaría (mes y día), suponiendo que cada mes tiene 30 días.
+    \item Una función que reciba un número de segundos transcurridos desde el 1 de enero a las 00:00 y determine en qué fecha se estaría (mes y día), suponiendo que cada mes tiene 30 días.
+\end{enumerate}
+Cada función debe retornar un \verb|str| con un formato de fecha legible para un transeúnte cualquiera.
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 2: Capa de presentación}
+Para cada función de la capa de lógica, escriba un módulo que contenga una función que permita interactuar con el programa a través de la consola. Es decir:
+\begin{enumerate}
+    \item Cree un módulo \verb|consola_horas.py| que importe el módulo de lógica, solicite al usuario un número de horas y muestre un mensaje indicando la fecha correspondiente (mes y día) calculada desde el 1 de enero.
+    \item Cree otro módulo similar que solicite al usuario un número de segundos y muestre un mensaje indicando la fecha correspondiente calculada desde el 1 de enero.
+\end{enumerate}
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 3: Pruebas}
+Ejecute cada consola para probar que el programa funciona. Puede usar los siguientes valores de prueba:
+\begin{itemize}
+  \item \verb|1_000| horas después del 1 de enero a las 00:00, la fecha es el 12 de febrero (a las 16:00 horas, pero eso no lo pide el enunciado).
+  \item \verb|10_000_000| de segundos después del 1 de enero a las 00:00, la fecha es el 26/04.
+  \item \verb|100_000_000| de segundos después del 1 de enero a las 00:00, la fecha es el 18/03 (aunque 3 años después, pero eso tampoco lo pide el enunciado).
+\end{itemize}
+
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Entrega}
+  Cree un archivo comprimido .zip que contenga exactamente el módulo de la capa de lógica y los módulos de la capa de presentación. Entregue el archivo comprimido a través de Bloque Neón en el laboratorio del Nivel 1 designado como ``L3: Capas de lógica y presentación''.
+\end{sectionbox}
+
+\end{document}
