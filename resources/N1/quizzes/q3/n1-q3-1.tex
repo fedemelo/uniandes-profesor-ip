@@ -1,0 +1,37 @@
+\documentclass{ip-quiz}
+
+\quizlevel{n1}
+\quiznum{3}
+\quiztitle{Funciones - Opción 1}
+
+\begin{document}
+
+\makeheader
+\maketitle
+
+\begin{sectionbox}{Enunciado}
+Defina una función que reciba como parámetro una cantidad de segundos totales (un entero) y retorne un \texttt{str} con el tiempo equivalente en días, horas, minutos y segundos.
+
+\textbf{Ejemplo:} Si la función recibe \texttt{93\_784}, debe retornar \texttt{"1 día(s), 2 h, 3 min y 4 s"}.
+\end{sectionbox}
+
+\begin{sectionbox}{Solución}
+\begin{minted}{python}
+def convertir_segundos(segundos_totales: int) -> str:
+    segundos_en_un_dia = 60 * 60 * 24
+    dias = segundos_totales // segundos_en_un_dia
+    segundos_restantes = segundos_totales % segundos_en_un_dia
+
+    segundos_en_una_hora = 60 * 60
+    horas = segundos_restantes // segundos_en_una_hora
+    segundos_restantes = segundos_restantes % segundos_en_una_hora
+
+    segundos_en_un_minuto = 60
+    minutos = segundos_restantes // segundos_en_un_minuto
+    segundos = segundos_restantes % segundos_en_un_minuto
+
+    return f"{dias} día(s), {horas} h, {minutos} min y {segundos} s"
+\end{minted}
+\end{sectionbox}
+
+\end{document}
