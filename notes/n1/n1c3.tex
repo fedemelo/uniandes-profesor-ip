@@ -1,13 +1,16 @@
 \section{Funciones}
 
-Similar a como las variables son nombres que se asignan a valores, las funciones son nombres que se asignan a bloques de código. Esto permite escribir un pedazo de código sola una vez y reutilizarlo múltiples veces.
+Similar a como las variables son nombres que se asignan a valores, las funciones son nombres que se asignan a procedimientos. Esto permite pensar y escribir un pedazo de código sola una vez y luego reutilizar esa misma lógica múltiples veces.
 
-% TODO: Rara vez se quiere utilizar el mismo código, se quiere es utilizar la misma lógica pero con diferentes valores... ver si puedo expresar esa idea de forma que estén listos para entenderla; si no, omitirla
+Distinguimos entre dos tipos de funciones: las funciones \emph{\textit{built-in}} (integradas o nativas), que son funciones que creó alguien más y ya vienen predefinidas en Python, y las funciones \emph{\textit{user-defined}} (definidas por el usuario), que son aquellas que creamos nosotros.
 
-Crear una función es entonces asignar un nombre a un bloque de código. Ese bloque de código puede recibir valores que se le pasan a la función para que use en su código.
-% TODO: PULIR! Parámetro versus argumento
+\subsection{Funciones de conversión de tipos}
 
-Antes de crear funciones, vale la pena conocer algunas funciones \emph{integradas}\footnote{El término original para esto es \textit{built-in function}, que traduce más naturalmente a función incorporada. En cualquier caso, es una función que viene pre-escrita en el lenguaje.}, que son funciones que creó alguien más y que ya vienen predefinidas en Python. A la acción de utilizar una función se le denomina \emph{invocarla} o \emph{llamarla}.
+% TODO: Y type
+
+\subsection{Algunas funciones matemáticas}
+
+% TODO: max, min, abs, pow, round
 
 \subsection{Funciones de entrada y salida}
 
@@ -16,11 +19,12 @@ Las funciones de entrada y salida se utilizan en el programa para interactuar co
 
 \subsubsection{Función \mintinline{python}|print|}
 
-La función \mintinline{python}|print| (que traduce literalmente del inglés como imprimir) recibe un argumento y lo muestra en la consola.
+La función \mintinline{python}|print| (que traduce a imprima) recibe un argumento y lo muestra en la consola.
 
 \subsubsection{Función \mintinline{python}|input|}
 
 La función \mintinline{python}|input| se utiliza para leer un valor de la consola. Es decir, se utiliza para que el usuario ingrese un valor y se lo asigne a una variable.
 
+\subsection{}
 
-Ejercicios:
+% TODO: ord, chr, help
