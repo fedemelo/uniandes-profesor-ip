@@ -14,7 +14,8 @@ Análogo a como las palabras tienen categorías: sustantivos, verbos, etc.; los 
 
 \begin{table}[h]
 \centering
-\begin{tabular}{|l|l|l|p{4.5cm}|l|}
+\footnotesize
+\begin{tabular}{|l|l|l|p{3.5cm}|l|}
 \hline
 \textbf{Tipo de dato} & \textbf{Nombre (inglés)} & \textbf{Traducción} & \textbf{Descripción} & \textbf{E.g.} \\
 \hline
@@ -22,12 +23,14 @@ Análogo a como las palabras tienen categorías: sustantivos, verbos, etc.; los 
 \hline
 \mintinline{python}|float| & \textit{floating point number} & número de punto flotante & Números decimales & \mintinline{python}|3.14|, \mintinline{python}|-0.5|, \mintinline{python}|.35| \\
 \hline
-\mintinline{python}|str| & \textit{string} & cadena de caracteres\footnote{La palabra \textit{string} generalmente traduce a hilo y en algunos contextos a cadena. Solo el contexto específico de la programación en español es convencional traducirla como cadena de caracteres.} & Secuencias de caracteres del teclado & \mintinline{python}|"Hol4"|, \mintinline{python}|'u78%6#a'| \\
+\mintinline{python}|str| & \textit{string} & cadena de caracteres\footnotemark & Secuencias de caracteres del teclado & \mintinline{python}|"Hol4"|, \mintinline{python}|'u78%6#a'| \\
 \hline
 \end{tabular}
+\normalsize
 \caption{Algunos tipos de dato primitivos en Python}
 \label{tab:tipos-dato}
 \end{table}
+\footnotetext{La palabra \textit{string} generalmente traduce a hilo y en algunos contextos a cadena. En el contexto de la programación, es convencional traducirla como cadena de caracteres.}
 
 Las cadenas de caracteres deben escribirse entre comillas para que la máquina entienda dónde comienza y dónde termina la secuencia de caracteres que se está representando. Hay cuatro formas de escribirlas:
 
