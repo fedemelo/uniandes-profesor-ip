@@ -41,10 +41,9 @@ Las cadenas de caracteres deben escribirse entre comillas para que la máquina e
   \item Usando triples comillas simples: \mintinline{python}|'''Python'''|
 \end{itemize}
 
-Naturalmente, si entre los caracteres de una cadena se quiere incluir algún tipo de comillas, es sensato delimitar la cadena con otro tipo de comillas, para que no haya ambigüedad. E.g.: \mintinline{python}|"Don't!"|, representa la secuencia de caracteres de teclado \mintinline{python}|D|, \mintinline{python}|o|, \mintinline{python}|n|, \mintinline{python}|'|, \mintinline{python}|t|, \mintinline{python}|!|. Si se hubiese escrito \mintinline{python}|'Don't!'|, no es claro cuál comilla termina la cadena.
+Si entre los caracteres de una cadena se quiere incluir algún tipo de comillas, es sensato delimitar la cadena con otro tipo de comillas, para que no haya ambigüedad. E.g.: \mintinline{python}|"Don't!"|, representa la secuencia de caracteres de teclado \mintinline{python}|D|, \mintinline{python}|o|, \mintinline{python}|n|, \mintinline{python}|'|, \mintinline{python}|t|, \mintinline{python}|!|. Si se hubiese escrito \mintinline{python}|'Don't!'|, no es claro cuál comilla termina la cadena.
 
-Las triples comillas (dobles o simples) permiten representar cadenas de caracteres que contienen saltos de línea.
-
+Las triples comillas (dobles o simples) permiten representar cadenas de caracteres que contienen saltos de línea. E.g.:
 \begin{minted}{python}
 """Hola
  Mundo"""
@@ -78,9 +77,9 @@ Allí:
 Tiene sentido otorgar nombres a los valores para poder usarlos después. Los identificadores de las variables deben seguir las siguientes reglas:
 \begin{itemize}
   \item Deben ser alfanuméricos: letras, números y guiones bajos.
-  \item No pueden contener espacios; las palabras dentro del identificador se separan con guiones bajos: \mintinline{python}|nombre_de_la_variable|.
-  \item No pueden empezar por dígitos y no deben empezar por mayúsculas.
-  \item No pueden ser \emph{palabras reservadas} del lenguaje, que son palabras específicas en inglés que ya tienen un significado en Python.
+  \item No pueden contener espacios; para usar varias palabras dentro del identificador, se separan con guiones bajos: \mintinline{python}|nombre_de_la_variable|.
+  \item No pueden empezar por dígitos ni deben empezar por mayúsculas.
+  \item No pueden ser \emph{palabras reservadas} del lenguaje, que son palabras específicas que ya tienen un significado en Python.\footnote{Usualmente en este punto los libros de texto listan las palabras reservadas. Yo no lo hago porque, primero, no es necesario memorizarlas; y, segundo, es bastante improbable que el nombre de una variable preciso coincida con una palabra reservada.}
 \end{itemize}
 
 \subsubsection{Sobreescritura y tipado dinámico}
@@ -93,33 +92,52 @@ Se puede sobreescribir el valor de una variable por otro y la máquina olvida el
 
 Ahora, la variable \mintinline{python}|persona| tiene el valor \mintinline{python}|3| y deja de hacer referencia el valor anterior, \mintinline{python}|"David"|.
 
-En el ejemplo anterior, la variable se definió con un valor de tipo \mintinline{python}|str| y luego se cambió a un valor de tipo \mintinline{python}|int|. Cambiar el tipo de dato de una variable es posible en Python, pero no lo es en muchos otros lenguajes de programación. A esa característica de Python se le llama \emph{tipado dinámico}\footnote{Lo descrito en este párrafo es realmente una consecuencia del tipado dinámico, no una definición. Una definición escapa el alcance de estos apuntes, pero podría ser: un lenguaje es dinámicamente tipado si su sistema de tipos realiza verificaciones en tiempo de ejecución, en lugar de en tiempo de compilación.}.
+Además, cambió el tipo de dato de la variable \mintinline{python}|persona|, que antes era \mintinline{python}|str| y ahora es \mintinline{python}|int|. Cambiar el tipo de dato de una variable es posible en Python, pero no lo es en muchos otros lenguajes de programación. A esa característica de Python se le llama \emph{tipado dinámico}\footnote{Lo descrito en este párrafo es realmente una consecuencia del tipado dinámico, no una definición. Una definición escapa el alcance de estos apuntes, pero podría ser: un lenguaje es dinámicamente tipado si su sistema de tipos realiza verificaciones en tiempo de ejecución, en lugar de en tiempo de compilación.}.
 
 \subsection{Expresiones}
 
-Una \emph{expresión} es una combinación de valores y operadores que la máquina puede evaluar para obtener un valor. En matemáticas, se puede evaluar la expresión $1 + 1$ para obtener el valor $2$; en Python, es similar.
+Una \emph{expresión} es una combinación de valores y operadores que el intérprete de Python puede evaluar para obtener un valor. En matemática, se puede evaluar la expresión $1 + 1$ para obtener el valor $2$; en Python, es similar.
 
 Los \emph{operadores} son símbolos que representan operaciones entre valores de un tipo de dato determinado. 
 
+\subsubsection{Operadores de cadenas de caracteres}
+
+Las operaciones que se pueden realizar con valores \mintinline{python}|str| son la concatenación y la repetición:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|p{5cm}|c|c|}
+\hline
+\textbf{Operador} & \textbf{Símbolo} & \textbf{Descripción} & \textbf{E.g.} & \textbf{Resultado} \\
+\hline
+Concatenación & \mintinline{python}|+| & Une dos cadenas de caracteres & \mintinline{python}|"Hola" + "Mundo"| & \mintinline{python}|"HolaMundo"| \\
+\hline
+Repetición & \mintinline{python}|*| & Opera un \mintinline{python}|str| con un \mintinline{python}|int|; repite el \mintinline{python}|str| tantas veces como indica el \mintinline{python}|int| & \mintinline{python}|"Hola" * 3| & \mintinline{python}|"HolaHolaHola"| \\
+\hline
+\end{tabular}
+\caption{Operadores de cadenas de caracteres en Python}
+\label{tab:operadores-strings}
+\end{table}
+
 \subsubsection{Operadores aritméticos}
 
-Las operaciones que se pueden realizar con valores \mintinline{python}|int| y \mintinline{python}|float| son las operaciones aritméticas convencionales que se pueden realizar con números:
+Las operaciones que se pueden realizar con valores de tipo de dato numérico, i.e. \mintinline{python}|int| o \mintinline{python}|float|, son las operaciones aritméticas convencionales:
 
 \begin{table}[h]
 \centering
 \begin{tabular}{|l|c|c|c|c|}
 \hline
-\textbf{Operador} & \textbf{Símbolo} & \textbf{Matemáticas} & \textbf{Python} & \textbf{Resultado} \\
+\textbf{Operador} & \textbf{Símbolo} & \textbf{Ejemplo matemático} & \textbf{Ejemplo en Python} & \textbf{Resultado} \\
 \hline
 Exponenciación & \mintinline{python}|**| & $3^4$ & \mintinline{python}|3**4| & \mintinline{python}|81| \\
 \hline
 Multiplicación & \mintinline{python}|*| & $7 \times 6$ & \mintinline{python}|7 * 6| & \mintinline{python}|42| \\
 \hline
-División & \mintinline{python}|/| & $15 / 4$ & \mintinline{python}|15 / 4| & \mintinline{python}|3.75| \\
+División & \mintinline{python}|/| & $11 / 4$ & \mintinline{python}|11 / 4| & \mintinline{python}|2.75| \\
 \hline
-División entera & \mintinline{python}|//| & $\left\lfloor 15 / 4 \right\rfloor$ & \mintinline{python}|15 // 4| & \mintinline{python}|3| \\
+División entera & \mintinline{python}|//| & $\left\lfloor 11 / 4 \right\rfloor$ & \mintinline{python}|11 // 4| & \mintinline{python}|2| \\
 \hline
-Módulo & \mintinline{python}|%| & $10 \mod 3$ & \mintinline{python}|10 % 3| & \mintinline{python}|1| \\
+Módulo & \mintinline{python}|%| & $11 \mod 4$ & \mintinline{python}|11 % 4| & \mintinline{python}|3| \\
 \hline
 Suma & \mintinline{python}|+| & $10 + 7$ & \mintinline{python}|10 + 7| & \mintinline{python}|17| \\
 \hline
@@ -138,40 +156,69 @@ clásica de la aritmética.
 
 \paragraph{División entera y módulo.} Seguramente el único par de operadores no familiares en la tabla \ref{tab:operadores-aritmeticos} son los operadores de división entera (\mintinline{python}|//|) y módulo (\mintinline{python}|%|).
 
-La \emph{división entera} consiste en tomar la parte entera del resultado de una división, es decir, de descartar los decimales (si los hay). Eso no es lo mismo que aproximar el resultado al entero más cercano. E.g., la división (convencional) \mintinline{python}|15 / 4| evalúa a \mintinline{python}|3.75| mientras que la división entera \mintinline{python}|15 // 4| evalúa a \mintinline{python}|3|.
-
-El \emph{módulo} representa la cantidad entera que sobra después de dividir un número entre otro. Matemáticamente, es el residuo de la división. Intuitivamente: si se reparte una torta de 15 pedazos entre 4 personas por igual (lo cual se puede modelar con la división entera \mintinline{python}|15 // 4|), cada persona recibe 3 pedazos, pero además sobran 3 pedazos que no le tocan a nadie. El módulo es el 3 que sobra; es decir, \mintinline{python}|15 % 4| evalúa a \mintinline{python}|3|.
-
-Usando fórmulas, las partes de la división son:
+Cuando se realiza una división, las partes son:
 \begin{gather*}
-  \text{dividendo} \operatorname{\texttt{/}} \text{divisor} = \text{cociente con decimales} \\
+  \text{dividendo} \operatorname{\texttt{/}} \text{divisor} = \text{cociente}
+\end{gather*}
+Usualmente el cociente se expresa como un número decimal, pero también se puede entender como un número entero y un residuo:
+\begin{gather*}
   \text{dividendo} = \text{divisor} \times \text{cociente entero} + \text{residuo}
 \end{gather*}
-Con eso, $\text{dividendo} \operatorname{\texttt{//}} \text{divisor} = \text{cociente entero}$ y $\text{dividendo} \operatorname{\texttt{\%}} \text{divisor} = \text{residuo}$.
+La división entera representa el cociente entero, y el módulo representa el residuo:
+\begin{gather*}
+  \text{dividendo} \operatorname{\texttt{//}} \text{divisor} = \text{cociente entero} \\
+  \text{dividendo} \operatorname{\texttt{\%}} \text{divisor} = \text{residuo}
+\end{gather*}
 
-\subsubsection{Operadores de cadenas de caracteres}
+E.g., $11 / 4$ es igual a $2.75$, pero también se puede expresar como $11 = 4 \times 2 + 3$. En ese caso, la división entera de $11$ entre $4$ es $2$, que es simplemente tomar la parte entera del cociente\footnote{Nótese que esto no es lo mismo que aproximar.}, y el módulo de $11$ entre $4$ es $3$. 
 
-Las operaciones que se pueden realizar con valores \mintinline{python}|str| son la concatenación y la repetición:
+Más intuitivamente, la división entera representa la cantidad de veces que el un número (el divisor) cabe completamente dentro de otro (el dividendo), y el módulo representa lo que sobra. Si se reparte una torta de 11 pedazos equitativamente entre 4 personas, a cada una le tocan 2 pedazos (el cociente entero) y sobran 3 pedazos que no le tocan a nadie (el módulo).
 
+\subsubsection{Operadores de asignación compuesta}
+
+Es común en programación modificar el valor de una variable operándola con algún valor. E.g.,
+\begin{minted}{python}
+  x = 10
+  x = x + 5
+\end{minted}
+Que actualiza el valor de \mintinline{python}|x| a \mintinline{python}|15|. Existe una sintaxis más corta para escribir este tipo de operaciones, que es la siguiente:
+\begin{minted}{python}
+  x = 10
+  x += 5
+\end{minted}
+El operador \mintinline{python}|+=| es un operador de asignación compuesta. Existe uno para cada operador aritmético y de cadenas de caracteres:
 \begin{table}[h]
 \centering
-\begin{tabular}{|l|c|p{5cm}|c|c|}
+\begin{tabular}{|l|c|c|}
 \hline
-\textbf{Operador} & \textbf{Símbolo} & \textbf{Descripción} & \textbf{Ejemplo} & \textbf{Resultado} \\
+\textbf{Operador} & \textbf{Ejemplo} & \textbf{Asignación equivalente} \\
 \hline
-Concatenación & \mintinline{python}|+| & Une dos cadenas de caracteres & \mintinline{python}|"Hola" + "Mundo"| & \mintinline{python}|"HolaMundo"| \\
-\hline
-Repetición & \mintinline{python}|*| & Opera un \mintinline{python}|str| con un \mintinline{python}|int|; repite el \mintinline{python}|str| tantas veces como indica el \mintinline{python}|int| & \mintinline{python}|"Hola" * 3| & \mintinline{python}|"HolaHolaHola"| \\
+\mintinline{python}|+=| & \mintinline{python}|x += 5| & \mintinline{python}|x = x + 5| \\
+\mintinline{python}|-=| & \mintinline{python}|x -= 3| & \mintinline{python}|x = x - 3| \\
+\mintinline{python}|*=| & \mintinline{python}|x *= 2| & \mintinline{python}|x = x * 2| \\
+\mintinline{python}|/=| & \mintinline{python}|x /= 4| & \mintinline{python}|x = x / 4| \\
+\mintinline{python}|//=| & \mintinline{python}|x //= 3| & \mintinline{python}|x = x // 3| \\
+\mintinline{python}|%=| & \mintinline{python}|x %= 2| & \mintinline{python}|x = x % 2| \\
+\mintinline{python}|**=| & \mintinline{python}|x **= 3| & \mintinline{python}|x = x ** 3| \\
+\mintinline{python}|+=| & \mintinline{python}|s += " Mundo"| & \mintinline{python}|s = s + " Mundo"| \\
+\mintinline{python}|*=| & \mintinline{python}|s *= 3| & \mintinline{python}|s = s * 3| \\
 \hline
 \end{tabular}
-\caption{Operadores de cadenas de caracteres en Python}
-\label{tab:operadores-strings}
+\caption{Operadores de asignación con operador en Python}
+\label{tab:operadores-asignacion-con-operador}
 \end{table}
 
-\subsubsection{Asignaciones con operador}
-% TODO
 
-% Checkpoint:
-% Hasta ahora, no sabemos hacer mucho... pero ya Python es tan poderoso como una calculadora avanzada.
-% Podemos hacer cálculos, almacenar resultados y reutilizarlos.
-% No es mucho, pero vamos X páginas.
+% TODO: Checkpoint. Implementar ambiente o barra linda de checkpoint.
+
+A estas alturas, sabemos:
+\begin{itemize}
+  \item Qué es un valor
+  \item Algunos tipos de dato primitivos en Python
+  \item Qué es una variable y para qué sirve el operador de asignación.
+  \item Qué es una expresión 
+  \item Cuáles operaciones pueden aplicarse sobre los tipos de dato vistos.
+  \item Cómo funcionan los operadores de asignación compuesta
+\end{itemize}
+
+Eso no permite hacer programas muy complejos, pero sí nos permite escribir programas que hagan cálculos y almacenen resultados. Ya en este punto, Python es más poderoso que la mayoría de calculadoras avanzadas. Probablemente, soporta cálculos más extensos que su calculadora.
