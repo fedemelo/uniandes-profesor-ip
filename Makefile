@@ -10,9 +10,9 @@ LAB_DIR=$(LEVEL_DIR)/labs/l3
 EXAM_DIR=$(LEVEL_DIR)/exam
 QUIZ_DIR=$(LEVEL_DIR)/quizzes/q3
 RESOURCES_DIR=resources
-NOTES_DIR=apuntes
+NOTES_DIR=notes
 
-.PHONY: lab quiz exam clean clean-all all  # Mark targets as always executed
+.PHONY: lab quiz exam clean notes clean-all all  # Mark targets as always executed
 
 lab:
 	cd $(RESOURCES_DIR) && $(TEX) -output-directory=$(LAB_DIR) $(LAB_DIR)/n1-l3.tex
