@@ -6,16 +6,16 @@ export TEXINPUTS
 
 TEX=pdflatex -shell-escape
 LEVEL_DIR=n1
-LAB_DIR=$(LEVEL_DIR)/labs/l3
+LAB_DIR=$(LEVEL_DIR)/labs/l4
 EXAM_DIR=$(LEVEL_DIR)/exam
 QUIZ_DIR=$(LEVEL_DIR)/quizzes/q3
 RESOURCES_DIR=resources
 NOTES_DIR=notes
 
-.PHONY: lab quiz exam clean notes clean-all all  # Mark targets as always executed
+.PHONY: lab quiz exam clean notes clean-all all generate-exams generate-exams-pdf generate-exams-dry clean-exams
 
 lab:
-	cd $(RESOURCES_DIR) && $(TEX) -output-directory=$(LAB_DIR) $(LAB_DIR)/n1-l3.tex
+	cd $(RESOURCES_DIR) && $(TEX) -output-directory=$(LAB_DIR) $(LAB_DIR)/n1-l4.tex
 
 quiz:
 	cd $(RESOURCES_DIR)/$(QUIZ_DIR) && TEXINPUTS=../../../packages/:$(TEXINPUTS) $(TEX) n1-q3-1.tex
@@ -38,3 +38,18 @@ clean-all: clean  # Remove all temporary files and the generated pdf
 	find . -name "*.pdf" -exec rm {} +
 
 all: lab exam
+
+# Exam generation
+EXAM_CONFIG ?= exams/config/n1-exam.toml
+
+generate-exams:
+	python3 exams/generate.py $(EXAM_CONFIG)
+
+generate-exams-pdf:
+	python3 exams/generate.py $(EXAM_CONFIG) --compile
+
+generate-exams-dry:
+	python3 exams/generate.py $(EXAM_CONFIG) --dry-run
+
+clean-exams:
+	rm -rf exams/output/
