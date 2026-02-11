@@ -146,6 +146,13 @@
     \vspace{1em}%
 }
 
+\newenvironment{halfpage}{%
+    \noindent\begin{minipage}[t][0.45\textheight][t]{\textwidth}%
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}%
+}{%
+    \end{minipage}\par\medskip%
+}
+
 \newcommand{\programmingGrid}[1]{
     \noindent
     \begin{tikzpicture}
