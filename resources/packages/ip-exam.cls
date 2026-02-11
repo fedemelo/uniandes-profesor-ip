@@ -20,6 +20,15 @@
 \RequirePackage{ragged2e}
 \RequirePackage{tikz}
 
+\usepackage{minted}
+\setminted[python]{
+  fontsize=\small,
+  tabsize=4,
+  breaklines=true,
+  autogobble,
+  style=stata-light,  % Needed for no italics
+}
+
 \definecolor{examgray}{RGB}{128, 128, 128}
 \newcommand{\examdate}[1]{\def\@examdate{#1}}
 
