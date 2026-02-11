@@ -3,7 +3,7 @@ name = "n1"
 title = "N1-EXAM"
 semester = "2026-10"
 date = "13 de febrero de 2026"
-num_students = 25
+num_students = 27
 seed = 69
 
 [prerequisites]
