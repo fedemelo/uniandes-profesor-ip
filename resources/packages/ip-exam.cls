@@ -29,6 +29,27 @@
   style=stata-light,  % Needed for no italics
 }
 
+% Override stata-light's red string color to black
+% Macros are \PY@tok@XX (not \PYG@), loaded from the .pygstyle file
+\AddToHook{begindocument/end}{%
+  \makeatletter
+  \@namedef{PY@tok@s}{\def\PY@tc##1{##1}}%
+  \@namedef{PY@tok@s1}{\def\PY@tc##1{##1}}%
+  \@namedef{PY@tok@s2}{\def\PY@tc##1{##1}}%
+  \@namedef{PY@tok@sa}{\def\PY@tc##1{##1}}%
+  \@namedef{PY@tok@sb}{\def\PY@tc##1{##1}}%
+  \@namedef{PY@tok@sc}{\def\PY@tc##1{##1}}%
+  \@namedef{PY@tok@dl}{\def\PY@tc##1{##1}}%
+  \@namedef{PY@tok@sd}{\def\PY@tc##1{##1}}%
+  \@namedef{PY@tok@se}{\def\PY@tc##1{##1}}%
+  \@namedef{PY@tok@sh}{\def\PY@tc##1{##1}}%
+  \@namedef{PY@tok@si}{\def\PY@tc##1{##1}}%
+  \@namedef{PY@tok@sx}{\def\PY@tc##1{##1}}%
+  \@namedef{PY@tok@sr}{\def\PY@tc##1{##1}}%
+  \@namedef{PY@tok@ss}{\def\PY@tc##1{##1}}%
+  \makeatother
+}
+
 \definecolor{examgray}{RGB}{128, 128, 128}
 \newcommand{\examdate}[1]{\def\@examdate{#1}}
 
@@ -160,6 +181,13 @@
     \setlength{\parskip}{6pt plus 2pt minus 1pt}%
 }{%
     \end{minipage}\par\medskip%
+}
+
+\newcommand{\cleartoeven}{%
+  \clearpage
+  \ifodd\c@page\else
+    \null\thispagestyle{empty}\clearpage
+  \fi
 }
 
 \newcommand{\programmingGrid}[1]{

@@ -282,8 +282,9 @@ def render_all_exams_tex(
         lines.append(f"% ===== Exam {exam_id} =====")
 
         if i > 0:
-            lines.append(r"\newpage")
+            lines.append(r"\cleartoeven")
             lines.append(r"\setcounter{questioncounter}{0}")
+            lines.append(r"\setcounter{page}{1}")
             lines.append(
                 f"\\title{{{exam_cfg['title']} {exam_id} -- {exam_cfg['semester']}}}"
             )
@@ -298,6 +299,7 @@ def render_all_exams_tex(
             lines.append(f"\\input{{{variant_path}}}")
 
     lines.append("")
+    lines.append(r"\cleartoeven")
     lines.append(r"\end{document}")
     lines.append("")
 
