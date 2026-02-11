@@ -1,0 +1,24 @@
+\newpage
+
+\gridquestion[16cm]{14}{
+Escriba una función en Python que calcule el \textbf{saldo anterior} de un cliente.
+La función debe recibir como parámetros la cuota mensual, el gasto actual y el número de pagos.
+Debe retornar el saldo anterior.
+No utilice funciones de entrada o salida.
+
+La cuota mensual se calcula como:
+
+\[
+\text{cuota} =
+\text{gasto\_actual}
++
+\frac{\text{saldo\_anterior} \cdot i \cdot (1+i)^n}
+{(1+i)^n - 1}
+\]
+
+Donde:
+
+\[
+i = 0.025 \qquad \text{y} \qquad n = \text{numero\_pagos}
+\]
+}
