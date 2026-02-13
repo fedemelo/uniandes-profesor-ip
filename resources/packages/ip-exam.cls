@@ -19,6 +19,7 @@
 \RequirePackage{setspace}
 \RequirePackage{ragged2e}
 \RequirePackage{tikz}
+\RequirePackage{programming-grid}
 
 \usepackage{minted}
 \setminted[python]{
@@ -164,18 +165,6 @@
     \par%
 }
 
-\newcommand{\gridquestion}[3][8cm]{%
-    \justifying
-    \setlength{\parindent}{0pt}%
-    \stepcounter{questioncounter}%
-    \vspace{1em}%
-    \noindent\textbf{Pregunta \arabic{questioncounter} (#2 décimas): }#3%
-    \vspace{0.5em}%
-    \par%
-    \programmingGrid{#1}%
-    \vspace{1em}%
-}
-
 \newenvironment{halfpage}{%
     \noindent\begin{minipage}[t][0.45\textheight][t]{\textwidth}%
     \setlength{\parskip}{6pt plus 2pt minus 1pt}%
@@ -188,18 +177,6 @@
   \ifodd\c@page\else
     \null\thispagestyle{empty}\clearpage
   \fi
-}
-
-\newcommand{\programmingGrid}[1]{
-    \noindent
-    \begin{tikzpicture}
-        \def\gridwidth{\textwidth}
-        \def\gridheight{#1}
-        \def\cellsize{0.5cm}
-        
-        \draw[step=\cellsize, gray!40, thin] 
-            (0,0) grid (\gridwidth, \gridheight);
-    \end{tikzpicture}
 }
 
 \endinput
