@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{programming-grid}[2025/08 Auto-sizing programming grids for exams by fedemelo]
+\ProvidesPackage{programming-grid}[2025/08/01 Auto-sizing programming grids for exams by fedemelo]
 
 \RequirePackage{tikz}
 \RequirePackage{ragged2e}
@@ -12,7 +12,7 @@
     \setlength{\gridautoheight}{\dimexpr\pagegoal-\pagetotal-#1-0.5cm\relax}%
     \pgfmathsetlength{\gridautoheight}{floor(\the\gridautoheight / 0.5cm) * 0.5cm}%
     \nointerlineskip
-    \begingroup\setlength{\parskip}{0pt}%
+    \begingroup\setlength{\parskip}{0pt}\hfuzz=0.5pt%
     \noindent
     \begin{tikzpicture}
         \def\cellsize{0.5cm}
