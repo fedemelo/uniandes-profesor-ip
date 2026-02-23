@@ -1,0 +1,62 @@
+\documentclass{ip-lab}
+
+\lablevel{n2}
+\labnumber{Laboratorio 1}
+\labtitle{Condicionales}
+
+\makeheader
+
+\begin{document}
+
+\maketitle
+
+\begin{sectionbox}{Preparación del ambiente de trabajo}
+  Cree dos módulos en Spyder:
+  \begin{itemize}
+    \item \texttt{condicionales.py}: módulo de la capa de lógica, en el que escribirá las funciones de las Actividades 1 a 3.
+    \item \texttt{presentacion.py}: módulo de la capa de presentación, correspondiente a la Actividad 4.
+  \end{itemize}
+\end{sectionbox}
+
+
+\begin{sectionbox}{Actividad 1: Año bisiesto}
+  Escriba una función que reciba como argumento un año y determine si el año es bisiesto o no.
+
+  Un año es bisiesto si es divisible por 4 pero no por 100, salvo que sea divisible por 400.
+\end{sectionbox}
+
+
+\begin{sectionbox}{Actividad 2: Ecuación cuadrática}
+  Escriba una función que reciba como argumentos los coeficientes $a$, $b$ y $c$ de una ecuación cuadrática de la forma $ax^2 + bx + c = 0$ y retorne sus raíces reales.
+
+  La fórmula cuadrática es:
+  \[
+    x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+  \]
+
+  La expresión $\Delta = b^2 - 4ac$ se denomina el discriminante y determina la naturaleza de las raíces. Si el discriminante es positivo, existen dos raíces reales distintas; si es cero, existe una única raíz real; y si es negativo, no existen raíces reales.
+
+  La función debe retornar una cadena de caracteres que enuncie claramente las soluciones o su ausencia.
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Actividad 3: Clasificación de presión arterial}
+  Según las guías de la \textit{American College of Cardiology} y la \textit{American Heart Association}, la presión arterial en adultos se considera normal cuando la presión sistólica es menor de 120 mmHg y la diastólica menor de 80 mmHg; elevada, cuando la sistólica está entre 120 y 129 mmHg y la diastólica es menor de 80 mmHg; hipertensión en etapa 1 cuando la sistólica se encuentra entre 130 y 139 mmHg o la diastólica entre 80 y 89 mmHg; e hipertensión en etapa 2 cuando la sistólica es al menos 140 mmHg o la diastólica es al menos 90 mmHg.
+
+  Escriba una función que reciba como argumentos la presión sistólica y la presión diastólica medidas en mmHg y retorne una cadena de caracteres con la categoría correspondiente.
+\end{sectionbox}
+
+
+\begin{sectionbox}{Actividad 4: Capa de presentación}
+  Escriba la capa de presentación que permita al usuario interactuar con las funciones de la capa de lógica en un solo módulo. Debe incluir una función de presentación para cada una de las funciones de lógica. 
+  
+  Al ejecutar el módulo, el usuario debe visualizar un menú con las opciones disponibles numeradas y tener la posibilidad de seleccionar la actividad a ejecutar. Luego, el programa debe solicitar al usuario los datos necesarios para ejecutar la función correspondiente y mostrar el resultado de manera clara y amigable.
+\end{sectionbox}
+
+
+\begin{sectionbox}{Entrega}
+  Entregue un archivo comprimido \texttt{.zip} que contenga exactamente los módulos \texttt{condicionales.py} y \texttt{presentacion.py} a través de Bloque Neón en el laboratorio del Nivel 2 designado como ``N2-L1: Condicionales''.
+\end{sectionbox}
+
+\end{document}
