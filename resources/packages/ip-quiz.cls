@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ip-quiz}[2024/01/01 ISIS Quiz Template]
+\ProvidesClass{ip-quiz}[2026/01/20 IP quiz template by fedemelo]
 
 \LoadClass[11pt,letterpaper]{article}
 
@@ -15,21 +15,9 @@
 \RequirePackage{titlesec}
 \RequirePackage{tcolorbox}
 \RequirePackage{enumitem}
-\RequirePackage{tikz}
-\usetikzlibrary{arrows.meta}
+\RequirePackage{ip-code-annotations}
 
 \definecolor{isisgray}{RGB}{236, 240, 241}
-
-\usepackage[gray]{xcolor}  % Forces no colors in minted
-
-\usepackage{minted}
-\setminted[python]{
-  fontsize=\small,
-  tabsize=4,
-  breaklines=true,
-  autogobble,
-  style=stata-light,  % Needed for no italics
-}
 
 \newcommand{\quizlevel}[1]{\def\@quizlevel{#1}}
 \newcommand{\quiznum}[1]{\def\@quiznum{#1}}
