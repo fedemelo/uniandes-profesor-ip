@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ip-exam}[2025/01/01 ISIS Exam Template]
+\ProvidesClass{ip-exam}[2025/08/04 IP exam template by fedemelo]
 
 \LoadClass[11pt,letterpaper]{article}
 
@@ -20,6 +20,7 @@
 \RequirePackage{ragged2e}
 \RequirePackage{tikz}
 \RequirePackage{programming-grid}
+\RequirePackage{attendance-sheet}
 
 \usepackage{minted}
 \setminted[python]{
