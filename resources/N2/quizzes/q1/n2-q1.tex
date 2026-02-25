@@ -4,10 +4,6 @@
 \quiznum{1}
 \quiztitle{Funciones y strings}
 
-\newcommand{\tikzmark}[1]{%
-  \tikz[remember picture,overlay] \node (#1) {};%
-}
-
 \begin{document}
 
 \makeheader
@@ -18,7 +14,7 @@ Un sensor de velocidad en Bogotá captura placas vehiculares con baja precisión
 
 Dada una placa fotografiada y tres placas candidatas, determine cuál candidata es más similar a la capturada por el sensor. La similitud vale \texttt{1} si las letras coinciden y \texttt{1} si los dígitos coinciden (entre \texttt{0} y \texttt{2} en total). En caso de empate, retorne la última candidata.
 
-Retorne un mensaje que se indique claramente cuál placa ganó.
+Retorne un mensaje que indique claramente cuál placa ganó.
 
 \textbf{Nota: } Las placas en Colombia constan de tres letras, un espacio y tres números. E.g., \texttt{ABC 123}.
 \end{sectionbox}
@@ -31,7 +27,7 @@ def calcular_similitud(placa_foto: str, placa_x: str) -> int:
     puntaje = 0
     if placa_foto[:3] == placa_x[:3]:
         puntaje += 1
-    |\tikzmark{ifDs}|if|\tikzmark{ifDe}| placa_foto[4:] == placa_x[4:]:
+    |\tms{ifD}|if|\tme{ifD}| placa_foto[4:] == placa_x[4:]:
         puntaje += 1
     return puntaje
 
@@ -47,13 +43,13 @@ def encontrar_placa_mas_similar(
     mayor_similitud = calcular_similitud(placa_foto, placa_1)
 
     similitud_2 = calcular_similitud(placa_foto, placa_2)
-    |\tikzmark{ifAs}|if|\tikzmark{ifAe}| similitud_2 |\tikzmark{geqAs}|>=|\tikzmark{geqAe}| mayor_similitud:
+    |\tms{ifA}|if|\tme{ifA}| similitud_2 |\tms{geqA}|>=|\tme{geqA}| mayor_similitud:
         mejor_nombre = "placa 2"
         mejor_placa = placa_2
         mayor_similitud = similitud_2
 
     similitud_3 = calcular_similitud(placa_foto, placa_3)
-    |\tikzmark{ifBs}|if|\tikzmark{ifBe}| similitud_3 |\tikzmark{geqBs}|>=|\tikzmark{geqBe}| mayor_similitud:
+    |\tms{ifB}|if|\tme{ifB}| similitud_3 |\tms{geqB}|>=|\tme{geqB}| mayor_similitud:
         mejor_nombre = "placa 3"
         mejor_placa = placa_3
         mayor_similitud = similitud_3
@@ -63,68 +59,33 @@ def encontrar_placa_mas_similar(
             f"Su puntaje de similitud es: {mayor_similitud}.")|\tikzmark{retbot}|
 \end{minted}
 
-\begin{tikzpicture}[remember picture, overlay,
-  box/.style={
-    draw=green!55!black,
-    line width=0.7pt,
-    rounded corners=3pt,
-    inner xsep=0pt,
-    inner ysep=2pt,
-    yshift=2pt
-  },
-  note/.style={
-    % draw=green!40!black,
-    % line width=0.5pt,
-    % fill=green!6!white,
-    % rounded corners=4pt,
-    align=left,
-    font=\scriptsize\fontfamily{cmss}\selectfont,
-    text=green!50!black,
-    inner sep=5pt,
-  },
-  arr/.style={
-    -{Stealth[length=2mm, open]},
-    draw=green!55!black,
-    line width=0.7pt,
-  },
-  brk/.style={
-    draw=green!55!black,
-    line width=0.7pt
-  },
-]
+\begin{tikzpicture}[remember picture, overlay]
 
   \node[box, fit=(ifDs)(ifDe)] (cifD) {};
   \node[note, anchor=north west, text width=5cm]
-    (noteElifCalc) at ([xshift=-8.9cm, yshift=0pt] current page.east |- ifDs)
+    (noteA) at ([xshift=-8.9cm] current page.east |- ifDs)
     {Uso \texttt{if} en lugar de \texttt{elif} porque de lo contrario si las letras coinciden, no se evalúan los dígitos.};
-  \draw[arr, dotted] (cifD.east) to[bend right=5] (noteElifCalc.west);
+  \draw[arr, dotted] (cifD.east) to[bend right=5] (noteA.west);
 
-  \coordinate (paramsX) at ([xshift=15pt] pright);
-  \draw[brk, decorate, decoration={brace, mirror, amplitude=5pt}]
-    (paramsX |- ptop) -- (paramsX |- pbot)
-    node[midway, note, anchor=west, xshift=3pt, text width=5cm]
-      {Pongo los parámetros en varias líneas para no rebasar el margen. Igual los separo por comas, como siempre.};
+  \codebrace{pright}{15pt}{ptop}{pbot}{3pt}{5cm}
+    {Pongo los parámetros en varias líneas para no rebasar el margen. Igual los separo por comas, como siempre.}
 
-  
   \node[box, fit=(geqAs)(geqAe)] (cgeqA) {};
   \node[box, fit=(geqBs)(geqBe)] (cgeqB) {};
   \node[note, anchor=west, text width=3.8cm]
-    (noteGeq) at ([xshift=-6.9cm] current page.east |- geqAs)
+    (noteC) at ([xshift=-6.9cm] current page.east |- geqAs)
     {>= y no >: en empate se actualiza al último candidato, como pide el enunciado.};
-  \draw[arr, dotted] (cgeqA.east) to[bend left=5] (noteGeq.west);
-  \draw[arr, dotted] (cgeqB.east) to[bend right=10] (noteGeq.west);
+  \draw[arr, dotted] (cgeqA.east) to[bend left=5]  (noteC.west);
+  \draw[arr, dotted] (cgeqB.east) to[bend right=10] (noteC.west);
 
   \node[box, fit=(ifBs)(ifBe)] (cifB) {};
   \node[note, anchor=north west, text width=5.7cm]
-    (noteElifEnc) at ([xshift=-8.9cm, yshift=-4pt] current page.east |- ifBs)
+    (noteB) at ([xshift=-8.9cm, yshift=-4pt] current page.east |- ifBs)
     {Similar a arriba, si se usara \texttt{elif} en lugar de \texttt{if}, el código fallaría cuando la placa 3 es la mejor y la 1 la peor: se retornaría la placa 2.};
-  \draw[arr, dotted] (cifB.east) to[bend right=5] (noteElifEnc.west);
+  \draw[arr, dotted] (cifB.east) to[bend right=5] (noteB.west);
 
-  \coordinate (retX) at ([xshift=12pt] retbot);
-  \draw[brk, decorate, decoration={brace, mirror, amplitude=5pt}]
-    (retX |- rettop) -- (retX |- retbot)
-    node[midway, note, anchor=west, xshift=2pt, text width=3.2cm]
-      {Concatenación con + y \textbackslash n dentro de paréntesis para poder escribir el \texttt{str} en varias líneas.};
+  \codebrace{retbot}{12pt}{rettop}{retbot}{2pt}{3.2cm}
+    {Concatenación con + y \textbackslash n dentro de paréntesis para poder escribir el \texttt{str} en varias líneas.}
 
 \end{tikzpicture}
 \end{sectionbox}
