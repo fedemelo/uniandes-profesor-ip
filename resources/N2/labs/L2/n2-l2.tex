@@ -1,8 +1,9 @@
 \documentclass{ip-lab}
+\usepackage{booktabs}
 
 \lablevel{n2}
 \labnumber{Laboratorio 2}
-\labtitle{Condicionales}
+\labtitle{Condicionales y cadenas de caracteres}
 
 \makeheader
 
@@ -10,45 +11,65 @@
 
 \maketitle
 
-\begin{sectionbox}{Objetivos}
-\begin{enumerate}
-    \item Entender la utilidad de los condicionales y cómo aplicarlos a diferentes problemas.
-    \item Practicar el uso de condicionales para la solución de problemas por casos.
-\end{enumerate}
-\end{sectionbox}
-
-
 \begin{sectionbox}{Preparación del ambiente de trabajo}
   Cree un nuevo módulo de funciones llamado \texttt{condicionales.py} en el que escribirá las funciones correspondientes a los puntos 1 a 2 de este laboratorio.
 \end{sectionbox}
 
-
-\begin{sectionbox}{Actividad 1: Año bisiesto}
-  Escriba una función que reciba como argumento un año y determine si el año es bisiesto o no.
-
-  Un año es bisiesto si es divisible por 4, excepto si también es divisible por 100. En este último caso, solo será bisiesto si además es divisible por 400.
-\end{sectionbox}
-
-\begin{sectionbox}{Actividad 2: Validador de contraseñas}
-Escriba una función que reciba como parámetro una contraseña y determine si cumple con los siguientes criterios de seguridad:
+\begin{sectionbox}{Actividad 1: Validador de contraseñas}
+Escriba una función que reciba como parámetro una contraseña y retorne un puntaje que indica qué tan segura es la contraseña según los siguientes criterios:
 
 \begin{enumerate}
-    \item La contraseña debe tener al menos 8 caracteres de longitud.
-    \item Debe contener al menos una letra mayúscula.
-    \item Debe contener al menos una letra minúscula.
-    \item Debe contener al menos un dígito (0-9).
+    \item Si la contraseña tiene al menos 8 caracteres de longitud, suma tantos puntos como caracteres.
+    \item Si la contraseña contiene al menos una letra minúscula, suma 3 puntos.
+    \item Si la contraseña contiene al menos una letra mayúscula, suma 5 puntos.
+    \item Si la contraseña contiene al menos un dígito (0-9), suma 7 puntos.
+\end{enumerate}
+
+Debe contemplar que si se transgrede alguno de los siguientes criterios, la contraseña se considera insegura y el puntaje final es 0:
+\begin{enumerate}
+    \item No debe contener menos de 8 caracteres.
+    \item No debe contener espacios en blanco.
+    \item No debe consistir de solo dígitos.
+    \item No debe ser igual a las siguientes contraseñas comunes: \texttt{password}, \texttt{admin}.
+\end{enumerate}
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 2: Mejor contraseña}
+Escriba una función que reciba como parámetros cuatro contraseñas y retorne un mensaje indicando cuál es la contraseña más segura de las cuatro y su valor.
+
+Mida el puntaje de cada contraseña conforme a los criterios de la Actividad 1. 
+
+En caso de empate, elija la primera contraseña con el puntaje más alto.
+\end{sectionbox}
 
 \pagebreak
 
-    \item No debe contener espacios en blanco.
-    \item No debe ser igual a las contraseñas comunes: \texttt{password}, \texttt{123456}, \texttt{admin}.
-\end{enumerate}
+\begin{sectionbox}{Actividad 3: Pruebas}
+Verifique que su función de puntuación produce los puntajes de la siguiente tabla. Luego, use combinaciones de estas contraseñas para probar que compara contraseñas correctamente, incluyendo casos con puntajes iguales.
 
-La función debe retornar \texttt{True} si la contraseña cumple con todos los criterios, o \texttt{False} en caso contrario.
+\begin{center}
+  \begin{tabular}{lc}
+    \toprule
+    \textbf{Contraseña}  & \textbf{Puntaje} \\
+    \midrule
+    \texttt{1234567}     & 0                \\
+    \texttt{12345678}    & 0                \\
+    \texttt{mi clave}    & 0                \\
+    \texttt{password}    & 0                \\
+    \texttt{abcdefgh}    & 11               \\
+    \texttt{PASSWORD}    & 13               \\
+    \texttt{ABCDEFGH}    & 13               \\
+    \texttt{Abcdefgh}    & 16               \\
+    \texttt{1234567a}    & 18               \\
+    \texttt{admin123}    & 18               \\
+    \texttt{password1}   & 19               \\
+    \bottomrule
+  \end{tabular}
+\end{center}
 \end{sectionbox}
 
 \begin{sectionbox}{Entrega}
-Entregue el archivo \texttt{n2-l2.py} a través de Bloque Neón en el laboratorio del Nivel 2 designado como ``N2-L2: Condicionales''.
+Entregue el archivo a través de Bloque Neón en el laboratorio del Nivel 2 designado como ``N2-L2: Condicionales y cadenas de caracteres''.
 \end{sectionbox}
 
 \end{document}
