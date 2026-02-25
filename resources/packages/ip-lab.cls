@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ip-lab}[2024/01/01 ISIS Laboratory Template]
+\ProvidesClass{ip-lab}[2025/08/04 IP lab template by fedemelo]
 
 \LoadClass[11pt,letterpaper]{article}
 
