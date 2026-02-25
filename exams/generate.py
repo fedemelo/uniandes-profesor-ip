@@ -15,6 +15,7 @@ import math
 import os
 import pathlib
 import random
+import re
 import shutil
 import subprocess
 import tomllib
@@ -35,6 +36,32 @@ class ExamAssignment(NamedTuple):
     ordering: tuple[int, ...]  # permutation of slot indices defining question order
 
 
+def load_course_config(config_dir: pathlib.Path) -> dict:
+    """Load the shared course configuration (semester, section, etc.)."""
+    course_path = config_dir / "course.toml"
+    if not course_path.is_file():
+        raise SystemExit(f"Error: Course config not found: {course_path}")
+
+    with open(course_path, "rb") as f:
+        config = tomllib.load(f)
+
+    required = {"course.semester": str, "course.section": int}
+    for dotted_key, expected_type in required.items():
+        parts = dotted_key.split(".")
+        val = config
+        for part in parts:
+            if not isinstance(val, dict) or part not in val:
+                raise SystemExit(f"Error: Missing required course config key: {dotted_key}")
+            val = val[part]
+        if not isinstance(val, expected_type):
+            raise SystemExit(
+                f"Error: Course config key {dotted_key} must be {expected_type.__name__}, "
+                f"got {type(val).__name__}"
+            )
+
+    return config["course"]
+
+
 def load_config(path: str) -> dict:
     """Load and validate a TOML exam configuration file."""
     config_path = pathlib.Path(path)
@@ -47,7 +74,6 @@ def load_config(path: str) -> dict:
     required = {
         "exam.name": str,
         "exam.title": str,
-        "exam.semester": str,
         "exam.date": str,
         "exam.num_students": int,
         "exam.seed": int,
@@ -104,6 +130,71 @@ def scan_question_bank(
         raise SystemExit(f"Error: No question directories (q*/) found in {base}")
 
     return slots, preamble_path
+
+
+# Matches \question{N}, \gridquestion{N}, \namedgridquestion{N}
+_SCORE_RE = re.compile(r"\\(?:named)?(?:grid)?question\{(\d+)\}")
+_INPUT_RE = re.compile(r"\\input\{([^}]+)\}")
+
+
+def _extract_score(variant_path: str, repo_root: pathlib.Path) -> int:
+    """Extract the score (décimas) from a question variant .tex file.
+
+    Follows one level of \\input if the variant delegates to a shared file.
+    """
+    full_path = repo_root / variant_path
+    content = full_path.read_text(encoding="utf-8")
+
+    match = _SCORE_RE.search(content)
+    if match:
+        return int(match.group(1))
+
+    # Follow \input to shared file
+    input_match = _INPUT_RE.search(content)
+    if input_match:
+        included = repo_root / (input_match.group(1) + ".tex")
+        if included.is_file():
+            included_content = included.read_text(encoding="utf-8")
+            match = _SCORE_RE.search(included_content)
+            if match:
+                return int(match.group(1))
+
+    raise SystemExit(
+        f"Error: Could not extract score from {variant_path}. "
+        "Expected \\question{{N}}, \\gridquestion{{N}}, or \\namedgridquestion{{N}}."
+    )
+
+
+def validate_scores(slots: list[QuestionSlot], repo_root: pathlib.Path) -> None:
+    """Validate that variant scores are consistent and total is exactly 50."""
+    question_scores: list[int] = []
+
+    for slot in slots:
+        variant_scores = [
+            _extract_score(v, repo_root) for v in slot.variants
+        ]
+
+        if len(set(variant_scores)) > 1:
+            details = ", ".join(
+                f"{pathlib.Path(v).name}={s}" for v, s in zip(slot.variants, variant_scores)
+            )
+            raise SystemExit(
+                f"Error: All variants of {slot.name} must have the same score. "
+                f"Found: {details}. "
+                "Mixed exams cannot contain different point values for the same question."
+            )
+
+        question_scores.append(variant_scores[0])
+
+    total = sum(question_scores)
+    if total != 50:
+        breakdown = ", ".join(
+            f"{s.name}={sc}" for s, sc in zip(slots, question_scores)
+        )
+        raise SystemExit(
+            f"Error: The total exam score must be exactly 50 décimas. "
+            f"Got {total} ({breakdown})."
+        )
 
 
 def validate_prerequisites(
@@ -258,11 +349,13 @@ def format_exam_id(index: int, total: int) -> str:
 def render_all_exams_tex(
     assignments: list[ExamAssignment],
     config: dict,
+    course_cfg: dict,
     slots: list[QuestionSlot],
     preamble_path: str | None,
 ) -> str:
     """Render a single .tex file containing all exams back-to-back."""
     exam_cfg = config["exam"]
+    semester = course_cfg["semester"]
     num_students = exam_cfg["num_students"]
     lines = [r"\documentclass{ip-exam}"]
 
@@ -270,7 +363,7 @@ def render_all_exams_tex(
         lines.append(f"\\input{{{preamble_path}}}")
 
     lines.append("")
-    lines.append(f"\\title{{{exam_cfg['title']} {format_exam_id(0, num_students)} -- {exam_cfg['semester']}}}")
+    lines.append(f"\\title{{{exam_cfg['title']} {format_exam_id(0, num_students)} -- {semester}}}")
     lines.append(f"\\examdate{{{exam_cfg['date']}}}")
     lines.append("")
     lines.append(r"\begin{document}")
@@ -286,7 +379,7 @@ def render_all_exams_tex(
             lines.append(r"\setcounter{questioncounter}{0}")
             lines.append(r"\setcounter{page}{1}")
             lines.append(
-                f"\\title{{{exam_cfg['title']} {exam_id} -- {exam_cfg['semester']}}}"
+                f"\\title{{{exam_cfg['title']} {exam_id} -- {semester}}}"
             )
 
         lines.append(r"\makeexamheader")
@@ -300,6 +393,10 @@ def render_all_exams_tex(
 
     lines.append("")
     lines.append(r"\cleartoeven")
+
+    lines.append(f"\\attendancesheet{{{exam_cfg['title']}}}{{{course_cfg['section']}}}")
+
+    lines.append("")
     lines.append(r"\end{document}")
     lines.append("")
 
@@ -372,9 +469,12 @@ def main():
 
     config = load_config(args.config)
     exam_cfg = config["exam"]
+    config_dir = pathlib.Path(args.config).resolve().parent
+    course_cfg = load_course_config(config_dir)
 
     questions_dir = repo_root / "exams" / "questions"
     slots, preamble_path = scan_question_bank(questions_dir, exam_cfg["name"])
+    validate_scores(slots, repo_root)
 
     num_students = exam_cfg["num_students"]
     seed = exam_cfg["seed"]
@@ -383,7 +483,7 @@ def main():
     prereq_indices = validate_prerequisites(prereq_cfg, slots)
 
     # Report question bank summary
-    print(f"Exam: {exam_cfg['title']} -- {exam_cfg['semester']}")
+    print(f"Exam: {exam_cfg['title']} -- {course_cfg['semester']}")
     print(f"Questions: {len(slots)}")
     for slot in slots:
         print(f"  {slot.name}: {len(slot.variants)} variant(s)")
@@ -421,7 +521,7 @@ def main():
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    tex_content = render_all_exams_tex(assignments, config, slots, preamble_path)
+    tex_content = render_all_exams_tex(assignments, config, course_cfg, slots, preamble_path)
     tex_filename = f"{exam_cfg['name']}-exams.tex"
     tex_path = output_dir / tex_filename
     with open(tex_path, "w", encoding="utf-8") as f:
