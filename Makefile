@@ -21,7 +21,7 @@ quiz:
 	cd $(RESOURCES_DIR)/$(QUIZ_DIR) && TEXINPUTS=../../../packages/:$(TEXINPUTS) $(TEX) n2-q3-1.tex
 
 exam:
-	cd $(RESOURCES_DIR) && cd $(NOTES_DIR) && $(TEX) -output-directory=$(EXAM_DIR) $(EXAM_DIR)/n2-exam-make-up.tex
+	python3 exams/generate.py exams/config/$(LEVEL_DIR)-exam.toml --compile
 
 notes:
 	cd $(NOTES_DIR) && $(TEX) ip.tex
