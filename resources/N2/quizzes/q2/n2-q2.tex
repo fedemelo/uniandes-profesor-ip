@@ -1,0 +1,89 @@
+\documentclass{ip-quiz}
+
+\quizlevel{n2}
+\quiznum{2}
+\quiztitle{Strings y listas}
+
+\begin{document}
+
+\makeheader
+\maketitle
+
+\begin{sectionbox}{Enunciado}
+Un estudiante busca en su computador el ensayo final que debe enviar en contados minutos, entre los múltiples archivos de borrador que generó en su afán.
+
+Escriba una función que recibe cuatro nombres de archivo y determine cuál es el ensayo final. Un archivo es el ensayo final si: su nombre contiene la palabra \texttt{ensayo}, está marcado como la tercera versión con el indicador \texttt{v3}, es un archivo PDF y la palabra \texttt{final} aparece tres veces.
+
+Si exactamente uno cumple todas las condiciones, retórnelo. De lo contrario, priorice el primero en orden alfabético. Si persiste el empate, retorne el primero en el orden de los parámetros.
+
+Los nombres de los archivos no tienen tildes.
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Solución}
+\begin{minted}[escapeinside=||]{python}
+def cumple_condiciones(nombre_ensayo: str) -> bool:
+    |\tikzmark{cctop}|return ("ensayo" in nombre_ensayo and|\tikzmark{ccright}|
+            "v3" in nombre_ensayo and
+            nombre_ensayo[-4:] == ".pdf" and
+            nombre_ensayo.count("final") == 3)|\tikzmark{ccbot}|
+
+
+def es_mejor_candidato(
+    candidato: str,
+    mejor: str,
+    ningun_ensayo_cumple: bool
+) -> bool:
+    |\tikzmark{nincmark}||\tms{algA}|if ningun_ensayo_cumple:|\tme{algA}|
+        return candidato < mejor
+    return (cumple_condiciones(candidato) and
+            (not cumple_condiciones(mejor) or candidato < mejor))
+
+
+def encontrar_ensayo_final(
+    ensayo_1: str, 
+    ensayo_2: str, 
+    ensayo_3: str, 
+    ensayo_4: str
+) -> str:
+    cumple_1 = cumple_condiciones(ensayo_1)
+    cumple_2 = cumple_condiciones(ensayo_2)
+    cumple_3 = cumple_condiciones(ensayo_3)
+    cumple_4 = cumple_condiciones(ensayo_4)
+
+    alguno_cumple = cumple_1 or cumple_2 or cumple_3 or cumple_4
+
+    mejor = ensayo_1
+
+    if |\tms{ecA}|es_mejor_candidato|\tme{ecA}|(ensayo_2, mejor, not alguno_cumple):
+        mejor = ensayo_2
+    if es_mejor_candidato(ensayo_3, mejor, not alguno_cumple):
+        mejor = ensayo_3
+    if es_mejor_candidato(ensayo_4, mejor, not alguno_cumple):
+        mejor = ensayo_4
+
+    return mejor
+\end{minted}
+
+\begin{tikzpicture}[remember picture, overlay]
+
+  \codebrace{ccright}{1.4cm}{cctop}{ccbot}{3pt}{5.5cm}
+    {Podrian haber sido varios \texttt{if}s, pero como todas las condiciones deben cumplirse, basta con usar \texttt{and}.}
+
+  \node[box, fit=(algAs)(algAe)] (calgA) {};
+  \node[note, anchor=north west, text width=5.5cm]
+    (noteAlg) at ([xshift=-8.9cm, yshift=0.9cm] current page.east |- nincmark)
+    {Contempla el caso en que ningun ensayo cumple con las condiciones: en ese caso la comparacion es puramente alfabetica entre cada par, no por condiciones.};
+  \draw[arr, dotted] (calgA.east) to[bend right=5] (noteAlg.west);
+
+  \node[box, fit=(ecAs)(ecAe)] (cecA) {};
+  \node[note, anchor=north west, text width=4.5cm]
+    (noteEc) at ([xshift=-7.5cm, yshift=0.3cm] current page.east |- ecAs)
+    {Comparacion sucesiva con el mejor candidato. Para no repetir la misma logica tres veces, la encapsulo en una función.};
+  \draw[arr, dotted] (cecA.east) to[bend right=5] (noteEc.west);
+
+\end{tikzpicture}
+\end{sectionbox}
+
+\end{document}
