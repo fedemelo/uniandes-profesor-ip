@@ -2,7 +2,7 @@
 
 \quizlevel{n2}
 \quiznum{2}
-\quiztitle{Strings y listas}
+\quiztitle{Strings y condicionales}
 
 \begin{document}
 
@@ -36,9 +36,9 @@ def es_mejor_candidato(
     ningun_ensayo_cumple: bool
 ) -> bool:
     |\tikzmark{nincmark}||\tms{algA}|if ningun_ensayo_cumple:|\tme{algA}|
-        return candidato < mejor
+        return candidato.lower() < mejor.lower()
     return (cumple_condiciones(candidato) and
-            (not cumple_condiciones(mejor) or candidato < mejor))
+            (not cumple_condiciones(mejor) or |\tms{lwrA}|candidato.lower() < mejor.lower()|\tme{lwrA}|))
 
 
 def encontrar_ensayo_final(
@@ -55,7 +55,6 @@ def encontrar_ensayo_final(
     alguno_cumple = cumple_1 or cumple_2 or cumple_3 or cumple_4
 
     mejor = ensayo_1
-
     if |\tms{ecA}|es_mejor_candidato|\tme{ecA}|(ensayo_2, mejor, not alguno_cumple):
         mejor = ensayo_2
     if es_mejor_candidato(ensayo_3, mejor, not alguno_cumple):
@@ -69,19 +68,25 @@ def encontrar_ensayo_final(
 \begin{tikzpicture}[remember picture, overlay]
 
   \codebrace{ccright}{1.4cm}{cctop}{ccbot}{3pt}{5.5cm}
-    {Podrian haber sido varios \texttt{if}s, pero como todas las condiciones deben cumplirse, basta con usar \texttt{and}.}
+    {Podrían haber sido varios \texttt{if}s, pero como todas las condiciones deben cumplirse, basta con usar \texttt{and}.}
 
   \node[box, fit=(algAs)(algAe)] (calgA) {};
   \node[note, anchor=north west, text width=5.5cm]
     (noteAlg) at ([xshift=-8.9cm, yshift=0.9cm] current page.east |- nincmark)
-    {Contempla el caso en que ningun ensayo cumple con las condiciones: en ese caso la comparacion es puramente alfabetica entre cada par, no por condiciones.};
+    {Contempla el caso en que ningún ensayo cumple con las condiciones: en ese caso la comparación es puramente alfabética, no por condiciones.};
   \draw[arr, dotted] (calgA.east) to[bend right=5] (noteAlg.west);
 
   \node[box, fit=(ecAs)(ecAe)] (cecA) {};
   \node[note, anchor=north west, text width=4.5cm]
     (noteEc) at ([xshift=-7.5cm, yshift=0.3cm] current page.east |- ecAs)
-    {Comparacion sucesiva con el mejor candidato. Para no repetir la misma logica tres veces, la encapsulo en una función.};
+    {Comparación sucesiva con el mejor candidato. Para no repetir la misma lógica tres veces, la encapsulo en una función.};
   \draw[arr, dotted] (cecA.east) to[bend right=5] (noteEc.west);
+
+  \node[box, fit=(lwrAs)(lwrAe)] (clwrA) {};
+  \node[note, anchor=north, text width=4.5cm]
+    (noteLwr) at ([xshift=-8.5cm, yshift=-0.5cm] current page.east |- lwrAs)
+    {\texttt{.lower()} para que la comparación alfabética sea correcta, porque en Python, mayúsculas \textless{} minúsculas en ASCII.};
+  \draw[arr, dotted] (clwrA.south) to[bend right=5] (noteLwr.north);
 
 \end{tikzpicture}
 \end{sectionbox}
