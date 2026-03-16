@@ -1,0 +1,68 @@
+\documentclass{ip-quiz}
+
+\quizlevel{n2}
+\quiznum{3}
+\quiztitle{Diccionarios y condicionales}
+
+\begin{document}
+
+\makeheader
+\maketitle
+
+\begin{sectionbox}{Enunciado}
+Escriba una función que reciba como parámetros cuatro estudiantes, cada uno modelado como un diccionario con las llaves ``nombre'', ``código'' y ``nota''. 
+
+La función debe retornar el mejor estudiante de acuerdo con la nota; en caso de empate, el estudiante con el nombre más largo; y en caso de persistir el empate, el estudiante con el código más reciente. Sin embargo, si ningún estudiante alcanza la nota mínima de 3.0, la función debe retornar un diccionario vacío.
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Solución}
+\begin{minted}[escapeinside=||]{python}
+def elegir_mejor_entre_dos(est: dict, mejor: dict) -> dict:
+    if (
+        |\tikzmark{ortop}|est["nota"] > mejor["nota"]|\tikzmark{orright}|
+        or (est["nota"] == mejor["nota"]
+            and len(est["nombre"]) > len(mejor["nombre"]))
+        or (est["nota"] == mejor["nota"]
+            and len(est["nombre"]) == len(mejor["nombre"])
+            and est["código"] > mejor["código"])|\tikzmark{orbot}|
+    ):
+        |\tms{replA}|mejor = est|\tme{replA}|
+    return mejor
+
+def elegir_mejor_estudiante(
+    estudiante_1: dict,
+    estudiante_2: dict,
+    estudiante_3: dict,
+    estudiante_4: dict,
+) -> dict:
+    mejor = estudiante_1
+    |\tikzmark{seqtop}|mejor = elegir_mejor_entre_dos(estudiante_2, mejor)|\tikzmark{seqright}|
+    mejor = elegir_mejor_entre_dos(estudiante_3, mejor)
+    mejor = elegir_mejor_entre_dos(estudiante_4, mejor)|\tikzmark{seqbot}|
+
+    if mejor["nota"] < 3:
+        mejor = {}
+
+    return mejor
+\end{minted}
+
+\begin{tikzpicture}[remember picture, overlay]
+
+  \codebrace{orright}{4.7cm}{ortop}{orbot}{3pt}{4.6cm}
+    {Tres condiciones en disyunción:\\1. la nota es estrictamente mejor, o\\2. la nota es igual y el nombre es más largo, o\\3. la nota y el nombre empatan y el código es más reciente.}
+
+  \node[box, fit=(replAs)(replAe)] (creplA) {};
+  \node[note, anchor=north west, text width=4.5cm]
+    (noteRepl) at ([xshift=-7.5cm, yshift=0.5cm] current page.east |- replAs)
+    {Solo si alguna de esas condiciones se cumple, se prefiere el estudiante al mejor, y se reemplaza.};
+  \draw[arr, dotted] (creplA.east) to[bend right=5] (noteRepl.west);
+
+  \codebrace{seqright}{0.4cm}{seqtop}{seqbot}{3pt}{5cm}
+    {La secuencia de condicionales se reemplaza por invocaciones sucesivas de la función para no repetir la lógica tres veces.}
+
+\end{tikzpicture}
+\end{sectionbox}
+
+\end{document}
