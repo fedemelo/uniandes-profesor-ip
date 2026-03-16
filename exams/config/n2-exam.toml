@@ -1,0 +1,9 @@
+[exam]
+name = "n2"
+title = "N2-EXAM"
+date = "13 de marzo de 2025"
+num_students = 27
+seed = 57
+
+[prerequisites]
+q6 = ["q3", "q4", "q5"]
