@@ -1,0 +1,85 @@
+\documentclass{ip-lab}
+
+\lablevel{n3}
+\labnumber{Laboratorio 1}
+\labtitle{Introducción a las listas}
+
+\makeheader
+
+\begin{document}
+
+\maketitle
+
+\begin{sectionbox}{Preparación del ambiente de trabajo}
+Cree un nuevo módulo de funciones llamado \texttt{listas.py} en el que escribirá las funciones correspondientes a las actividades 1 a 3 de este laboratorio.
+\end{sectionbox}
+
+
+\begin{sectionbox}{Métodos de listas}
+
+A continuación se presentan algunos métodos de listas útiles para este laboratorio (y para el curso):
+
+\begin{itemize}
+    \item \texttt{append(elemento)}: agrega \texttt{elemento} al final de la lista. E.g., \texttt{listica.append(\textquotedbl cosa\textquotedbl)} cuando \texttt{listica} es \texttt{[\textquotedbl elemento\textquotedbl, \textquotedbl cosita\textquotedbl]} convierte a \texttt{listica} en \texttt{[\textquotedbl elemento\textquotedbl, \textquotedbl cosita\textquotedbl, \textquotedbl cosa\textquotedbl]}.
+    \item \texttt{insert(índice, elemento)}: inserta \texttt{elemento} en la posición indicada por el índice, desplazando los demás elementos a la derecha.
+    \item \texttt{remove(elemento)}: elimina la primera aparición de \texttt{elemento} en la lista.
+    \item \texttt{pop(índice)}: elimina el elemento en la posición indicada por el índice y lo retorna.
+    \item \texttt{sort()}: ordena la lista en el lugar (modifica la lista original; no retorna nada útil).
+    \item \texttt{sorted(lista)}: retorna una nueva lista ordenada sin modificar la original.
+    \item \texttt{index(elemento)}: retorna la posición de la primera aparición de \texttt{elemento}.
+    \item \texttt{cadena.split(separador)}: método de cadenas que divide \texttt{cadena} en una lista de partes usando \texttt{separador} como delimitador. Si no se especifica separador, divide por espacios.
+    \item \texttt{separador.join(lista)}: método de cadenas que une los elementos de \texttt{lista} en una sola cadena, insertando \texttt{separador} entre cada par de elementos.
+\end{itemize}
+
+Pregúntese: cuáles de estos métodos modifica una lista sin crear una nueva (lo que se denomina \textit{in-place}) y por ende no deben asignarse a una variable cuando se usan, y cuáles de estos métodos retornan una nueva lista y ergo deben asignarse a una variable para tener sentido. 
+
+\end{sectionbox}
+
+\newpage
+
+\begin{sectionbox}{Actividad 1: Corrector de caracteres}
+Escriba una función que reciba como parámetros una oración, la posición de una palabra dentro de la oración, la posición de un carácter dentro de esa palabra y un nuevo carácter. La función debe reemplazar el carácter indicado y retornar la oración corregida.
+
+\textbf{Ejemplos:}
+\begin{itemize}
+    \item \texttt{\textquotedbl Hola Mundx\textquotedbl}, pos. palabra \texttt{1}, pos. carácter \texttt{4}, nuevo \texttt{\textquotesingle o\textquotesingle} → \texttt{\textquotedbl Hola Mundo\textquotedbl}
+    \item \texttt{\textquotedbl me llamo Juan\textquotedbl}, pos. palabra \texttt{0}, pos. carácter \texttt{0}, nuevo \texttt{\textquotesingle M\textquotesingle} → \texttt{\textquotedbl Me llamo Juan\textquotedbl}
+\end{itemize}
+\end{sectionbox}
+
+
+\begin{sectionbox}{Actividad 2: Rotación de texto delimitado}
+Escriba una función que reciba como parámetros una cadena de caracteres, un separador y un entero \texttt{k}. La función debe dividir la cadena usando el separador, rotar los elementos resultantes \texttt{k} posiciones a la derecha y retornar la cadena reconstruida con el mismo separador.
+
+Una rotación a la derecha de \texttt{k} posiciones desplaza los últimos \texttt{k} elementos al inicio de la lista. Presuma que $0 \leq k < $ número de elementos.
+
+\textbf{Ejemplos:}
+\begin{itemize}
+    \item \texttt{\textquotedbl lunes martes miércoles jueves\textquotedbl}, sep \texttt{\textquotedbl\ \textquotedbl}, \texttt{k=1} → \texttt{\textquotedbl jueves lunes martes miércoles\textquotedbl}
+    \item \texttt{\textquotedbl a-b-c-d-e\textquotedbl}, sep \texttt{\textquotedbl-\textquotedbl}, \texttt{k=0} → \texttt{\textquotedbl a-b-c-d-e\textquotedbl}
+\end{itemize}
+\end{sectionbox}
+
+
+\begin{sectionbox}{Actividad 3: Actualizar una playlist}
+Escriba una función que reciba como parámetros una lista de canciones, el nombre de una canción a eliminar y el nombre de una canción a agregar. La función debe:
+
+\begin{itemize}
+    \item Eliminar la primera aparición de la canción indicada si esta se encuentra en la lista. Si no está, no hacer ninguna modificación en ese paso.
+    \item Agregar la nueva canción al final de la lista.
+    \item Retornar la lista ordenada alfabéticamente.
+\end{itemize}
+
+\textbf{Ejemplos:}
+\begin{itemize}
+    \item Playlist: \texttt{[\textquotedbl Bohemian Rhapsody\textquotedbl, \textquotedbl Hotel California\textquotedbl, \textquotedbl Stairway to Heaven\textquotedbl]}, eliminar \texttt{\textquotedbl Hotel California\textquotedbl}, agregar \texttt{\textquotedbl Imagine\textquotedbl} → \texttt{[\textquotedbl Bohemian Rhapsody\textquotedbl, \textquotedbl Imagine\textquotedbl, \textquotedbl Stairway to Heaven\textquotedbl]}
+    \item \texttt{[\textquotedbl Shape of You\textquotedbl, \textquotedbl Blinding Lights\textquotedbl]}, eliminar \texttt{\textquotedbl Watermelon Sugar\textquotedbl} (no está en la lista), agregar \texttt{\textquotedbl Levitating\textquotedbl} → \texttt{[\textquotedbl Blinding Lights\textquotedbl, \textquotedbl Levitating\textquotedbl, \textquotedbl Shape of You\textquotedbl]}
+\end{itemize}
+\end{sectionbox}
+
+
+\begin{sectionbox}{Entrega}
+Entregue el archivo \texttt{listas.py} a través de Bloque Neón en el laboratorio del Nivel 3 designado como ``N3-L1: Introducción a las listas''.
+\end{sectionbox}
+
+\end{document}
