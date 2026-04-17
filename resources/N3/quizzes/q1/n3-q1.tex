@@ -1,0 +1,47 @@
+\documentclass{ip-quiz}
+
+\quizlevel{n2}
+\quiznum{1}
+\quiztitle{Funciones y strings}
+
+\begin{document}
+
+\makeheader
+\maketitle
+
+\begin{sectionbox}{Enunciado}
+Escriba una función que recibe como parémetro una cadena de caracteres alfanumérica y retorne un histograma, representado como un diccionario, de las apariciones de cada dígito en la cadena.
+\end{sectionbox}
+
+\begin{sectionbox}{Solución}
+\begin{minted}[escapeinside=||]{python}
+def histograma_digitos(cadena: str) -> dict:
+    histograma = {}
+    i = 0
+    while i < len(cadena):
+        if |\tms{isdig}|cadena[i].isdigit():|\tme{isdig}|
+            histograma[cadena[i]] = histograma.|\tms{get}|get(cadena[i], 0)|\tme{get}| + 1
+        i += 1
+    return histograma
+\end{minted}
+
+\begin{tikzpicture}[remember picture, overlay]
+
+  \node[box, fit=(isdigs)(isdige)] (cisdig) {};
+  \node[note, anchor=north west, text width=5cm]
+    (noteIsdig) at ([xshift=-10cm, yshift=1.3cm] current page.east |- isdigs)
+    {Retorna \texttt{True} si el carácter es un dígito del 0 al 9. Más directo que comparar con caracteres o rangos.};
+  \draw[arr, dotted] (cisdig.east) to[bend right=5] (noteIsdig.west);
+
+  \node[box, fit=(gets)(gete)] (cget) {};
+  \node[note, anchor=north west, text width=5cm]
+    (noteGet) at ([xshift=-10cm, yshift=-0.5cm] current page.east |- gets)
+    {Si la clave aún no está en el diccionario, retorna \texttt{0} en vez de lanzar un error. Evita necesitar un \texttt{if} adicional para armar el histograma.};
+  \draw[arr, dotted] (cget.west) to[bend right=5] (noteGet.west);
+
+\end{tikzpicture}
+\end{sectionbox}
+
+Nota: Este ejercicio es un recorrido total. Ahora que saben usar \texttt{for}, esa también era una forma de resolverlo.
+
+\end{document}
