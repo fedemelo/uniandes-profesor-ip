@@ -1,0 +1,59 @@
+\documentclass{ip-quiz}
+
+\quizlevel{n2}
+\quiznum{2}
+\quiztitle{Strings y condicionales}
+
+\begin{document}
+
+\makeheader
+\maketitle
+
+\begin{sectionbox}{Enunciado}
+Escriba una función que reciba una lista de números y retorne algún elemento que no esté repetido en la lista. Si no hay ningún elemento que cumpla esta condición, retorne \texttt{-1}.
+\end{sectionbox}
+
+\begin{sectionbox}{Solución}
+\begin{minted}[escapeinside=||]{python}
+def elemento_no_repetido(numeros: list) -> int:
+    conteos = {}
+    |\tms{forn}|for numero in numeros:|\tme{forn}|
+        conteos[numero] = conteos.get(numero, 0) + 1
+
+    i = 0
+    resultado = -1
+    while i < len(numeros) and |\tms{cent}|resultado == -1:|\tme{cent}|
+        if conteos[numeros[i]] == 1:
+            resultado = numeros[i]
+        i += 1
+    return resultado
+\end{minted}
+
+\begin{tikzpicture}[remember picture, overlay]
+
+  \node[box, fit=(forns)(forne)] (cforn) {};
+  \node[note, anchor=north west, text width=5cm]
+    (noteForn) at ([xshift=-12cm, yshift=0.8cm] current page.east |- forns)
+    {El \texttt{for} sobre un diccionario recorre solo las llaves.};
+  \draw[arr, dotted] (cforn.east) to[bend right=5] (noteForn.west);
+
+  \node[box, fit=(cents)(cente)] (ccent) {};
+  \node[note, anchor=north west, text width=5cm]
+    (noteCent) at ([xshift=-9cm, yshift=0.8cm] current page.east |- cents)
+    {Este es un centinela sin necesidad de ser booleano: su valor inicial \texttt{-1} indica que aún no se encontró resultado.};
+  \draw[arr, dotted] (ccent.east) to[bend right=5] (noteCent.west);
+
+\end{tikzpicture}
+\end{sectionbox}
+
+Notas:
+\begin{itemize}
+    \item Hay varias otras soluciones a este ejercicio. Algunas utilizan métodos como \texttt{count} o \texttt{replace} en lugar de hacer dos ciclos consecutivos. Sin embargo, llamar \texttt{count} o \texttt{replace} dentro de un ciclo obliga a recorrer toda la cadena en cada iteración del ciclo, lo cual hace la solución más lenta. Son correctas, pero menos eficientes.
+    \item El segundo ciclo debe ser un recorrido parcial, puesto que se está buscando un elemento con una característica específica. Utilizar \texttt{for} o hacerlo como un recorrido total de cualquier otra manera es incorrecto.
+\end{itemize}
+
+
+
+
+
+\end{document}
