@@ -10,26 +10,16 @@
 
 \maketitle
 
-\begin{sectionbox}{Objetivos}
-\begin{enumerate}
-    \item Desarrollar habilidades para procesar y manipular listas de números.
-    \item Practicar el uso de ciclos para buscar patrones en secuencias de datos.
-    \item Aprender a trabajar con estructuras de datos anidadas (listas de diccionarios).
-\end{enumerate}
-\end{sectionbox}
 
 
 \begin{sectionbox}{Preparación del ambiente de trabajo}
-  Para este laboratorio se le proporcionará un módulo de consola (\texttt{consola.py}) que contiene un menú interactivo para probar sus funciones.
-  
-  Usted debe crear un nuevo módulo de funciones llamado \texttt{modulo.py} en el que escribirá las funciones correspondientes a las actividades 1 a 3 de este laboratorio. La consola importará automáticamente sus funciones desde este módulo.
+  Cree un nuevo módulo de funciones en el que escribirá las funciones correspondientes a las actividades 1 a 3 de este laboratorio.
 \end{sectionbox}
-
 
 \begin{sectionbox}{Actividad 1: Buscar elementos iguales consecutivos}
   Escriba una función que reciba como parámetro una lista de números enteros y retorne la suma de las posiciones de la última ocasión en la que dos números seguidos tienen el mismo valor. Si no hay dos valores seguidos iguales, debe retornar \texttt{-1}.
 
-  Si el problema se puede solucionar mediante un recorrido parcial de la lista, debe hacerlo de esa manera.
+  \textbf{Nota:} Si el problema se puede solucionar mediante un recorrido parcial, debe hacerlo de esa manera.
 
   \textbf{E.g.:}
   \begin{itemize}
@@ -39,9 +29,24 @@
   \end{itemize}
 \end{sectionbox}
 
+\begin{sectionbox}{Actividad 2: Contar apariciones de sublista}
+  Escriba una función que reciba como parámetros una lista de números y otra lista de números más corta, y retorne la cantidad de veces en que la segunda lista (sublista) aparece consecutivamente en la primera lista.
+
+  No considere el caso en que aparezcan elementos intercalados. La sublista debe aparecer de forma consecutiva en la lista principal. 
+
+  \textbf{Nota:} Si el problema se puede solucionar mediante un recorrido parcial, debe hacerlo de esa manera.
+  
+  \textbf{E.g.:}
+  \begin{itemize}
+      \item Lista: \texttt{[1, 2, 3, 1, 4, 2, 3]}, Sublista: \texttt{[1, 2, 3]} → \texttt{1}
+      \item Lista: \texttt{[1, 2, 3, 4, 5]}, Sublista: \texttt{[6, 7]} → \texttt{0}
+      \item Lista: \texttt{[1, 1, 7, 1, 1, 2]}, Sublista: \texttt{[1, 1]} → \texttt{2}
+  \end{itemize}
+\end{sectionbox}
+
 \pagebreak
 
-\begin{sectionbox}{Actividad 2: Mejor estudiante por materia}
+\begin{sectionbox}{Actividad 3: Mejor estudiante por materia}
   Escriba una función que reciba como parámetros una lista de estudiantes y el nombre de una materia, y retorne el código del estudiante que tiene la mejor nota en esa materia.
 
   La lista de estudiantes contiene diccionarios con la siguiente estructura:
@@ -69,21 +74,6 @@
   \end{verbatim}
   
   Para la materia \texttt{\textquotedbl IP\textquotedbl}, la función debe retornar \texttt{\textquotedbl 202098765\textquotedbl} (Carlos López), ya que tanto Ana como Carlos tienen 4.5, pero \textquotedbl Carlos López\textquotedbl\ es alfabéticamente mayor que \textquotedbl Ana García\textquotedbl.
-\end{sectionbox}
-
-\begin{sectionbox}{Actividad 3: Contar apariciones de sublista}
-  Escriba una función que reciba como parámetros una lista de números y otra lista de números más corta, y retorne la cantidad de veces en que la segunda lista (sublista) aparece consecutivamente en la primera lista.
-
-  No considere el caso en que aparezcan elementos intercalados. La sublista debe aparecer de forma consecutiva en la lista principal. Si el problema se puede solucionar mediante un recorrido parcial de la lista, debe hacerlo de esa manera.
-
-  \pagebreak
-  
-  \textbf{E.g.:}
-  \begin{itemize}
-      \item Lista: \texttt{[1, 2, 3, 1, 4, 2, 3]}, Sublista: \texttt{[1, 2, 3]} → \texttt{1}
-      \item Lista: \texttt{[1, 2, 3, 4, 5]}, Sublista: \texttt{[6, 7]} → \texttt{0}
-      \item Lista: \texttt{[1, 1, 7, 1, 1, 2]}, Sublista: \texttt{[1, 1]} → \texttt{2}
-  \end{itemize}
 \end{sectionbox}
 
 \begin{sectionbox}{Entrega}
