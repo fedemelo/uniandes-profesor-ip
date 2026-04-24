@@ -10,69 +10,37 @@
 
 \maketitle
 
-\begin{sectionbox}{Objetivos}
-\begin{enumerate}
-    \item Entender la utilidad de los ciclos \texttt{while} y cómo aplicarlos a diferentes problemas.
-    \item Practicar el uso de ciclos para el procesamiento de cadenas de caracteres.
-    \item Desarrollar habilidades para recorrer y manipular cadenas usando iteración.
-\end{enumerate}
-\end{sectionbox}
-
-
 \begin{sectionbox}{Preparación del ambiente de trabajo}
-  Para este laboratorio se le proporcionará un módulo de consola (\texttt{consola.py}) que contiene un menú interactivo para probar sus funciones.
-  
-  Usted debe crear un nuevo módulo de funciones llamado \texttt{modulo.py} en el que escribirá las funciones correspondientes a las actividades 1 a 3 de este laboratorio. La consola importará automáticamente sus funciones desde este módulo.
+  Cree un nuevo módulo de funciones en el que escribirá las funciones correspondientes a las actividades 1 a 3 de este laboratorio.
 \end{sectionbox}
 
 
-\begin{sectionbox}{Actividad 1: Invertir una cadena de caracteres}
-  Escriba una función que reciba como parámetro una cadena de caracteres y retorne la cadena invertida.
+\begin{sectionbox}{Actividad 1: Última aparición de cada carácter}
+Escriba una función que reciba como parámetro una cadena de caracteres y retorne una nueva cadena que contenga únicamente la última aparición de cada carácter, preservando el orden en que aparecen en la cadena original.
 
-  \textbf{Importante:} Debe implementar esta función usando un ciclo \texttt{while}. No puede usar la sintaxis de indexación negativa de Python (\texttt{cadena[::-1]}) ni métodos como \texttt{reversed()}. El objetivo es practicar el uso de ciclos para recorrer y construir cadenas carácter por carácter.
+E.g., si la cadena de entrada es \texttt{\textquotedbl banana\textquotedbl}, la función debe retornar \texttt{\textquotedbl bna\textquotedbl}; si es \texttt{\textquotedbl trescientos\textquotedbl}, debe retornar \texttt{\textquotedbl rcientos\textquotedbl}.
 
-  \textbf{Ejemplo:} Si la cadena de entrada es \texttt{\textquotedbl Hola Mundo\textquotedbl}, la función debe retornar \texttt{\textquotedbl odnuM aloH\textquotedbl}.
+
 \end{sectionbox}
 
-\begin{sectionbox}{Actividad 2: Histograma de caracteres}
-Escriba una función que reciba como parámetro una cadena de caracteres y retorne un diccionario que represente un histograma de los caracteres presentes en la cadena, es decir, cuántas veces aparece cada carácter en la cadena.
+\begin{sectionbox}{Actividad 2: Palabra más frecuente}
+Escriba una función que reciba como parámetro una cadena de caracteres y retorne la palabra que aparece con mayor frecuencia en la cadena.
 
-El diccionario debe tener como llaves cada carácter único que aparece en la cadena (incluyendo espacios, dígitos y símbolos), y como valores la cantidad de veces que ese carácter aparece.
+La función debe ignorar diferencias entre mayúsculas y minúsculas (i.e., \texttt{\textquotedbl HolA\textquotedbl} y \texttt{\textquotedbl hola\textquotedbl} se consideran la misma palabra). Si hay empate, puede retornar cualquiera de las palabras más frecuentes.
+
+E.g., si la cadena de entrada es \texttt{\textquotedbl hola mundo Hola adiós HolA mundo\textquotedbl}, un ejemplo de retorno correcto es \texttt{\textquotesingle hola\textquotesingle}.
+\end{sectionbox}
 
 \pagebreak
 
-Debe implementar esta función usando un ciclo \texttt{while} para recorrer la cadena carácter por carácter.
+\begin{sectionbox}{Actividad 3: Simetría de vocales}
+Escriba una función que reciba como parámetro una cadena de caracteres y determine si las vocales en la cadena se leen igual de izquierda a derecha que de derecha a izquierda. No distinga entre mayúsculas y minúsculas. Presuma que no hay tildes en la cadena.
 
-\textbf{Ejemplo:} Si la cadena de entrada es \texttt{\textquotedbl hola hola\textquotedbl}, la función debe retornar:
-
-\texttt{\{\textquotesingle h\textquotesingle: 2, \textquotesingle o\textquotesingle: 2, \textquotesingle l\textquotesingle: 2, \textquotesingle a\textquotesingle: 2, \textquotesingle\ \textquotesingle: 1\}}
-\end{sectionbox}
-
-
-\begin{sectionbox}{Actividad 3: Verificador de simetría de vocales}
-Escriba una función que reciba como parámetro una cadena de caracteres y determine si las vocales en la cadena forman un patrón simétrico (es decir, si las vocales se leen igual de izquierda a derecha que de derecha a izquierda). Presuma que no hay tildes en la cadena.
-
-La función debe:
-\begin{itemize}
-    \item Ignorar las consonantes, espacios y otros caracteres.
-    \item Considerar solo las vocales (a, e, i, o, u), sin distinguir entre mayúsculas y minúsculas.
-    \item Retornar \texttt{True} si las vocales forman un patrón simétrico, o \texttt{False} en caso contrario.
-\end{itemize}
-
-Debe implementar esta función usando ciclos \texttt{while} para extraer y comparar las vocales.
-
-\textbf{Ejemplos:}
-\begin{itemize}
-    \item \texttt{\textquotedbl Anita lava la tina\textquotedbl} → \texttt{True} (vocales: a, i, a, a, a, a, i, a)
-    \item \texttt{\textquotedbl Hola mundo\textquotedbl} → \texttt{False} (vocales: o, a, u, o)
-    \item \texttt{\textquotedbl Oso\textquotedbl} → \texttt{True} (vocales: o, o)
-\end{itemize}
+E.g., la función debe retornar \texttt{True} para la cadena de entrada \texttt{\textquotedbl Camina hacia la cima\textquotedbl}, pues las vocales se leen como \texttt{a, i, a, a, i, a, a, i, a} en ambas direcciones
 \end{sectionbox}
 
 \begin{sectionbox}{Entrega}
-Entregue el archivo \texttt{modulo.py} a través de Bloque Neón en el laboratorio del Nivel 3 designado como ``N3-L2: Ciclos sobre cadenas de caracteres''.
-
-Puede usar el módulo \texttt{consola.py} proporcionado para probar sus funciones antes de la entrega. Su archivo debe funcionar correctamente desde la consola.
+Entregue el archivo a través de Bloque Neón en el laboratorio del Nivel 3 designado como ``N3-L2: Ciclos sobre cadenas de caracteres''.
 \end{sectionbox}
 
 \end{document}
