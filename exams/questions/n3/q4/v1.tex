@@ -1,0 +1,51 @@
+\newpage
+
+\question{13}{El archivo \texttt{cupimundial.csv} contiene información de jugadores organizada en las siguientes columnas:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|l|p{4cm}|l|l|}
+\hline
+\textbf{Posición} & \textbf{Nombre de la columna} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Ejemplo} \\
+\hline
+0 & \texttt{name} & Nombre del jugador & \texttt{str} & ``Karim Benzema'' \\
+\hline
+1 & \texttt{age} & Edad del jugador & \texttt{int} & 33 \\
+\hline
+2 & \texttt{team} & Selección nacional del jugador & \texttt{str} & ``France'' \\
+\hline
+3 & \texttt{pace} & Velocidad del jugador (0 a 100) & \texttt{int} & 76 \\
+\hline
+4 & \texttt{shooting} & Habilidad de tiro (0 a 100) & \texttt{int} & 86 \\
+\hline
+5 & \texttt{passing} & Habilidad de pase (0 a 100) & \texttt{int} & 81 \\
+\hline
+6 & \texttt{dribbling} & Habilidad de regate (0 a 100) & \texttt{int} & 87 \\
+\hline
+7 & \texttt{position} & Posición del jugador & \texttt{str} & ``Forward'' \\
+\hline
+8 & \texttt{direction} & Dirección en el campo & \texttt{str} & ``Center'' \\
+\hline
+9 & \texttt{joined} & Fecha de ingreso al equipo (``YYYY-MM-DD'') & \texttt{str} & ``2009-07-09'' \\
+\hline
+10 & \texttt{contract} & Año de finalización del contrato (``YYYY'') & \texttt{str} & ``2023'' \\
+\hline
+11 & \texttt{preferred\_foot} & Pie preferido del jugador & \texttt{str} & ``Right'' \\
+\hline
+12 & \texttt{international\_rep} & Reputación internacional (1 a 5) & \texttt{int} & 4 \\
+\hline
+13 & \texttt{wage} & Salario mensual en USD & \texttt{int} & 350000 \\
+\hline
+\end{tabular}
+\end{table}
+
+Escriba una función que reciba como parámetro una cadena de caracteres con la ruta al archivo CSV y retorne un diccionario donde las llaves sean los nombres de las selecciones nacionales y los valores sean listas de diccionarios, donde cada diccionario representa un jugador de esa selección con todos sus campos excepto \texttt{team}. Los campos numéricos deben convertirse a tipo de dato numérico.
+
+\textit{Consejo: No demore más de 20 minutos en este punto.}
+}
+
+\newpage
+
+\vspace*{1.5cm}
+
+\programmingGrid
