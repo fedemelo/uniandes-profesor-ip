@@ -1,0 +1,86 @@
+\documentclass{ip-lab}
+
+\usepackage{float}
+
+\lablevel{n4}
+\labnumber{Laboratorio 0}
+\labtitle{Repaso del Examen del Nivel 3}
+
+\makeheader
+
+\begin{document}
+
+\maketitle
+
+\begin{sectionbox}{Preparación del ambiente de trabajo}
+  Cree un módulo de funciones llamado \texttt{repaso.py} en el que escribirá todas las funciones de este laboratorio.
+
+  Para las actividades 2, 3 y 4, también necesitará el archivo \texttt{cupimundial\_v2.csv} que le será proporcionado.
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 1: Recorrido de cadenas por pares desde los extremos}
+  Escriba una función que reciba como parámetro una cadena de caracteres alfanumérica sin tildes y retorne una nueva cadena construida así: compare las vocales de la cadena original por pares desde los extremos hacia el centro (primera con última, segunda con penúltima, etc.) sin distinguir entre mayúsculas y minúsculas. Si las vocales del par son iguales, reemplace ambas por \texttt{x} en el resultado. En cuanto un par no coincida, detenga el proceso.
+
+  \textbf{E.g.:} Con la entrada \texttt{\textquotedbl Amigos para amigas\textquotedbl}, la función debe retornar \texttt{\textquotedbl xmxgos para amxgxs\textquotedbl}.
+
+  \textit{Consejo: ¿Este recorrido es total o parcial?}
+
+  \medskip
+
+  \textbf{Variante:} Resuelva el mismo problema, pero comparando \textbf{dígitos} en lugar de vocales, y reemplazando los pares iguales con \texttt{0} en lugar de \texttt{x}.
+
+  \textbf{E.g.:} Con la entrada \texttt{\textquotedbl 1231\textquotedbl}, la función debe retornar \texttt{\textquotedbl 0230\textquotedbl}; con la entrada \texttt{\textquotedbl A1b2c3a445a21\textquotedbl}, la función debe retornar \texttt{\textquotedbl A0b0c3a445a00\textquotedbl}.
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Estructura del archivo CSV}
+  El archivo \texttt{cupimundial\_v2.csv} contiene información de jugadores organizada en las siguientes columnas:
+
+  \begin{table}[H]
+  \centering
+  \begin{tabular}{|c|l|p{5cm}|l|l|}
+  \hline
+  \textbf{Posición} & \textbf{Nombre de la columna} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Ejemplo} \\
+  \hline
+  0 & \texttt{nombre} & Nombre del jugador & \texttt{str} & ``Lionel Messi'' \\
+  \hline
+  1 & \texttt{edad} & Edad del jugador & \texttt{int} & 36 \\
+  \hline
+  2 & \texttt{seleccion} & Selección nacional del jugador & \texttt{str} & ``Argentina'' \\
+  \hline
+  3 & \texttt{posicion} & Posición del jugador & \texttt{str} & ``Winger'' \\
+  \hline
+  \end{tabular}
+  \end{table}
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 2: Cargar datos desde archivo CSV}
+  Escriba una función que reciba como parámetro una cadena de caracteres con la ruta al archivo CSV y retorne un diccionario donde las llaves sean los nombres de las selecciones nacionales y los valores sean listas de diccionarios, donde cada diccionario representa un jugador de esa selección con todos sus campos excepto \texttt{seleccion}. El campo numérico \texttt{edad} debe convertirse a \texttt{int}.
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Actividad 3: Histograma de posiciones}
+  Escriba una función que reciba como parámetros la estructura creada en la Actividad 2 y el nombre de una selección nacional, y retorne un diccionario que represente un histograma de posiciones de los jugadores de esa selección. El diccionario retornado debe tener como llaves los nombres de las posiciones (en minúscula, sin espacios al inicio o al final) y como valores el número de jugadores que ocupan cada posición.
+
+  \textbf{E.g.:} Si la selección Colombia tiene 5 jugadores en posición ``Winger'', 3 en ``Defender'' y 2 en ``Forward'', el diccionario retornado cuando el argumento es ``Colombia'' debe ser: \texttt{\{\textquotedbl winger\textquotedbl: 5, \textquotedbl defender\textquotedbl: 3, \textquotedbl forward\textquotedbl: 2\}}.
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 4: Posición más común}
+  Escriba una función que reciba como parámetros la estructura creada en la Actividad 2 y el nombre de una selección nacional, y retorne un diccionario con una sola pareja llave-valor: el nombre de la posición más común entre los jugadores de esa selección (en minúscula, sin espacios al inicio o al final) como llave, y la cantidad de jugadores que la ocupan como valor.
+
+  En caso de empate en la cantidad de jugadores, debe retornar la posición que aparezca primero alfabéticamente.
+
+  \textbf{E.g.:} Si la selección Colombia tiene 5 jugadores en posición ``Winger'', 3 en ``Defender'' y 2 en ``Forward'', el diccionario retornado cuando el argumento es ``Colombia'' debe ser: \texttt{\{\textquotedbl winger\textquotedbl: 5\}}.
+
+  \textit{Consejo: ¿Cómo puede aprovechar la función de la Actividad 3?}
+\end{sectionbox}
+
+\begin{sectionbox}{Entrega}
+  Entregue el archivo \texttt{repaso.py} a través de Bloque Neón en el laboratorio del Nivel 4 designado como ``N4-L0: Repaso del Examen del Nivel 3''.
+
+  Asegúrese de tener el archivo \texttt{cupimundial\_v2.csv} en el mismo directorio para probar las funciones de las Actividades 2, 3 y 4.
+\end{sectionbox}
+
+\end{document}
