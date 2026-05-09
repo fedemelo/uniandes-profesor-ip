@@ -1,0 +1,74 @@
+\documentclass{ip-quiz}
+
+\quizlevel{n4}
+\quiznum{1}
+\quiztitle{Recorrido de matrices}
+
+\begin{document}
+
+\makeheader
+\maketitle
+
+\begin{sectionbox}{Enunciado}
+Escriba una función que modifique una matriz numérica rellenando con ceros las siguientes secciones:
+\begin{enumerate}
+  \item El cuadrante en la esquina superior izquierda de la matriz.
+  \item Un segmento vertical que recorre la mitad inferior de la matriz en la columna donde inicia el cuarto final del ancho de la matriz.
+\end{enumerate}
+Por ejemplo, dada la siguiente matriz de 4 filas y 6 columnas:
+\[
+\begin{bmatrix}
+1 & 2 & 3 & 4 & 5 & 6 \\
+7 & 8 & 9 & 1 & 2 & 3 \\
+4 & 5 & 6 & 7 & 8 & 9 \\
+1 & 2 & 3 & 4 & 5 & 6
+\end{bmatrix}
+\xrightarrow{}
+\begin{bmatrix}
+0 & 0 & 0 & 4 & 5 & 6 \\
+0 & 0 & 0 & 1 & 2 & 3 \\
+4 & 5 & 6 & 7 & 0 & 9 \\
+1 & 2 & 3 & 4 & 0 & 6
+\end{bmatrix}
+\]
+\end{sectionbox}
+
+\begin{sectionbox}{Solución}
+\begin{minted}[escapeinside=||]{python}
+def rellenar_matriz(m: list[list[int]]) -> None:
+    n = len(m)
+    c = len(m[0])
+    for i in range(|\tms{nhalf}|n // 2|\tme{nhalf}|):
+        for j in range(|\tms{chalf}|c // 2|\tme{chalf}|):
+            m[i][j] = 0
+    col = |\tms{cthree}|c * 3 // 4|\tme{cthree}|
+    for i in range(n // 2, n):
+        m[i][col] = 0
+\end{minted}
+
+\begin{tikzpicture}[remember picture, overlay]
+
+  \node[box, fit=(nhalfs)(nhalfe)] (cnhalf) {};
+  \node[note, anchor=north west, text width=5cm]
+    (noteNhalf) at ([xshift=-10cm, yshift=1.5cm] current page.east |- nhalfs)
+    {Número de filas del cuadrante superior: la mitad del alto de la matriz. El mismo valor reaparece como inicio del segundo recorrido en \texttt{range(n~//~2,~n)}.};
+  \draw[arr, dotted] (cnhalf.east) to[bend right=5] (noteNhalf.west);
+
+  \node[box, fit=(chalfs)(chalfe)] (cchalf) {};
+  \node[note, anchor=north west, text width=5cm]
+    (noteChalf) at ([xshift=-10cm, yshift=-0cm] current page.east |- chalfs)
+    {Número de columnas del cuadrante: la mitad del ancho de la matriz.};
+  \draw[arr, dotted] (cchalf.east) to[bend right=5] (noteChalf.west);
+
+  \node[box, fit=(cthrees)(cthreee)] (ccthree) {};
+  \node[note, anchor=north west, text width=5cm]
+    (noteCthree) at ([xshift=-10cm, yshift=0cm] current page.east |- cthrees)
+    {Índice de la columna a tres cuartos del ancho. La división entera evita decimales: para \texttt{c = 6}, \texttt{6~*~3~//~4~=~4}.};
+  \draw[arr, dotted] (ccthree.east) to[bend right=5] (noteCthree.west);
+
+\end{tikzpicture}
+\end{sectionbox}
+
+Nota: La función modifica la matriz directamente sin retornar nada, aprovechando que en Python las listas son mutables. Los dos recorridos son independientes: el primero usa \texttt{for} anidados para el cuadrante; el segundo, un único \texttt{for} para el segmento vertical.
+
+\end{document}
