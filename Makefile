@@ -5,20 +5,20 @@ TEXINPUTS := ./packages/:$(TEXINPUTS)
 export TEXINPUTS
 
 TEX=pdflatex -shell-escape
-LEVEL_DIR=n3
+LEVEL_DIR=n4
 LAB_DIR=$(LEVEL_DIR)/labs/l1
 EXAM_DIR=$(LEVEL_DIR)/exam
-QUIZ_DIR=$(LEVEL_DIR)/quizzes/q3
+QUIZ_DIR=$(LEVEL_DIR)/quizzes/q1
 RESOURCES_DIR=resources
 NOTES_DIR=notes
 
 .PHONY: lab quiz exam clean notes clean-all all generate-exams generate-exams-pdf generate-exams-dry clean-exams
 
 lab:
-	cd $(RESOURCES_DIR) && $(TEX) -output-directory=$(LAB_DIR) $(LAB_DIR)/n3-l1.tex
+	cd $(RESOURCES_DIR) && $(TEX) -output-directory=$(LAB_DIR) $(LAB_DIR)/n4-l1.tex
 
 quiz:
-	cd $(RESOURCES_DIR)/$(QUIZ_DIR) && TEXINPUTS=../../../packages/:$(TEXINPUTS) $(TEX) n2-q3.tex
+	cd $(RESOURCES_DIR)/$(QUIZ_DIR) && TEXINPUTS=../../../packages/:$(TEXINPUTS) $(TEX) n4-q1.tex
 
 exam:
 	python3 exams/generate.py exams/config/$(LEVEL_DIR)-exam.toml --compile
