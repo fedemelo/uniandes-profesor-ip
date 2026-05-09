@@ -16,6 +16,7 @@
 \RequirePackage{tcolorbox}
 \RequirePackage{enumitem}
 \RequirePackage{ip-code-annotations}
+\RequirePackage{mathtools}
 
 \definecolor{isisgray}{RGB}{236, 240, 241}
 
