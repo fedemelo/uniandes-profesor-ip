@@ -14,41 +14,20 @@
 
 \maketitle
 
-\begin{sectionbox}{Objetivos}
-\begin{enumerate}
-    \item Practicar el manejo de matrices representadas como listas de listas.
-    \item Implementar algoritmos de recorrido y transformación de matrices.
-    \item Familiarizarse con estructuras complejas de datos, como listas de listas de tuplas.
-    \item Aplicar operaciones matemáticas sobre matrices para transformar imágenes digitales.
-\end{enumerate}
-\end{sectionbox}
-
-
 \begin{sectionbox}{Preparación del ambiente de trabajo}
   Para este laboratorio se le proporcionará un módulo de consola (\texttt{consola\_visor\_imagenes.py}) que contiene un menú interactivo para probar sus funciones.
-  
+
   Usted debe completar el módulo de funciones llamado \texttt{visor\_imagenes.py} en el que escribirá las funciones correspondientes a las actividades de este laboratorio. La consola importará automáticamente sus funciones desde este módulo.
-  
-  También se le proporcionarán tres archivos de imagen en formato PNG (\texttt{imagen1.png}, \texttt{imagen2.png}, \texttt{imagen3.png}) que podrá utilizar para probar las transformaciones implementadas.
+
+  Se proporcionan algunas imágenes de ejemplo en formato PNG. Puede usar cualquier imagen PNG que desee mientras la almacene en el mismo directorio.
 \end{sectionbox}
 
 \pagebreak
 
 \begin{sectionbox}{Representación de imágenes}
-  En este laboratorio trabajaremos con imágenes digitales en formato PNG (Portable Network Graphics). Para poder realizar transformaciones sobre estas imágenes, la información de cada pixel se guarda en una matriz.
-  
-  La matriz que utilizaremos tiene el formato de lista de listas de tuplas, donde:
-  \begin{itemize}
-      \item La lista externa representa las filas de la imagen (altura).
-      \item Cada lista interna representa una fila de pixeles (ancho).
-      \item Cada tupla representa un pixel con sus tres componentes de color en formato RGB.
-  \end{itemize}
-  
-  El color de un pixel está representado en el sistema RGB (Red-Green-Blue), es decir, un componente rojo, uno verde y uno azul. Estos componentes son números de punto flotante que van de \(0.0\) a \(1.0\).
-  
-  \textbf{Ejemplo de representación:}
-  
-  Una imagen de $3 \times 3$ pixeles se representa de la siguiente manera:
+  Las imágenes PNG se representan como una matriz de tuplas. Cada tupla es un pixel con sus componentes de color RGB (Red, Green, Blue) como flotantes entre \(0.0\) y \(1.0\).
+
+  E.g.:
   \begin{verbatim}
   [
     [(0.0, 1.0, 0.0), (0.0, 0.0, 1.0), (1.0, 0.0, 0.0)],
@@ -57,34 +36,31 @@
   ]
   \end{verbatim}
 
-
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.3\textwidth]{ejemplo_imagen_3x3.png}
-    \caption{Ejemplo de una imagen de 3x3 pixeles.}
+    \caption{Imagen de 3×3 pixeles correspondiente a la matriz anterior.}
   \end{figure}
-  
-  En este ejemplo:
-  \begin{itemize}
-    \item En la posición \texttt{[0][0]} hay un pixel verde con componentes (\(R\): \(0.0\), \(G\): \(1.0\), \(B\): \(0.0\))
-    \item En la posición \texttt{[0][1]} hay un pixel azul con componentes (\(R\): \(0.0\), \(G\): \(0.0\), \(B\): \(1.0\))
-    \item En la posición \texttt{[2][2]} hay un pixel blanco con componentes (\(R\): \(1.0\), \(G\): \(1.0\), \(B\): \(1.0\))
-  \end{itemize}
-  
+
+  Fíjese cómo \texttt{[2][0]} es negro (solo \texttt{0.0}), \texttt{[2][2]} es blanco (solo \texttt{1.0}) y \texttt{[0][0]} es verde puro (solo \(G = 1.0\)).
 \end{sectionbox}
 
 \pagebreak
 
 \begin{sectionbox}{Funciones proporcionadas}
-  El módulo \texttt{visor\_imagenes.py} ya incluye dos funciones implementadas:
-  
+  El módulo \texttt{visor\_imagenes.py} ya incluye cuatro funciones implementadas:
+
   \begin{itemize}
-      \item \textbf{\texttt{cargar\_imagen(ruta\_imagen: str) -> list}}: Carga una imagen PNG desde la ruta especificada y la retorna como una lista de listas de tuplas.
-      
-      \item \textbf{\texttt{visualizar\_imagen(imagen: list) -> None}}: Muestra la imagen en una ventana utilizando \texttt{matplotlib}.
+      \item \textbf{\texttt{normalizar\_color}}: Normaliza los valores de color de la imagen para que sean decimales.
+
+      \item \textbf{\texttt{cargar\_imagen}}: Carga una imagen PNG desde la ruta especificada y la retorna como una lista de listas de tuplas.
+
+      \item \textbf{\texttt{visualizar\_imagen}}: Muestra la imagen en una ventana utilizando \texttt{matplotlib}.
+
+      \item \textbf{\texttt{reflejar\_imagen}}: Refleja la imagen horizontalmente. Está implementada como ejemplo del patrón de recorrido que usará en las demás actividades.
   \end{itemize}
-  
-  Estas funciones ya están completamente implementadas y \textbf{no deben ser modificadas}. Úselas para cargar y visualizar las imágenes mientras implementa las transformaciones.
+
+  Estas funciones ya están completamente implementadas y \textbf{no deben ser modificadas}.
 \end{sectionbox}
 
 \begin{sectionbox}{Especificaciones técnicas}  
@@ -96,10 +72,10 @@
   
   Recuerde que las tuplas son inmutables. Para modificar un pixel, debe crear una nueva tupla. Los elementos de las tuplas deben ser de tipo \texttt{float}.
 
-  Para los ejemplos a continuación, se utilizará la siguiente imagen de la pintura Las señoritas de Avignon de Pablo Picasso.
+  Para los ejemplos a continuación se utilizará la siguiente imagen de la pintura \textit{Las señoritas de Avignon} de Pablo Picasso.
   \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{picasso.png}
+    \includegraphics[width=0.4\textwidth]{picasso.png}
     \caption{Ejemplo de imagen original antes de aplicar transformaciones.}
   \end{figure}
 \end{sectionbox}
@@ -199,31 +175,7 @@
 
 \pagebreak
 
-\begin{sectionbox}{Actividad 4: Reflejar imagen verticalmente}
-  Complete la función \texttt{reflejar\_imagen} que recibe como parámetro una matriz de imagen (lista de listas de tuplas) y retorna una nueva matriz con la imagen reflejada verticalmente.
-  
-  Reflejar la imagen verticalmente consiste en crear una imagen espejo sobre una línea imaginaria vertical en el centro de la figura. Para hacer esta transformación, se intercambian las columnas de pixeles de la imagen: la primera columna con la última, la segunda con la penúltima, etc.
-  
-  \textbf{Proceso:}
-  \begin{itemize}
-      \item Para cada fila de la imagen, invertir el orden de los pixeles (tuplas).
-      \item La primera columna se convierte en la última, la segunda en la penúltima, y así sucesivamente.
-  \end{itemize}
-  
-  \textbf{Ejemplo:}
-  
-  Si una fila contiene los pixeles \texttt{[A, B, C, D]}, después de reflejar quedaría \texttt{[D, C, B, A]}.
-
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{reflejar.png}
-    \caption{Ejemplo de reflexión vertical aplicada a una imagen.}
-  \end{figure}
-\end{sectionbox}
-
-\pagebreak
-
-\begin{sectionbox}{Actividad 5: Convolución de imagen}
+\begin{sectionbox}{Actividad 4: Convolución de imagen}
   Complete la función \texttt{convolucion\_imagen} que recibe como parámetro una matriz de imagen (lista de listas de tuplas) y retorna una nueva matriz con la convolución aplicada.
   
   La convolución es una operación que transforma cada pixel utilizando sus pixeles vecinos y una matriz de factores. Dependiendo de la matriz de convolución elegida, se pueden producir diferentes efectos visuales en la imagen.
@@ -329,12 +281,11 @@ Puede usar el módulo \texttt{consola\_visor\_imagenes.py} proporcionado para pr
 
 \textbf{Pruebas sugeridas:}
 \begin{enumerate}
-    \item Cargue una imagen y visualízela (imagen original).
+    \item Cargue una imagen y visualícela (imagen original).
     \item Aplique cada transformación individualmente y compare con la imagen original.
     \item Aplique transformaciones en secuencia (por ejemplo, primero binarizar, luego negativo).
     \item Pruebe la binarización con diferentes umbrales (\(0.3\), \(0.5\), \(0.7\)).
-    \item Experimente con las diferentes matrices de convolución cambiando el código: pruebe afilado, desenfoque, detección de bordes y relieve. Observe cómo cada una produce un efecto visual completamente diferente.
-    \item Para verificar que sus transformaciones funcionan correctamente, cargue nuevamente la imagen original después de cada prueba.
+    \item Experimente con las diferentes matrices de convolución cambiando el código y observe cómo cada una produce un efecto visual diferente.
 \end{enumerate}
 \end{sectionbox}
 

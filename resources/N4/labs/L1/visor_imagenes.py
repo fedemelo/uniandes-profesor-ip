@@ -58,38 +58,30 @@ def visualizar_imagen(imagen: list) -> None:
     plt.show()
 
 
+def reflejar_imagen(imagen: list) -> list:
+    """Refleja la imagen horizontalmente.
+    Consiste en invertir el orden de los pixeles en cada fila.
+    Parámetros:
+        imagen (list) Matriz (M,N) como lista de listas de tuplas con la imagen a reflejar.
+    Retorno:
+        list: Nueva matriz con la imagen reflejada.
+    """
+    imagen_nueva = []
+    for i in range(len(imagen)):
+        fila_nueva = []
+        for j in range(len(imagen[i]) - 1, -1, -1):
+            fila_nueva.append(imagen[i][j])
+        imagen_nueva.append(fila_nueva)
+    return imagen_nueva
+
+
 def convertir_negativo(imagen: list) -> list:
-    """  Convierte la imagen en negativo.
+    """Convierte la imagen en negativo.
     El negativo se calcula restando cada componente RGB de 1.0 (el valor máximo).
     Parámetros:
         imagen (list) Matriz (M,N) como lista de listas de tuplas con la imagen a convertir a negativo.
     Retorno:
         list: Nueva matriz con la imagen en negativo.
-    """
-    imagen_nueva = []
-    for i in range(len(imagen)):
-        fila_nueva = []
-        for j in range(len(imagen[i])):
-            pixel_original = imagen[i][j]
-            # Calcular el negativo de cada componente
-            r_nuevo = 1.0 - pixel_original[0]
-            g_nuevo = 1.0 - pixel_original[1]
-            b_nuevo = 1.0 - pixel_original[2]
-            # Crear nuevo pixel como tupla
-            pixel_nuevo = (r_nuevo, g_nuevo, b_nuevo)
-            fila_nueva.append(pixel_nuevo)
-        imagen_nueva.append(fila_nueva)
-    
-    return imagen_nueva
-
-
-def reflejar_imagen(imagen: list) -> list:
-    """Refleja la imagen verticalmente.
-    Consiste en intercambiar las columnas enteras de la imagen, de las finales a las iniciales.
-    Parámetros:
-        imagen (list) Matriz (M,N) como lista de listas de tuplas con la imagen a reflejar.
-    Retorno:
-        list: Nueva matriz con la imagen reflejada.
     """
     return imagen
 
