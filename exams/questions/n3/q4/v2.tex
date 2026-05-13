@@ -39,9 +39,9 @@
 \end{tabular}
 \end{table}
 
-Escriba una función que reciba como parámetro una cadena de caracteres con la ruta al archivo CSV y retorne un diccionario donde las llaves sean los nombres de las selecciones nacionales y los valores sean diccionarios, donde cada llave es el nombre de una posición y el valor es una lista de diccionarios, cada uno que representa un jugador de esa selección en esa posición con todos sus campos excepto \texttt{team} y \texttt{position}. Los campos numéricos deben convertirse a tipo de dato numérico.
+Escriba una función que reciba como parámetro una cadena de caracteres con la ruta al archivo CSV y retorne un diccionario donde las llaves sean los nombres de las selecciones nacionales y los valores sean diccionarios, donde cada llave es un pie hábil y el valor es una lista de diccionarios, cada uno que representa un jugador de esa selección con ese pie hábil con todos sus campos excepto \texttt{team} y \texttt{preferred\_foot}. Los campos numéricos deben convertirse a tipo de dato numérico.
 
-\textbf{E.g.:} \texttt{\{\textquotedbl France\textquotedbl: \{\textquotedbl Forward\textquotedbl: [\{...\}, ...], \textquotedbl Defender\textquotedbl: [...], ...\}, ...\}}
+\textbf{E.g.:} \texttt{\{\textquotedbl France\textquotedbl: \{\textquotedbl Right\textquotedbl: [\{...\}, ...], \textquotedbl Left\textquotedbl: [...], ...\}, ...\}}
 
 \textit{\textbf{Nota:} Esta estructura es levemente distinta a la del proyecto.}
 
