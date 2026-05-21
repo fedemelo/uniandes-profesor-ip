@@ -1,15 +1,16 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
-def cargar_datos(archivo: str) -> pd.DataFrame:
-    return pd.read_csv(archivo)
+df = pd.read_csv("cupicharts.csv")
 
 
 def canciones_por_genero_artista(df: pd.DataFrame, artista: str) -> None:
-    df_artista = df[df["performer"] == artista]
-    conteo = df_artista["genre"].value_counts()
-    
+    # TODO: Implemente la lógica de Pandas aquí.
+    # Filtre el DataFrame para quedarse solo con las canciones del artista.
+    # Cuente cuántas canciones tiene en cada género y guarde el resultado en 'conteo'.
+    conteo = ...
+
+    # Código de Matplotlib — no modifique esta parte
     conteo.plot(
         kind="bar",
         figsize=(10, 6),
@@ -22,10 +23,14 @@ def canciones_por_genero_artista(df: pd.DataFrame, artista: str) -> None:
 
 
 def popularidad_por_genero_explicitidad(df: pd.DataFrame, explicitas: bool) -> None:
-    df_filtrado = df[df["explicit"] == explicitas]
-    popularidad = df_filtrado.groupby("genre")["popularity"].sum()
-    popularidad = popularidad.sort_values(ascending=False).head(20)
-    
+    # TODO: Implemente la lógica de Pandas aquí.
+    # Filtre el DataFrame según si las canciones son explícitas o no.
+    # Agrupe por género, sume la popularidad total de cada género, ordene de mayor
+    # a menor y quédese solo con los 20 géneros más populares.
+    # Guarde el resultado en 'popularidad'.
+    popularidad = ...
+
+    # Código de Matplotlib — no modifique esta parte
     tipo = "explícitas" if explicitas else "no explícitas"
     ax = popularidad.plot(
         kind="barh",
@@ -40,7 +45,5 @@ def popularidad_por_genero_explicitidad(df: pd.DataFrame, explicitas: bool) -> N
 
 
 if __name__ == "__main__":
-    df = cargar_datos("cupicharts.csv")
-    # canciones_por_genero_artista(df, "Morgan Wallen")
+    canciones_por_genero_artista(df, "Morgan Wallen")
     popularidad_por_genero_explicitidad(df, False)
-
