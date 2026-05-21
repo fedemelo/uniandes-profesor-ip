@@ -1,13 +1,8 @@
 \documentclass{ip-lab}
 
-\usepackage{url}
-\usepackage{float}
-\usepackage{hyperref}
-\usepackage{upquote}
-
 \lablevel{n4}
 \labnumber{Laboratorio 2}
-\labtitle{Exploración de análisis de datos con Pandas y Matplotlib}
+\labtitle{Recorridos de matrices}
 
 \makeheader
 
@@ -15,300 +10,133 @@
 
 \maketitle
 
-\begin{sectionbox}{Objetivos}
+\begin{sectionbox}{Preparación del ambiente de trabajo}
+Cree un módulo \texttt{matrices.py} para las actividades de matrices.
+\end{sectionbox}
+
+\begin{sectionbox}{Actividad 1: Búsqueda en cuadrantes}
+
+Escriba una función que reciba una matriz cuadrada de enteros positivos de tamaño mínimo $2\times 3$ y el nombre de un color. El color determina en qué cuadrante de la matriz se debe buscar. La función debe retornar el primer número en el cuadrante especificado que sea par, cuando se recorra por filas y luego por columnas. Si no existe tal número, debe retornar \texttt{None}.
+
+La matriz se divide en seis cuadrantes nombrados por colores:
+
+\textbf{Mitad superior de la matriz:}
+\begin{itemize}
+    \item \textbf{Rojo:} tercio izquierdo de columnas
+    \item \textbf{Verde:} tercio central de columnas
+    \item \textbf{Azul:} tercio derecho de columnas
+\end{itemize}
+
+\textbf{Mitad inferior de la matriz:}
+\begin{itemize}
+    \item \textbf{Amarillo:} tercio izquierdo de columnas
+    \item \textbf{Naranja:} tercio central de columnas
+    \item \textbf{Morado:} tercio derecho de columnas
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    % Draw grid
+    \draw[step=1cm,gray,very thin] (0,0) grid (6,6);
+    
+    % Fill quadrants with colors
+    \fill[red!30] (0,3) rectangle (2,6);
+    \fill[green!30] (2,3) rectangle (4,6);
+    \fill[blue!30] (4,3) rectangle (6,6);
+    \fill[yellow!30] (0,0) rectangle (2,3);
+    \fill[orange!30] (2,0) rectangle (4,3);
+    \fill[violet!30] (4,0) rectangle (6,3);
+    
+    % Draw grid again on top
+    \draw[step=1cm,gray] (0,0) grid (6,6);
+    
+    % Labels
+    \node at (1,4.5) {\textbf{Rojo}};
+    \node at (3,4.5) {\textbf{Verde}};
+    \node at (5,4.5) {\textbf{Azul}};
+    \node at (1,1.5) {\textbf{Amarillo}};
+    \node at (3,1.5) {\textbf{Naranja}};
+    \node at (5,1.5) {\textbf{Morado}};
+    
+    % Axis labels
+    \node[below] at (3,-0.3) {Columnas};
+    \node[left] at (-0.3,3) {Filas};
+\end{tikzpicture}
+\end{center}
+
+\textbf{E.g.:} En una matriz 6x6, el cuadrante \verb|"verde"| abarca las filas 0-2 y columnas 2-3.
+
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Actividad 2: Modificación de patrones}
+
+Escriba una función que reciba una matriz cuadrada y la modifique pintando la letra "T".
+
+\begin{itemize}
+    \item La primera fila de la matriz debe contener únicamente el carácter \texttt{-}
+    \item La columna del medio debe contener el carácter \texttt{|} desde la segunda fila hasta la última fila
+    \item Todas las demás posiciones de la matriz deben contener el carácter espacio \texttt{' '}
+\end{itemize}
+
+Ejemplo para una matriz 5x5:
+
+\begin{center}
+\includegraphics[width=0.4\textwidth]{matrix_t.png}
+\end{center}
+
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Actividad 3: Análisis de datos estructurados}
+
+Escriba una función que reciba una tupla con información de ventas y el nombre de una ciudad, y retorne una tupla con el producto que tiene mayores ventas en esa ciudad y el valor de esas ventas.
+
+La tupla de información contiene tres elementos:
+\begin{itemize}
+    \item Una matriz donde cada fila representa un producto y cada columna representa una ciudad
+    \item Una lista con los nombres de los productos (en el mismo orden que las filas)
+    \item Una lista con los nombres de las ciudades (en el mismo orden que las columnas)
+\end{itemize}
+
+Si la ciudad especificada no existe en los datos, la función debe retornar la tupla \texttt{(None, None)}.
+
+\textbf{E.g.:} Si la matriz es \texttt{[[1500, 2000], [800, 1500]]}, los productos son \texttt{["Laptop", "Mouse"]}, las ciudades son \texttt{["Bogotá", "Medellín"]}, y se consulta por \texttt{"Medellín"}, la función debe retornar \texttt{("Laptop", 2000)} porque 2000 es mayor que 1500.
+
+\end{sectionbox}
+
+\pagebreak
+
+\begin{sectionbox}{Actividad 4: Simulación de salón de clase}
+
+Escriba una función que reciba una matriz cuadrada representando un salón de clase y retorne las coordenadas del primer estudiante introvertido que empezará a hablar en clase. Si ningún introvertido empezará a hablar, debe retornar \texttt{(None, None)}.
+
+En la matriz, cada posición puede contener:
+\begin{itemize}
+    \item \texttt{0}: Puesto vacío
+    \item \texttt{1}: Estudiante introvertido (callado)
+    \item \texttt{2}: Estudiante extrovertido (hablando)
+\end{itemize}
+
+Un estudiante introvertido empezará a hablar si cumple estas dos condiciones simultáneamente:
 \begin{enumerate}
-    \item Explorar las funcionalidades básicas de la librería Pandas para análisis de datos.
-    \item Comprender qué son las Series y DataFrames y cómo se utilizan.
-    \item Investigar y aplicar métodos de conteo, agrupación y ordenamiento de datos.
-    \item Familiarizarse con diferentes tipos de visualizaciones usando Pandas y Matplotlib.
-    \item Desarrollar habilidades de documentación técnica y experimentación con librerías.
+    \item Tiene estudiantes extrovertidos en las dos posiciones diagonales inmediatamente detrás de él (diagonal inferior izquierda y diagonal inferior derecha). Si alguna de estas diagonales no existe porque el estudiante está en el borde del salón, esta condición no se cumple.
+    \item La posición inmediatamente adelante no contiene un estudiante extrovertido. Si la posición adelante no existe porque el estudiante está en la primera fila, esta condición sí se cumple.
 \end{enumerate}
+
+El recorrido debe realizarse de adelante hacia atrás (de arriba hacia abajo) y de izquierda a derecha, como si estuviera mirando el salón desde el tablero.
+
+E.g.: Si hay un introvertido en posición (1,1), tiene extrovertidos en (2,0) y (2,2), y la posición (0,1) no contiene un extrovertido, entonces ese introvertido empezará a hablar y sus coordenadas deben ser retornadas.
+
 \end{sectionbox}
 
-
-\begin{sectionbox}{Preparación del ambiente de trabajo}  
-  Este laboratorio es de \textbf{exploración}, lo que significa que usted investigará y experimentará con diferentes funcionalidades de estas librerías para comprender cómo funcionan. Deberá crear un archivo \texttt{exploracion\_datos.py} donde implementará sus experimentos.
-  
-  \textbf{Recursos de documentación oficial:}
-  \begin{itemize}
-      \item Pandas: \url{https://pandas.pydata.org/docs/}
-      \item Matplotlib: \url{https://matplotlib.org/stable/contents.html}
-  \end{itemize}
-\end{sectionbox}
-
-\pagebreak
-
-\begin{sectionbox}{Introducción a Pandas}
-  Pandas es una librería de Python especializada en el análisis y manipulación de datos. Se importa convencionalmente como \texttt{pd}:
-  
-  \begin{verbatim}
-  import pandas as pd
-  \end{verbatim}
-  
-  Pandas trabaja principalmente con dos estructuras de datos:
-  
-  \begin{itemize}
-      \item \textbf{Series}: Una estructura unidimensional similar a una lista que puede contener diferentes tipos de datos (números, texto, etc.). Cada elemento tiene un índice asociado.
-      
-      \item \textbf{DataFrame}: Una estructura bidimensional similar a una tabla o matriz, donde los datos se organizan en filas y columnas. Cada columna es una Serie.
-  \end{itemize}
-  
-  \textbf{Ejemplo de creación de una Serie:}
-  \begin{verbatim}
-  edades = pd.Series([23, 45, 18, 67, 34, 23, 45, 23])
-  \end{verbatim}
-  
-  \textbf{Ejemplo de creación de un DataFrame:}
-  \begin{verbatim}
-  datos = {
-      "nombre": ["Ana", "Luis", "María", "Pedro"],
-      "edad": [23, 45, 18, 67],
-      "ciudad": ["Bogotá", "Cali", "Bogotá", "Medellín"]
-  }
-  df = pd.DataFrame(datos)
-  \end{verbatim}
-\end{sectionbox}
-
-
-\begin{sectionbox}{Actividad 1: Exploración de conteo en Series}
-  \textbf{Investigación:} Pandas proporciona métodos para contar elementos en una Serie. Investigue en la documentación oficial qué hacen los siguientes métodos y cuál es la diferencia entre ellos:
-  
-  \begin{itemize}
-      \item \texttt{pd.Series.value\_counts()}
-      \item \texttt{pd.Series.count()}
-  \end{itemize}
-  
-  \textbf{Experimentación:} Cree la siguiente Serie y aplique ambos métodos para observar sus diferencias:
-  
-  \begin{verbatim}
-  calificaciones = pd.Series([4.5, 3.8, 4.5, 2.9, 4.5, 3.8, 5.0, 
-                               4.5, None, 3.8, 4.5])
-  \end{verbatim}
-  
-  \textbf{Preguntas para responder:}
-  \begin{enumerate}
-      \item ¿Qué información retorna \texttt{value\_counts()}? ¿En qué orden aparecen los resultados?
-      \item ¿Qué tipo de valor retorna \texttt{count()}?
-      \item ¿Cómo manejan estos métodos los valores \texttt{None} (valores nulos)?
-      \item ¿En qué situaciones usaría cada uno de estos métodos?
-  \end{enumerate}
-\end{sectionbox}
-
-\pagebreak
-
-\begin{sectionbox}{Actividad 2: Exploración de operaciones con DataFrames}
-  \textbf{Investigación:} Los DataFrames tienen métodos útiles para visualizar y ordenar datos. Investigue qué hacen los siguientes métodos:
-  
-  \begin{itemize}
-      \item \texttt{pd.DataFrame.head(n)}
-      \item \texttt{pd.DataFrame.tail(n)}
-      \item \texttt{pd.DataFrame.sort\_values(ascending=flag)}
-  \end{itemize}
-  
-  \textbf{Experimentación:} Cree el siguiente DataFrame y experimente con estos métodos:
-  
-  \begin{verbatim}
-  estudiantes = pd.DataFrame({
-      "nombre": ["Ana", "Luis", "María", "Pedro", "Sofía", 
-                 "Carlos", "Laura", "Diego", "Valentina", "Andrés"],
-      "edad": [20, 22, 19, 21, 20, 23, 19, 22, 20, 21],
-      "nota": [4.5, 3.2, 4.8, 3.9, 4.1, 3.5, 4.7, 3.8, 4.2, 3.6]
-  })
-  \end{verbatim}
-  
-  \textbf{Preguntas para responder:}
-  \begin{enumerate}
-      \item ¿Qué filas muestra \texttt{head(3)} y qué filas muestra \texttt{tail(3)}?
-      \item ¿Para qué sirve el parámetro \texttt{ascending} en \texttt{sort\_values()}?
-      \item Ordene el DataFrame por la columna \texttt{nota}. ¿Qué pasa cuando \texttt{ascending=True}? ¿Y cuando \texttt{ascending=False}?
-      \item ¿Cómo podría combinar estos métodos para ver solo los 5 estudiantes con mejores notas?
-  \end{enumerate}
-\end{sectionbox}
-
-\pagebreak
-
-\begin{sectionbox}{Actividad 3: Exploración de agrupación y cálculo de promedios}
-  \textbf{Investigación:} Pandas permite agrupar datos y calcular estadísticas sobre esos grupos. Investigue qué hacen:
-  
-  \begin{itemize}
-      \item \texttt{pd.DataFrame.groupby()}
-      \item \texttt{pd.Series.mean()}
-  \end{itemize}
-  
-  \textbf{Experimentación:} Cree el siguiente DataFrame con información de ventas:
-  
-  \begin{verbatim}
-  ventas = pd.DataFrame({
-      "producto": ["Laptop", "Mouse", "Laptop", "Teclado", "Mouse",
-                   "Laptop", "Mouse", "Teclado", "Laptop", "Mouse"],
-      "precio": [2500000, 45000, 2800000, 120000, 50000,
-                 2600000, 48000, 125000, 2700000, 47000],
-      "cantidad": [1, 3, 1, 2, 4, 1, 2, 1, 1, 5]
-  })
-  \end{verbatim}
-  
-  \textbf{Preguntas para responder:}
-  \begin{enumerate}
-      \item ¿Qué sucede cuando ejecuta \texttt{ventas.groupby("producto")}? ¿Qué tipo de resultado obtiene?
-      \item Ejecute \texttt{ventas.groupby("producto")["precio"].mean()}. ¿Qué información le proporciona?
-      \item ¿Cómo calcularía el promedio de cantidad vendida para cada producto?
-      \item Experimente agrupando por producto y calculando el promedio de múltiples columnas a la vez.
-  \end{enumerate}
-\end{sectionbox}
-
-\pagebreak
-
-\begin{sectionbox}{Actividad 4: Exploración de gráficas de barras}
-  \textbf{Investigación:} Pandas permite crear visualizaciones directamente desde Series y DataFrames usando el método \texttt{plot()}. Matplotlib es la librería que Pandas usa internamente para mostrar estas gráficas. Investigue:
-  
-  \begin{itemize}
-      \item \texttt{pd.Series.plot(kind="bar")}
-      \item \texttt{pd.Series.plot(kind="barh")}
-      \item Los parámetros: \texttt{figsize}, \texttt{title}, \texttt{xlabel}, \texttt{ylabel}
-      \item \texttt{plt.show()} de Matplotlib
-  \end{itemize}
-  
-  Matplotlib se importa convencionalmente como:
-  \begin{verbatim}
-  import matplotlib.pyplot as plt
-  \end{verbatim}
-  
-  \textbf{Experimentación:} Use los datos de la Actividad 3 y cree visualizaciones:
-  
-  \begin{verbatim}
-  precios_promedio = ventas.groupby("producto")["precio"].mean()
-  \end{verbatim}
-  
-  \textbf{Preguntas para responder:}
-  \begin{enumerate}
-      \item ¿Cuál es la diferencia visual entre \texttt{kind="bar"} y \texttt{kind="barh"}?
-      \item ¿Qué hace el parámetro \texttt{figsize=(10, 6)}? Experimente con diferentes valores.
-      \item ¿Para qué sirve \texttt{plt.show()}? ¿Qué pasa si no lo incluye?
-      \item Cree una gráfica de barras horizontales con título \texttt{"Precio promedio por producto"}, etiqueta del eje X \texttt{"Precio (COP)"} y etiqueta del eje Y \texttt{"Producto"}.
-      \item ¿En qué situaciones preferiría usar barras verticales vs. barras horizontales?
-  \end{enumerate}
-\end{sectionbox}
-
-\pagebreak
-
-\begin{sectionbox}{Actividad 5: Exploración de histogramas}
-  \textbf{Investigación:} Los histogramas son útiles para visualizar la distribución de datos numéricos. Investigue:
-  
-  \begin{itemize}
-      \item \texttt{pd.Series.plot(kind="hist")}
-      \item ¿Qué diferencia hay entre un histograma y una gráfica de barras?
-  \end{itemize}
-  
-  \textbf{Experimentación:} Cree una Serie con calificaciones de estudiantes:
-  
-  \begin{verbatim}
-  import random
-  random.seed(42)
-  calificaciones = pd.Series([random.uniform(2.0, 5.0) 
-                               for _ in range(100)])
-  \end{verbatim}
-  
-  \textbf{Preguntas para responder:}
-  \begin{enumerate}
-      \item Cree un histograma de las calificaciones. ¿Qué información muestra?
-      \item ¿Cómo se agrupan los datos en el eje X? ¿Qué representa el eje Y?
-      \item Experimente con el parámetro \texttt{bins=20} dentro de \texttt{plot()}. ¿Qué cambia?
-      \item ¿En qué situaciones es más útil un histograma que una gráfica de barras?
-      \item Compare visualmente un histograma con 5 bins versus uno con 50 bins. ¿Cuál ofrece mejor información?
-  \end{enumerate}
-\end{sectionbox}
-
-\pagebreak
-
-\begin{sectionbox}{Actividad 6: Exploración de diagramas de caja (Boxplots)}
-  \textbf{Investigación:} Los boxplots o diagramas de caja son útiles para visualizar la distribución de datos y detectar valores atípicos. Investigue:
-  
-  \begin{itemize}
-      \item \texttt{pd.Series.plot(kind="box")}
-      \item El parámetro \texttt{vert}
-      \item ¿Qué información muestra un boxplot? (cuartiles, mediana, valores atípicos)
-  \end{itemize}
-  
-  \textbf{Experimentación:} Use los datos de estudiantes de la Actividad 2:
-  
-  \begin{verbatim}
-  estudiantes = pd.DataFrame({
-      "nombre": ["Ana", "Luis", "María", "Pedro", "Sofía", 
-                 "Carlos", "Laura", "Diego", "Valentina", "Andrés"],
-      "edad": [20, 22, 19, 21, 20, 23, 19, 22, 20, 21],
-      "nota": [4.5, 3.2, 4.8, 3.9, 4.1, 3.5, 4.7, 3.8, 4.2, 3.6]
-  })
-  \end{verbatim}
-  
-  \textbf{Preguntas para responder:}
-  \begin{enumerate}
-      \item Cree un boxplot de la columna \texttt{nota}. ¿Qué elementos visuales observa?
-      \item ¿Qué representa la línea en el medio de la caja?
-      \item ¿Cuál es la diferencia entre \texttt{vert=True} y \texttt{vert=False}?
-      \item Investigue qué significan los "bigotes" (whiskers) y los puntos aislados en un boxplot.
-      \item ¿Por qué sería útil un boxplot para comparar las notas de diferentes cursos?
-  \end{enumerate}
-\end{sectionbox}
-
-\pagebreak
-
-\begin{sectionbox}{Actividad 7: Exploración de manipulación de ejes}
-  \textbf{Investigación:} Matplotlib permite manipular los ejes de las gráficas. Investigue:
-  
-  \begin{itemize}
-      \item \texttt{ax.invert\_yaxis()} (donde \texttt{ax} es el objeto Axes de Matplotlib)
-      \item ¿Cómo obtener el objeto \texttt{ax} al crear una gráfica con Pandas?
-  \end{itemize}
-  
-  \textbf{Experimentación:} Use los precios promedio de la Actividad 4:
-  
-  \begin{verbatim}
-  ventas = pd.DataFrame({
-      "producto": ["Laptop", "Mouse", "Laptop", "Teclado", "Mouse",
-                   "Laptop", "Mouse", "Teclado", "Laptop", "Mouse"],
-      "precio": [2500000, 45000, 2800000, 120000, 50000,
-                 2600000, 48000, 125000, 2700000, 47000]
-  })
-  
-  precios_promedio = ventas.groupby("producto")["precio"].mean()
-  precios_promedio = precios_promedio.sort_values()
-  \end{verbatim}
-  
-  Para obtener el objeto \texttt{ax}, puede usar:
-  \begin{verbatim}
-  ax = precios_promedio.plot(kind="barh", figsize=(10, 6))
-  \end{verbatim}
-  
-  \textbf{Preguntas para responder:}
-  \begin{enumerate}
-      \item Cree una gráfica de barras horizontales y luego aplique \texttt{ax.invert\_yaxis()}. ¿Qué cambia?
-      \item ¿Para qué sería útil invertir el eje Y en una gráfica?
-      \item Experimente invirtiendo el eje Y en diferentes tipos de gráficas (bar, barh). ¿En cuál tiene más sentido?
-      \item Si ordena los datos de menor a mayor antes de graficar e invierte el eje Y, ¿cómo quedan visualmente ordenados los elementos?
-  \end{enumerate}
-\end{sectionbox}
-
-\pagebreak
 
 \begin{sectionbox}{Entrega}
-Entregue un archivo comprimido (ZIP) que contenga:
 
-\begin{enumerate}
-    \item \textbf{exploracion\_datos.py}: Archivo con todo el código de sus experimentaciones, organizado por actividades. Use comentarios para separar cada actividad claramente.
-    
-    \item \textbf{respuestas.txt} o \textbf{respuestas.pdf}: Documento con las respuestas a todas las preguntas planteadas en las actividades. Incluya capturas de pantalla de las gráficas generadas cuando sea relevante.
-\end{enumerate}
-
-Suba el archivo comprimido a través de Bloque Neón en el laboratorio del Nivel 4 designado como "N4-L2: Exploración de análisis de datos con Pandas y Matplotlib".
-
-\textbf{Recomendaciones:}
-\begin{itemize}
-    \item No se limite a responder las preguntas mínimas. Experimente con variaciones de los ejemplos.
-    \item Consulte la documentación oficial cuando tenga dudas. Aprender a leer documentación es una habilidad fundamental.
-    \item Pruebe combinaciones de métodos que no se mencionan explícitamente en el laboratorio.
-    \item Si encuentra métodos o funcionalidades interesantes en la documentación, inclúyalos en su exploración.
-    \item Comente su código para explicar qué está probando en cada sección.
-\end{itemize}
+Entregue el archivo a través de Bloque Neón en el laboratorio del Nivel 4 designado como ``N4-L2: Recorridos de matrices''.
 \end{sectionbox}
 
 \end{document}
+
