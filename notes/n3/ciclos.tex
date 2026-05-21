@@ -1,0 +1,90 @@
+\part{Ciclos}
+
+Python tiene dos tipos de ciclos: \texttt{while} y \texttt{for}. Un \emph{ciclo} es una estructura de control que permite repetir un bloque de código varias veces.
+
+\section{Ciclo \texttt{while}}
+
+El ciclo \texttt{while} ejecuta un bloque de código mientras una condición sea verdadera. Su sintaxis es análoga a la sintaxis del \texttt{if}:
+
+\begin{sintaxis}
+while \placeholder{valor de tipo \texttt{bool}}:\\
+\phantom{xxxx}\placeholder{bloque de código}
+\end{sintaxis}
+
+La diferencia es: en el \texttt{if}, el bloque de código se ejecuta cuando la condición es verdadera y se ejecuta una sola vez; en el \texttt{while}, el bloque de código se ejecuta una y otra vez mientras la condición siga siendo verdadera.
+
+Dicho de otra forma, el bloque de código solo se deja de ejecutar cuando la condición sea falsa. Eso implica que diseñar un ciclo \texttt{while} consiste básicamente de:
+\begin{itemize}
+    \item Una condición que inicialmente sea verdadera (si no, el ciclo nunca ejecutará).
+    \item El bloque de código que se ejecutará repetidamente.
+    \begin{itemize}
+        \item Dentro del bloque de código, debe haber algo que permita que el valor de la condición cambie. De lo contrario, el bloque de código se seguirá ejecutando indefinidamente. Ese error lógico genera un \textit{ciclo infinito}.
+    \end{itemize}
+\end{itemize}
+
+Un ejemplo de ciclo \texttt{while} es el siguiente:
+\begin{minted}{python}
+i = 0
+while i < 3:
+    print(i)
+    i += 1
+\end{minted}
+
+En ese ejemplo:
+\begin{itemize}
+    \item La condición es \texttt{i < 3}, que es verdadera inicialmente.
+    \item El bloque de código imprime el valor de \texttt{i} y luego incrementa el valor de \texttt{i} en 1.
+    \begin{itemize}
+        \item Como siempre se incrementa el valor de \texttt{i}, eventualmente \texttt{i} valdrá 3 y la condición será falsa. En ese punto, el bloque de código se deja de ejecutar.
+    \end{itemize}
+\end{itemize}
+Con lo anterior en mente, resulta evidente que el ciclo se ejecuta 3 veces:
+\begin{enumerate}
+    \item La primera ejecución se debe a que \texttt{i} vale 0 y 0 es menor que 3. Se imprime el valor \texttt{0} y luego se incrementa \texttt{i} en 1. Al final de esa ejecución, \texttt{i} vale 1.
+    \item Luego, se revisa si se cumple la condición. En este caso, sí se cumple, porque 1 es menor que 3. Se imprime \texttt{1}, y se incrementa, de forma que \texttt{i} ahora vale 2.
+    \item En la tercera iteración, se sigue cumpliendo la condición (2 es menor que 3); se imprime \texttt{2} y ahora \texttt{i} vale 3.
+    \item Tras eso, se revisa si se cumple la condición. Ahora, ya no se cumple: 3 no es menor que 3. El bloque de código se deja de ejecutar.
+\end{enumerate}
+
+
+\section{Ciclo \texttt{for}}
+
+El ciclo \texttt{for} ejecuta un bloque de código para cada elemento de un iterable. Un \emph{iterable} es cualquier objeto que puede recorrerse elemento por elemento. Conocemos tres tipos de datos que son iterables: cadenas de caracteres, listas y diccionarios.
+
+Un ejemplo de ciclo \texttt{for} es el siguiente:
+\begin{minted}{python}
+for char in "Hola":
+    print(char)
+\end{minted}
+
+En ese ejemplo:
+\begin{itemize}
+    \item El iterable es la cadena de caracteres \texttt{"Hola"}. Los elementos que se recorren son: \texttt{H}, \texttt{o}, \texttt{l}, \texttt{a}.
+    \item La variable \texttt{char} representa un elemento distinto en cada iteración.
+    \item El bloque de código imprime el valor de \texttt{char} en cada iteración.
+\end{itemize}
+Con lo anterior en mente, resulta evidente que el ciclo se ejecuta 4 veces: en la primera iteración, \texttt{char} vale \texttt{H} y se imprime \texttt{H}; en la segunda \texttt{char} vale \texttt{o} y se imprime \texttt{o}; en la tercera, se imprime \texttt{l}; y en la cuarta, \texttt{a}.
+
+La sintaxis general es:
+
+\begin{sintaxis}
+for \placeholder{variable de iteración} in \placeholder{iterable}:\\
+\phantom{xxxx}\placeholder{bloque de código}
+\end{sintaxis}
+
+\section{¿\texttt{while} o \texttt{for}?}
+
+Técnicamente, los ciclos \texttt{while} y \texttt{for} son equivalentes. Es decir, ambos pueden realizar las mismas tareas. Sin embargo, por algo existen ambos: no tiene sentido usarlos para lo mismo.
+
+\subsection{De \texttt{for} a \texttt{while}}
+
+La conversión radica en recorrer el iterable que recorrería el ciclo \texttt{for} pero mediante un ciclo \texttt{while}. Para eso, el ciclo \texttt{while} simplemente incrementa un contador y se usa ese contador para acceder a los elementos del iterable. Es decir:
+
+\begin{sintaxis}
+i = 0\\
+while i < len(\placeholder{iterable}):\\
+\phantom{xxxx}\placeholder{variable de iteración} = \placeholder{iterable}[i]\\
+\phantom{xxxx}\placeholder{bloque de código}\\
+\phantom{xxxx}i += 1
+\end{sintaxis}
+

@@ -1,0 +1,96 @@
+
+\section{Booleanos}
+
+Otro tipo de dato es el booleano, que representa valores de verdad:
+\begin{table}[h]
+\centering
+\footnotesize
+\begin{tabular}{|l|l|l|p{3.5cm}|l|}
+\hline
+\textbf{Tipo de dato} & \textbf{Nombre (inglés)} & \textbf{Traducción} & \textbf{Descripción} & \textbf{E.g.} \\
+\hline
+\mintinline{python}|bool| & \textit{boolean} & booleano & Representa verdadero o falso & \mintinline{python}|True|, \mintinline{python}|False| \\
+\hline
+\end{tabular}
+\normalsize
+\caption{Tipo de dato booleano.}
+\label{tab:tipo-dato-booleano}
+\end{table}
+
+El término \emph{booleano} alude al álgebra de Boole, un sistema que pretendía modelar el razonamiento lógico mediante herramientas algebraicas. Resultó en una estructura algebraica que utiliza solo dos valores. En Python, los dos valores son \texttt{True} y \texttt{False} (nótese que se escriben con mayúscula inicial), pero conceptualmente podrían representarse en cualquier forma, como \texttt{1} y \texttt{0}.
+
+\subsection{Operadores relacionales}
+
+Una forma de generar valores booleanos a partir de valores que no son booleanos es mediante los operadores relacionales, que comparan dos valores y devuelven un valor booleano:
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Operador} & \textbf{Símbolo} & \textbf{Ejemplo matemático} & \textbf{Ejemplo en Python} & \textbf{Resultado} \\
+\hline
+Igual a & \mintinline{python}|==| & $1 = 2$ & \mintinline{python}|1 == 2| & \mintinline{python}|False| \\
+\hline
+Distinto de & \mintinline{python}|!=| & $5 \neq 3$ & \mintinline{python}|5 != 3| & \mintinline{python}|True| \\
+\hline
+Mayor que & \mintinline{python}|>| & $3 > 4$ & \mintinline{python}|3 > 4| & \mintinline{python}|False| \
+\hline
+Menor que & \mintinline{python}|<| & $2 < 6$ & \mintinline{python}|2 < 6| & \mintinline{python}|True| \\
+\hline
+Mayor o igual que & \mintinline{python}|>=| & $5 \geq 5$ & \mintinline{python}|5 >= 5| & \mintinline{python}|True| \\
+\hline
+Menor o igual que & \mintinline{python}|<=| & $5 \leq 4$ & \mintinline{python}|5 <= 4| & \mintinline{python}|False| \\
+\hline
+\end{tabular}
+\caption{Operadores relacionales en Python.}
+\label{tab:operadores-relacionales}
+\end{table}
+
+\begin{tip}
+    Note la diferencia entre el operador de asignación \texttt{=} y el operador de igualdad \texttt{==}. El primero se usa para asignar un valor a una variable, mientras que el segundo se usa para comparar dos valores.
+\end{tip}
+
+\subsubsection{Operadores de identidad}
+
+Otra forma de generar valores booleanos es mediante los operadores de identidad, que comparan la identidad de dos objetos en memoria. En Python, los operadores de identidad son \texttt{is} e \texttt{is not}:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Operador} & \textbf{Símbolo} & \textbf{Ejemplo en Python} & \textbf{Resultado} \\
+\hline
+Es idéntico a & \mintinline{python}|is| & \mintinline{python}|type(.1) is float| & \mintinline{python}|True| \\
+\hline
+No es idéntico a & \mintinline{python}|is not| & \mintinline{python}|5 is not None| & \mintinline{python}|True| \\
+\hline
+\end{tabular}
+\caption{Operadores de identidad en Python.}
+\label{tab:operadores-identidad}
+\end{table}
+
+En Python, dos cosas son la misma en memoria si son el mismo objeto; sin embargo, la programación orientada a objetos escapa el alcance de estos apuntes.
+
+Lo que hay que saber es que se debe usar \mintinline{python}|is| e \mintinline{python}|is not| para comparar con \mintinline{python}|None|, al igual que para comparar con tipos de dato cuando se usa la función \texttt{type} (e.g., \mintinline{python}|type(x) is int|). Para comparar otros valores, se suele usar \texttt{==} y \texttt{!=}.
+
+\subsection{Operadores lógicos}
+
+Los operadores lógicos generan valores booleanos a partir de otros valores booleanos:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Operador} & \textbf{Símbolo} & \textbf{Ejemplo en español} & \textbf{Ejemplo matemático} & \textbf{Ejemplo en Python} & \textbf{Resultado} \\
+\hline
+Negación & \mintinline{python}|not| & No $p$ & $\neg (p)$ & \mintinline{python}|not p| & \mintinline{python}|False| \\
+\hline
+Conjunción & \mintinline{python}|and| & $p$ y $q$ & $p \land q$ & \mintinline{python}|p and q| & \mintinline{python}|True| si y solo si $p$ y $q$ son \texttt{True}\\
+\hline
+Disyunción & \mintinline{python}|or| & $p$ o $q$ & $p \lor q$ & \mintinline{python}|p or q| & \mintinline{python}|True| \\
+\hline
+\end{tabular}
+\caption{Operadores lógicos en Python.}
+\label{tab:operadores-logicos}
+\end{table}
+
+Uso  \mintinline{python}|p| y \mintinline{python}|q| como los nombres de las variables porque es convencional en lógica usar letras minúsculas para representar proposiciones, que son afirmaciones que pueden ser verdaderas o falsas. En este caso, \mintinline{python}|p| y \mintinline{python}|q| son valores de tipo \texttt{bool}.
