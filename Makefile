@@ -6,7 +6,7 @@ export TEXINPUTS
 
 TEX=pdflatex -shell-escape
 LEVEL_DIR=n4
-LAB_DIR=$(LEVEL_DIR)/labs/l1
+LAB_DIR=$(LEVEL_DIR)/labs/l3
 EXAM_DIR=$(LEVEL_DIR)/exam
 QUIZ_DIR=$(LEVEL_DIR)/quizzes/q1
 RESOURCES_DIR=resources
@@ -15,7 +15,7 @@ NOTES_DIR=notes
 .PHONY: lab quiz exam clean notes clean-all all generate-exams generate-exams-pdf generate-exams-dry clean-exams
 
 lab:
-	cd $(RESOURCES_DIR) && $(TEX) -output-directory=$(LAB_DIR) $(LAB_DIR)/n4-l1.tex
+	cd $(RESOURCES_DIR) && $(TEX) -output-directory=$(LAB_DIR) $(LAB_DIR)/n4-l3.tex
 
 quiz:
 	cd $(RESOURCES_DIR)/$(QUIZ_DIR) && TEXINPUTS=../../../packages/:$(TEXINPUTS) $(TEX) n4-q1.tex
