@@ -36,20 +36,3 @@ clean:  # Remove all temporary files
 
 clean-all: clean  # Remove all temporary files and the generated pdf
 	find . -name "*.pdf" -exec rm {} +
-
-all: lab exam
-
-# Exam generation
-EXAM_CONFIG ?= exams/config/n1-exam.toml
-
-generate-exams:
-	python3 exams/generate.py $(EXAM_CONFIG)
-
-generate-exams-pdf:
-	python3 exams/generate.py $(EXAM_CONFIG) --compile
-
-generate-exams-dry:
-	python3 exams/generate.py $(EXAM_CONFIG) --dry-run
-
-clean-exams:
-	rm -rf exams/output/
